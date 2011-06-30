@@ -1,0 +1,4 @@
+<li{% ifequal activesecondary 'profile' %} class="on"{% endifequal %}><a class="nav_item" href="/{{u}}/">{{u}}'s Profile</a></li>
+<li{% ifequal activesecondary 'viewalluser' %} class="on"{% endifequal %}><a class="nav_item" href="/{{ u }}/viewyourflowgramsthumb/">All Flowgrams by {{ u }}</a></li>
+<li{% ifequal activesecondary 'favorites' %} class="on"{% endifequal %}><a class="nav_item" href="/{{ u }}/favorites/">{{ u }}'s Favorites</a></li>
+

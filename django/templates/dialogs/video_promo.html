@@ -1,0 +1,24 @@
+<style type="text/css" media="screen">
+	div#wrapper_video {
+		text-align: center;
+		width: 100%;
+		z-index: 9999;
+		width: 322px;
+		height: 276px;
+	}
+</style>
+<div id="dialog" style="display: none; width: 362px;">
+	<div id="dialog_body">
+		<div id="wrapper_video"></div>
+		<p><a href="javascript:void(0);" class="dialog_close"><img src="/media/images/btn_close.gif" alt="Close" border="0" /></a></p>
+	</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+	// embed hero video
+	var so = new SWFObject('/media/swf/jwplayer/player.swf','mpl','322','276','9');
+	so.addParam('allowscriptaccess','always');
+	so.addParam('allowfullscreen','true');
+	so.addParam('wmode','opaque');
+	so.addParam('flashvars','&file=http://{{ s3_bucket_static }}/media/swf/homeHero/homepagemovie8a.flv&image=/media/swf/homeHero/screen.png');
+	so.write('wrapper_video');
+</script>

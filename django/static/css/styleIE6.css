@@ -1,0 +1,39 @@
+/* GLOBAL */
+
+div#wrapper_header_sub {
+	margin-bottom: 0;
+}
+
+div#content_main div.module div.fg_player {
+	margin: 0 5px 5px 0;
+}
+
+div#content_main div.grid div.module div.fg_info {
+	width: 172px;
+	margin-left: 10px !important;
+}
+
+div#content_main div.home div.module div.fg_info {
+	width: 172px;
+}
+
+div#content_main div.hero div.module div.fg_info {
+	width: 326px;
+}
+
+div#content_main div.display_filters div.module div.time_period,
+div#content_main div.display_filters div.module div.results_display_toggle
+{
+	margin-top: 7px;
+}
+
+div#content_right div#invite_module input#invite_email {
+	width: 200px;
+}
+
+/* PAGE SPECIFIC */
+
+/* Add URLs page */
+div.add_urls img#loading_stripes {
+	left: -432px;
+}

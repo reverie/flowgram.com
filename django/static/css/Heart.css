@@ -1,0 +1,39 @@
+div.fg_heart {
+	float: left;
+	margin-right: 20px;
+}
+
+div.list div.fg_heart,
+div.hero div.fg_heart
+{
+	margin-left: -84px;
+}
+
+.fg_HeartRating {
+    margin: 2px 21px;
+    width: 14px;
+    height: 13px;
+	position: relative;
+	left: 65px;
+}
+
+.fg_HeartRating-empty {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/hearts/small_heart_grey.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_HeartRating-empty[class] {
+    background: url(/media/images/hearts/small_heart_grey.png);
+}
+
+.fg_HeartRating-full {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/hearts/small_heart_red.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_HeartRating-full[class] {
+    background: url(/media/images/hearts/small_heart_red.png);
+}
+

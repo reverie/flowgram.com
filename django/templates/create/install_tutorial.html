@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Make a Flowgram
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/make_a_flowgram.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav_sub_make.incl" %}
+{% endblock %}
+
+{% block content %}
+	<div id="wrapper_page_header">
+		<h2 class="sifr_dark">Help Tutorial</h2>
+	</div>	
+	
+	<div id="wrapper_tutorial">
+		<h3>Here's how to install our tools to your bookmarks.</h3>
+		<div id="tutorial" class="curved">
+			<div class="content">
+				<div id="tutorial_video"></div>
+				<p id="next"></p>
+			</div>
+			<div class="clearer"></div>
+		</div>
+	</div>
+	
+
+
+{% endblock content %}
+
+{% block js_init %}
+	var ic = new InstallController('tutorial');
+
+	// curved corners
+	window.onload = function()
+	  {
+	    settings = {
+	      tl: { radius: 5 },
+	      tr: { radius: 5 },
+	      bl: { radius: 5 },
+	      br: { radius: 5 },
+	      antiAlias: true,
+	      autoPad: false
+	    }
+
+	    var cornersObj = new curvyCorners(settings, "curved");
+	    cornersObj.applyCornersToAll();
+	 }
+
+	
+{% endblock %}

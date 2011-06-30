@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+{% load filters %}
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="description" content="Create interactive guided presentations by combining web pages, photos, Power Point and more with your voice, notes and highlights.  Viewers can control the pages, scroll, click on links, view videos and more."/>
+	<meta name="keywords" content="blog post, business, communication, education, facebook, flickr, Flowgram, flowgrams, lecture, literature, photo, photo slideshow , powerpoint, powerpoint sharing, presentation, private message, roundup, sharing, share, slide, slide show, slides, slideshow, technology, tutorial, youtube"/>
+	<meta name="author" content="FlowGram"/>
+    <noscript>
+        <meta http-equiv="refresh" content="0; URL=/nojs/">
+    </noscript>
+    <title>Flowgram {% block title %}{% endblock %}</title>
+    {% include "includes/css.incl" %}
+    {% include "includes/js_head.incl" %}
+    
+    {# Any JS that we need to run in the head, keep this to a minimum. #}
+	
+	{% comment %}
+	<!-- google optimizer make a fg button experiment -->
+	<script>
+	function utmx_section(){}function utmx(){}
+	(function(){var k='2642065068',d=document,l=d.location,c=d.cookie;function f(n){
+	if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.indexOf(';',i);return c.substring(i+n.
+	length+1,j<0?c.length:j)}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;
+	d.write('<sc'+'ript src="'+
+	'http'+(l.protocol=='https:'?'s://ssl':'://www')+'.google-analytics.com'
+	+'/siteopt.js?v=1&utmxkey='+k+'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='
+	+new Date().valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+	'" type="text/javascript" charset="utf-8"></sc'+'ript>')})();
+	</script>
+	{% endcomment %}
+	
+	<script type="text/javascript" src="/media/js/preloadImages.js"></script>
+    <script type="text/javascript" charset="utf-8">	
+        // preload key images
+        var init_images = ['/media/images/bg_main_shadow.gif', '/media/images/bg_header_main.png', '/media/images/bg_header_sub.png', '/media/images/bg_promo_yellow.png','/media/images/bg_smoke.png','/media/images/bg_hdr_blue.png','/media/images/bg_hdr_light_blue.png','/media/images/nav/home_off.png','/media/images/nav/browse_off.png','/media/images/nav/create_off.png','/media/images/nav/you_off.png','/media/images/nav/home_on.png','/media/images/nav/browse_on.png','/media/images/nav/create_on.png','/media/images/nav/you_on.png'];
+        preloadImages(init_images);
+        
+        {% block js_head_init %}
+        
+        {% endblock %}
+    </script>
+    
+    <!-- SECTION/PAGE CSS -->
+    {% block styles %}
+    
+    {% endblock %}
+    
+    {% include "includes/includesIE.incl" %}
+</head>
+
+<body{% block bodyclass %}{% endblock %}><a name="top"></a>
+	<div id="wrapper_messages"></div>
+	<div id="wrapper_site">
+		<div id="wrapper_shadow">
+			<div id="wrapper_main">
+				{% if not user.is_authenticated %}
+					{% include "includes/modules/login/login_pane.incl" %}
+				{% endif %}
+				<div id="wrapper_header_main">
+					<a href="/"><img src="/media/images/logo.png" id="logo" alt="FlowGram" /></a>
+					<div id="wrapper_nav_global">
+						{% include "includes/nav/nav_global.incl" %}
+					</div>
+					<div id="wrapper_login_search">
+						<div id="top_links" {% block sign_in_suppress %}{% endblock %}>
+							{% include "includes/modules/site/top_links.incl" %}
+						</div>
+						<div id="search">
+							{% include "includes/modules/site/search_box.incl" %}
+						</div>
+					</div>
+				</div>
+				
+				{% block subheader_suppress %}
+				<div id="wrapper_header_sub">
+					<div id="hdr_section">
+						<h1 class="sifr_white" id="page_hdr">
+							{% block pageheader %}
+							
+							{% endblock %}
+						</h1>
+					</div>
+					<div id="wrapper_nav_sub">
+							<ul>
+								{% block subnav %}
+									{% include "includes/nav/nav_sub.incl" %}
+								{% endblock %}
+								<div class="clearer"></div>
+							</ul>
+					</div>
+					<div class="clearer"></div>
+				</div>
+				{% endblock %}
+				
+				<div id="wrapper_content">
+
+					{% block content %}
+
+					{% endblock %}
+
+					<div class="clearer"></div>
+				</div>
+			
+			</div>
+			<div id="wrapper_footer">
+				{% include "includes/modules/site/footer.incl" %}
+				<div class="clearer"></div>
+			</div>
+		</div>
+		<div id="wrapper_bottom"></div>
+	</div>	
+    <div id="csrf_token" style="display:none">{{csrf_token}}</div>
+
+{% comment %}
+	<div id="talkingEmailSecurity_backdrop"></div>
+	<div id="talkingEmailSecurity_wrapper_backdrop_content">
+		<div id="talkingEmailSecurity_backdrop_content">
+			<div id="talkingEmailSecurity_dialog" style="width: 420px;">
+				<div id="talkingEmailSecurity_dialog_body">
+					<h3>Please enable your microphone.</h3>
+					<div style="position: relative;">
+						<img src="/media/images/micInstructionsLeft.png" id="talkingEmailSecurity_arrowsLeft" alt="" border="0" />
+						<div id="divFGInstaRecorder">This site requires javascript and <a href="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=shockwaveFlash" target="_blank">Adobe Flash</a>.</div>
+						<img src="/media/images/micInstructionsRight.png" id="talkingEmailSecurity_arrowsRight" alt="" border="0" />
+						<div class="clearer"></div>
+						<!-- <p style="position: absolute; top: 20px; left: 63px; width: 200px; z-index: 2001;"><strong>Now, click "Done" below.</strong></p> -->
+					</div>
+					
+					<ol style="margin-top: 170px;">
+						<li>Check "Allow".</li>
+						<li>Check "Remember".</li>
+						<li>Click "Close".</li>
+						<li>Click "Done".<br/><strong>(After you're done, you must click "Click to Record" again to start recording.)</strong></li>
+					</ol>
+
+					<p><a href="javascript:void(0);" id="talkingEmailSecurity_close"><img src="/media/images/btn_done.png" border="0" /></a><img src="/media/images/micInstructionsDone.png" id="talkingEmailSecurity_arrowsDone" alt="" border="0" /></p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endcomment %}
+
+{% include "includes/js.incl" %}
+
+<!-- SECTION/PAGE JS -->
+{% block js %}
+
+{% endblock %}
+	
+<!--before -->
+<script id="fg_bookmarklet" type="text/javascript" charset="utf-8">
+
+	// init login controller
+	{% block login_type %}
+		var login_type = 'pane';
+	{% endblock %}
+	{% if not user.is_authenticated %}
+		if (login_type == 'pane') {
+			var lc = new LoginController();
+		}
+	{% endif %}
+
+	// init system messages controller
+	var smc = new SystemMessagesController();
+	
+	{% if messages %}
+		// set system messages
+		var messages_array = new Array();
+	    {% for message in messages %}
+	        messages_array[{{ forloop.counter0 }}] = '{{ message|safe }}';
+	    {% endfor %}
+		// init system messages controller
+		smc.initSystemMessages();
+	{% endif %}
+	
+	// init paginator
+	if ($('paginator_ul')) {
+		var pc = new PaginatorController();
+	}
+	
+    if (window.has_invite_module) {
+        var has_invites = {% ifnotequal request.user.get_profile.invitations 0 %}'true'{% else %}'false'{% endifnotequal %};
+        var invc = new InviteController();
+    }
+
+	// preload nav images
+	var nav_images = ['/media/images/nav/home_on.png', '/media/images/nav/browse_on.png', '/media/images/nav/create_on.png','/media/images/nav/you_on.png'];
+	preloadImages(nav_images);
+	
+	// init section/page specific js
+	{% block js_init %}
+
+	{% endblock %}
+</script>
+<!-- after -->
+{% include "includes/analytics.incl" %}
+
+{% comment %}
+<!-- google optimizer make a fg button experiment -->
+<script>
+if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
+'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
+'.google-analytics.com/urchin.js'+'"></sc'+'ript>')
+</script>
+<script>
+_uacct = 'UA-5368934-2';
+urchinTracker("/2642065068/test");
+</script>
+{% endcomment %}
+</body>
+</html>

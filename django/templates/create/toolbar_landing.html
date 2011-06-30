@@ -1,0 +1,172 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Make a Flowgram
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/create.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	{% ifequal browser "MSIE" %}
+		Add the Flowgram bookmarklets
+	{% endifequal %}
+	{% ifequal browser "Gecko" %}
+		Add the Flowgram bookmarklets (zero download!)
+	{% endifequal %}
+{% endblock %}
+
+{% block content %}
+	<div id="content_main">
+		<div class="hero">
+			<div class="module">
+				
+				<div id="IE" style="{% ifnotequal browser "MSIE"  %}display: none{% endifnotequal %}; font-size: 14px">
+					
+					<h2>Getting the Flowgram bookmarklets is a smart move!</h2>
+					<p>You'll be able to add pages as you browse.  No more copying and pasting URLs!  You'll also be able to  add a wider range of pages.</p>
+					<p>After installation you'll have <strong>two bookmarklets</strong>:</p>
+					<ol>
+					<li>Clicking the <strong>Flowgram Maker</strong> bookmarklet brings up the Flowgram Maker right away.</li>
+					<li>Clicking the <strong>Quick Add</strong> bookmarklet adds the page your browser is currently on.  The next time you launch the Flowgram Maker your new page will be there.</li>
+					</ol>
+					<p><strong>Click the "Express Installer" button below to get with the Flowgram!</strong></p>
+					
+					<div id="IE_express">
+
+						<blockquote>
+							<a href="{% include "includes/bookmarklets/express.incl" %}"><img src="/media/images/btn_express_installer.gif" border="0" /></a><br/><br/>
+							Click the button above.  It's only 16k.<br/>
+							Of course it contains no spyware, and it only adds two bookmarks to your favorites toolbar.
+						</blockquote>
+
+						<h2 id="or"><strong>Or</strong></h2>
+
+						<h2><a href="javascript:void(0);" onclick="ic.handleManualClick();">Add the bookmarks yourself</a></h2>
+					</div>
+					
+					
+					<div id="IE_manual" style="display: none;">
+						<blockquote>
+							<div id="IE_instructions">
+								<h3>1. Right-click on Link A &amp; Link B below</h3>
+								<h3>2. Select "Add to Favorites...".</h3>
+								<h3>3. Make sure that you put them in your "Links" folder.</h3>
+							</div>
+						
+							<div id="IE_bookmarklet_links">
+								<h3>
+									Link A: <a class="bookmarklet" href="{% include "includes/bookmarklets/flowgram_maker.incl" %}" onclick="return false;">Flowgram Maker</a><br/>
+									Link B: <a class="bookmarklet" href="{% include "includes/bookmarklets/quick_plus.incl" %}" onclick="return false;">Quick Add Page</a>
+								</h3>
+								<div class="help_bubble">Need more help? Use the express installer.</div>
+								<div class="clearer"></div>
+							</div>
+							
+						
+						</blockquote>
+					
+						
+
+					</div>
+				
+					<div class="divider_horiz"></div>
+					
+					<!--<h2 class="continue">Click continue once you're done.</h2>
+					<blockquote>
+						<a href="/create/create_continue/"><img src="/media/images/btn_cont.gif" border="0" alt="Continue" /></a>
+					</blockquote>-->
+				</div>
+				
+				
+				<div id="firefox" {% ifnotequal browser "Gecko"  %}style="display: none"{% endifnotequal %}>
+					<h2 style="margin-bottom: 5px;">To get started, click the PLAY button on the video to find out where to drag and drop the Flowgram bookmarklets.</h2>
+					
+					<blockquote>
+						<div id="firefox_video">
+							<div id="firefox_video_loading">
+								Video loading...<br/>
+								<img src="/media/images/loading_big_blue.gif" class="loading_gif" />
+							</div>
+						</div>
+						<div id="firefox_bookmarklet_links">
+							<h3>
+								Link A: <a class="bookmarklet" href="{% include "includes/bookmarklets/flowgram_maker.incl" %}" onclick="return false;">Flowgram Maker</a><br/>
+								Link B: <a class="bookmarklet" href="{% include "includes/bookmarklets/quick_plus.incl" %}" onclick="return false;">Quick Add Page</a>
+							</h3>
+							<div class="help_bubble">Please watch the video.</div>
+							<div class="clearer"></div>
+						</div>
+						<div class="clearer"></div>
+					</blockquote>
+
+					<h2 class="continue">Click continue once you're done.</h2>
+					<blockquote>
+						<a href="/create/create_continue/"><img src="/media/images/btn_cont.gif" border="0" alt="Continue" /></a>
+					</blockquote>
+				</div>
+				
+				<div id="non_supported" {% ifequal browser "MSIE"  %}style="display: none"{% endifequal %}{% ifequal browser "Gecko"  %}style="display: none"{% endifequal %}>
+					<h2>You're using a browser we don't currently support.</h2>
+					<h3 style="margin-bottom: 300px;">We're working on support for as many browsers as we can.  Right now, we've got <strong>Internet Explorer</strong> and <strong>Firefox</strong> ready for you to use.  For the time being, please use one of these browsers to experience Flowgram, and check back for updates in the future.  Have fun Flowgramming!</h3>
+				</div>
+				
+				
+			</div>
+		</div>	
+	</div>
+
+	<div id="content_right">
+		<div class="module" id="firefox_express" style="display: none;">
+			<h2>Automatic bookmarklet installer</h2>
+			<ul>
+				<li class="last">
+					If you don't want to install the bookmarklets manually, use our automatic installer.
+					<br/><br/>
+					This requires you to download our (tiny) installer.
+					<h3><a href="{% include "includes/bookmarklets/firefox.incl" %}" hash="{% include "includes/bookmarklets/firefox_xpi_hash.incl" %}" iconURL="" onclick="return install(event);">Click here to download.</a></h3>
+					<p>The automatic installer will require a browser restart.</p>
+				</li>
+			</ul>
+			
+		</div>
+		<div class="module">
+			<h2>Help</h2>
+			<ul id="help_list_IE">
+				<li><a href="/help/16/">I can't see my bookmarks toolbar.</a></li>
+				<li><a href="/help/3/">I can see my bookmarks toolbar.  Now how do I add the links to my bookmarks toolbar?</a></li>
+				<li class="last"><a href="/help/1/">I have added the links to my bookmarks toolbar, now what?</a></li>
+			</ul>
+			<!--<ul id="help_list_IE"{% ifnotequal browser "MSIE" %} style="display: none;"{% endifnotequal %}>
+				<li><a href="/help/16/">I can't see my bookmarks toolbar.</a></li>
+				<li><a href="/help/3/">I can see my bookmarks toolbar.  Now how do I add the links to my bookmarks toolbar?</a></li>
+				<li class="last"><a href="/help/1/">I have added the links to my bookmarks toolbar, now what?</a></li>
+			</ul>
+			<ul id="help_list_firefox_safari"{% ifnotequal browser "Gecko" %} style="display: none;"{% endifnotequal %}>
+				<li><a href="/help/16/">I can't see my bookmark's toolbar.</a></li>
+				<li><a href="/help/3/">How do I drag and drop the links to my bookmarks toolbar?</a></li>
+				<li class="last"><a href="/help/1/">I have added the links to my bookmarks toolbar, now what?</a></li>
+			</ul>-->
+		</div>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+	</div>
+
+{% endblock content %}
+
+{% block js_init %}
+	var ic = new InstallController();
+	
+	function install (aEvent) {
+		var params = {
+		    "Flowgram Bookmarklet Installer": { URL: aEvent.target.href,
+		            IconURL: aEvent.target.getAttribute("iconURL"),
+		            Hash: aEvent.target.getAttribute("hash"),
+		            toString: function () { return this.URL; }
+		    }
+		};
+		
+		InstallTrigger.install(params);
+		return false;
+	}
+{% endblock %}

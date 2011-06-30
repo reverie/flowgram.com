@@ -1,0 +1,109 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	{% if pageowner %}
+		| Your Favorites
+	
+	{% else %}
+		| {{ profile.user }}'s Favorites
+	
+	{% endif %}
+{% endblock %}
+
+{% block styles %}
+	<style type="text/css">
+
+			div#flowgram_organizer {
+				float: left;
+			}
+				div.display_filters ul#flowgram_organizer_ajax {
+					list-style-type: none;
+					padding: 0px;
+					margin: 0px;
+				}
+		
+					div.display_filters div#flowgram_organizer ul#flowgram_organizer_ajax li {
+						float: left;
+						margin-right: 5px;
+					}
+				
+						div.display_filters div#flowgram_organizer ul#flowgram_organizer_ajax li.selected a {
+							text-decoration: none !important;
+							color: #333333 !important;
+						}
+	</style>
+{% endblock %}
+
+{% block pageheader %}
+	{% if pageowner %}
+		Your Favorites
+	
+	{% else %}
+		{{ profile.user }}'s Favorites
+	
+	{% endif %}
+{% endblock %}
+
+{% block subnav %}
+	{% if pageowner %}
+		{% include "includes/nav/nav_sub_you.incl" %}
+	{% else %}
+		{% include "includes/nav/nav_sub_browse_people.incl" %}
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		{% ifequal num_favs 0  %}
+			<br/><br/><br/><h3><center> 
+			{% if pageowner %}
+			You have not added any favorites yet. 
+			{% else %}
+	        	{{ profile.user }} has not added any favorites yet.
+        	{% endif %}
+        	</h2></center>
+        {% else %}
+       		{% with object_list as flowgram_list %}
+            	{% include "includes/modules/flowgram/fg_modules.html" %}
+        	{% endwith %}
+        	
+		{% endifequal %}
+
+	    {% load digg_paginator %}
+		{% digg_paginator %}
+		
+	</div>
+
+	<div id="content_right">
+		<a href="/create"><img src="/media/images/btn_makeaFG.png" id="btn_make_FG_right_col" alt="Make a Flowgram" border="0" /></a>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+        {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+		{% include "includes/promos/tutorials.incl" %}
+		{#% include "includes/modules/flowgram/sidebar_categories_best_of.incl" %#}
+		{% include "includes/modules/other_content/blog_module.incl" %}
+        
+	</div>
+	
+{% endblock content %}
+
+{% block js_init %}
+	{% if object_list %}
+	{% for fg in object_list %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+		{# % widget fg 140 100 "opaque" % #}
+	{% endfor %}
+	{% endif %}
+	
+	var path = location.href;
+	var lastPath = "favorites"
+	var index = path.indexOf(lastPath);
+	path = path.substring(0, index+lastPath.length);
+	
+	dfc = new DisplayFiltersController( "{{sort_criterion}}", "{{ pub_priv }}", path );
+
+{% endblock %}

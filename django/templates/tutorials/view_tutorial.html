@@ -1,0 +1,99 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Tutorials | {{ tutorial.title }}
+{% endblock %}
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		/*
+		div#tutorial {
+			width: 505px;
+			margin-right: 10px;
+			float: left;
+		}
+		
+		div#video {
+			width: 400px;
+			float: left;
+		}
+		*/
+	</style>
+{% endblock %}
+
+{% block pageheader %}
+	Tutorials
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+		<div class="hero wide">
+			<div class="module">
+				
+				<p class="first"><a href="/tutorials/">&laquo; Back to Tutorials Index</a></p>
+				
+				<div>
+					<h2 class="first">{{ tutorial.title }}</h2>
+					<div id="video">
+						<div id="tutorialVideo"></div>
+					</div>
+					<div id="tutorial">
+						{{ tutorial.content|safe }}
+					</div>
+					<div class="clearer"></div>	
+				</div>
+				
+				
+
+			</div>
+		</div>
+		
+		
+	</div>
+
+{% endblock content %}
+
+{% block js %}
+	{% ifnotequal video_path '' %}
+		<script type="text/javascript" charset="utf-8" src="/media/swf/jwplayer/swfobject.js"></script>
+	{% endifnotequal %}
+{% endblock %}
+
+{% block js_init %}
+
+	{% ifnotequal video_path ''  %}
+		var asrc = new AjaxStatRecordController();
+
+		// embed tutorial video
+		var so = new SWFObject('/media/swf/jwplayer/player.swf','mpl','640','500','9');
+		so.addParam('allowscriptaccess','always');
+		so.addParam('allowfullscreen','true');
+		so.addParam('wmode','opaque');
+		so.addParam('flashvars','&file={{ video_path }}&image=/media/swf/homeHero/screen.png');
+		so.write('tutorialVideo');
+
+		var player;
+
+		function videoPlayStatRecord(obj) {
+			var newstate =obj['newstate'];
+			if (newstate == 'BUFFERING') {
+				asrc.recordStat('view_tutorial_video_website', '0', 'start - tutorial id: {{ tutorial.id }}');
+			}
+			else if (newstate == 'COMPLETED') {
+				asrc.recordStat('view_tutorial_video_website', '0', 'end - tutorial id: {{ tutorial.id }}');
+			}
+
+		}
+
+		function playerReady(obj) {
+			var id = obj['id'];
+			var version = obj['version'];
+			var client = obj['client'];
+			player = $(id);
+			player.addModelListener("STATE","videoPlayStatRecord");
+		}
+	{% endifnotequal %}
+
+{% endblock %}

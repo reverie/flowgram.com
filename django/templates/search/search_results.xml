@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GoogleCustomizations>
+    <CustomSearchEngine>
+        <Title>Flowgram Search</Title>
+        <Description>A Google Custom Search Engine that only includes Flowgram sites</Description>
+        <Context>
+           <BackgroundLabels>
+             <Label name="flowgram_example" mode="FILTER" />
+          </BackgroundLabels>
+
+        </Context>
+        <LookAndFeel nonprofit="true">
+     
+           <Colors url="#FF6600" background="#FFFF33" border="#FF6600" title="#FF3300" text="#000000" visited="#663399" light="#FF0077"/>
+        </LookAndFeel>
+    </CustomSearchEngine>
+
+
+</GoogleCustomizations>

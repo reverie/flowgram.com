@@ -1,0 +1,7 @@
+{{ senderName }} sent you a Talking Email titled {{ title }}. Listen to it at {{ url }}
+
+=====
+
+More About Flowgram
+
+Flowgram gives you a powerful new way of enjoying web pages.  You won't need to install anything to watch a Flowgram, and of course it doesn't include any spyware. Just sit back and enjoy!

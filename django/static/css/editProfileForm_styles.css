@@ -1,0 +1,83 @@
+/*REDEFINED generic_text form FOR NEWLETTER LABEL FIX*/
+div.generic_text form{
+	width:800px;
+}
+
+#edit-profile .form-field{
+	padding:0px;
+	margin:0px 0px 10px 0px;
+	clear:both;
+	/*border:1px solid green;*/
+}
+
+#edit-profile .form-field label{
+	float:left;
+	display:block;
+	width:118px;
+	padding:3px 10px 0px 0px;
+	text-align:right;
+}
+
+#edit-profile #edit-profile-newsletter{
+	padding:0px;
+	margin:0px 0px 10px 0px;
+}
+
+#edit-profile .form-field textarea, #edit-profile .form-field input, #edit-profile .form-field select{
+	width:260px;
+	background-color:#DFF0F4;
+}
+
+#edit-profile .form-field input{
+	padding:3px;
+	margin:0px;
+	border:1px solid #B4D3DB;
+}
+
+#edit-profile .form-field #id_newsletter_optin{
+	padding:0px;
+	margin:20px 0px 0px 0px; 
+	width:5px;
+}
+
+#edit-profile .form-field select{
+	width:84px;
+	padding:3px;
+	margin:0px;
+	border:1px solid #B4D3DB;
+	/*text-align:center;*/
+}
+
+#regcode_form div{
+	clear:both;
+	padding:0px;
+	margin:0px 0px 10px 0px;
+}
+
+#regcode_form div label {
+	display:block;
+	float:left;
+	width:118px;
+	margin:0px;
+	padding:0px 10px 0px 0px;
+	text-align:right;
+}
+
+#regcode_form div input, #regcode_form div textarea {
+	margin:0px;
+	padding:3px;
+	width:260px;
+	border:1px solid #B4D3DB;
+}
+
+.errorlist{
+	color:#FF0000;
+	font-weight:bold;
+	margin:0px 0px 0px 5px;
+	padding:0px;
+}
+
+.required-field {
+	color:#FF0000;
+	font-size:9px;
+}

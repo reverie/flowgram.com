@@ -1,0 +1,2734 @@
+
+
+
+
+
+  
+
+
+        
+        
+      
+        
+
+        
+
+      
+
+        
+      
+
+/***********************************************************
+ ** GOOGLE SITES STYLESHEET **
+ **********************************************************/
+
+/***********************************************************
+ ** COMMON STYLES **
+ * Generic styles like body, a, etc. *
+ **********************************************************/
+html {
+  height: 100%;
+}
+body {
+  background-color: #bdcbc6;
+  background-image: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930591716/system/app/themes/wintermint/bg_sprites.gif);
+  background-position: 0px -22px;
+  background-repeat: repeat-x;
+  color: #000000;
+  font: 12px Arial, Verdana, sans-serif;
+  height: 100%;
+  margin: 0; padding: 0;
+  text-align: center;
+  direction: ltr;
+}
+
+a { color: #0066cc; outline: none; }
+a:visited { color: #551a8b; }
+a:hover { color: #551a8b; }
+a:active { color: #0066cc; }
+a img { border: 0; }
+hr {
+  background-color: #b0bdcc;
+  border: 0;
+  color: #b0bdcc;
+  height: 2px;
+  margin: 10px 0;
+  padding: 0;
+}
+input, textarea { font: 12px Arial, Verdana, sans-serif; }
+small { font-size: 11px; }
+.goog-ws-text-right .disabled { background: none !important;
+  border: 0 !important; text-decoration: none !important;
+  color: #666 !important; }
+.goog-ws-text-right .enabled { background: none !important;
+  border: 0 !important; text-decoration: underline !important;
+  color: #0066cc !important; }
+
+/***********************************************************
+ ** BODY IDs **
+ * Used to control left and right alignment of pages *
+ **********************************************************/
+#goog-ws-left .goog-ws-sidebar, #goog-ws-left-nohead .goog-ws-sidebar { left: 0; }
+#goog-ws-right .goog-ws-sidebar, #goog-ws-right-nohead .goog-ws-sidebar { right: 0; }
+
+/* We have a sidebar but no header */ 
+#goog-ws-left-nohead .goog-ws-header, #goog-ws-right-nohead .goog-ws-header {
+  display: none;
+}
+
+/* We have a header, but no sidebar */
+#goog-ws-noside .goog-ws-sidebar {
+  display: none;
+}
+#goog-ws-noside .goog-ws-outside, #goog-ws-noside .goog-ws-subfooter,
+#goog-ws-noside #goog-ws-page-tools-div, #goog-ws-noside .goog-ws-footer,
+#goog-ws-none .goog-ws-outside, #goog-ws-none .goog-ws-subfooter,
+#goog-ws-none #goog-ws-page-tools-div, #goog-ws-none .goog-ws-footer {
+  margin: 0;
+}
+
+/* We have neither a header or sidebar */
+#goog-ws-none .goog-ws-sidebar, #goog-ws-none .goog-ws-header {
+  display: none;
+}
+
+/***********************************************************
+ ** CLASSES **
+ * These are all ABC order except where they couldn't be *
+ **********************************************************/
+/* General color and layout styles */
+.goog-ws-border {
+  border: 1px solid #5b7957;
+}
+.goog-ws-dotted-top {
+  border-top: 1px solid #5b7957;
+  margin: 10px 0 0 !important;
+  padding: 10px;
+}
+.goog-ws-first { padding-top: 10px; }
+.goog-ws-float-left { float: left; }
+.goog-ws-float-right { float: right; }
+.goog-ws-grey { color: #999; }
+.goog-ws-grey-back { background: #e8edeb; }
+.goog-ws-half-width { width: 48%; }
+.goog-ws-mid { text-align: center; }
+.goog-ws-noborder { border: 0 !important; }
+.goog-ws-noborder-left { border-left: 0 !important; }
+.goog-ws-noborder-right { border-right: 0 !important; }
+.goog-ws-noborder-top { border-top: 0 !important; }
+.goog-ws-nomargin { margin: 0; }
+.goog-ws-nopadding {  padding: 0 !important; }
+.goog-ws-text-right { text-align: right; }
+
+.editor-wrapper {
+  border-width: 0;
+  border-color: #666;;
+  border-style: solid;
+}
+.editable {
+  border: 1px dotted #d0d0a0;
+  background-color: transparent;
+}
+
+.editor-wrapper input.editable {
+  display: block;
+  font-family: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+  margin: 0 -1px -1px;
+  width: 100%;
+}
+.editor-wrapper td, .goog-ws-content-wrapper td, #tmpTxtId td {
+  vertical-align: top !important;
+}
+div div.editable {
+  margin: 0 9px 9px;
+  padding: 0;
+}
+.editable p { margin: 10px 0; }
+.goog-browser-support-warning {
+  border: 2px solid #777;
+  background-color: #fe7;
+  padding: 10px;
+}
+.goog-sprited-icon {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931792129/system/app/images/icon_sprites.gif) no-repeat;
+  height: 0px;
+  width: 0px;  
+}
+.goog-ws-account {
+  color: #000000;
+  float: right;
+  font: 12px Arial, Verdana, sans-serif !important;
+  padding: 5px 5px 5px 0;
+}
+.goog-ws-account a { color: #0066cc; }
+.goog-ws-account a:active { color: #0066cc; }
+.goog-ws-account a:visited { color: #0066cc; }
+.goog-ws-account span {
+  color: #000000;
+  font-size: 10px;
+}
+.goog-ws-add {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931567378/system/app/images/icon_add.gif) no-repeat 0 3px;
+  padding: 0 0 0 12px;
+}
+.goog-ws-back {
+  border-top: 1px solid #b0bdcc;
+  margin: 5px 10px 0 10px;
+  padding: 8px 0 1px;
+}
+
+/* General border styles */
+.goog-ws-border, .goog-ws-noborder { border-collapse: collapse; }
+.goog-ws-border th, .goog-ws-border td { border-bottom: 1px solid #b0bdcc; }
+.goog-ws-border-bottom { border-bottom: 1px solid #b0bdcc; }
+.goog-ws-border-top { border-top: 1px solid #b0bdcc; }
+
+/* The bottom 'spew' (comments, attachments, subpages) */
+.goog-ws-bottom {
+  background-color: #e8edeb;
+  background-image: none;
+  background-position: ;
+  background-repeat: ;
+  color: #414b56;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
+}
+.goog-ws-bottom a { color: #0066cc; }
+.goog-ws-bottom a:active { color: #0066cc; }
+.goog-ws-bottom a:hover { color: #551a8b; }
+.goog-ws-bottom a:visited { color: #551a8b; }
+
+.goog-ws-outside .goog-ws-bottom h3 {
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 9px 0 5px 10px;
+}
+.goog-attachment-icon, .goog-comment-icon {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931792129/system/app/images/icon_sprites.gif) no-repeat;
+  display: block;
+  float: left;
+  height: 11px;
+  margin: 1px 5px 0 0;
+  width: 11px;
+  background-position: -84px 0;
+}
+.goog-ws-bottom form {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.goog-ws-bottom .goog-ws-bottom-section p {
+  margin: 10px;
+  padding: 0;
+}
+.goog-ws-bottom ul {
+  margin: 0 0 5px;
+  padding: 0;
+}
+.goog-ws-bottom li {
+  list-style: none;
+  margin: 0 10px;
+  padding: 6px 0;
+}
+.goog-ws-bottom-none li {
+  margin: 0 10px 0 25px;
+}
+.goog-ws-bottom-create {
+  border-bottom: 1px solid #b0bdcc;
+  border-top: 1px solid #b0bdcc;
+  padding: 10px 0 0;
+}
+.goog-ws-outside .goog-ws-bottom-create p {
+  margin: 5px 10px;
+  padding: 0;
+}
+.goog-ws-bottom-create p input { margin-bottom: -3px; }
+.goog-ws-bottom-section {
+  border: 1px solid #b0bdcc;
+  padding: 5px 0 10px;
+}
+
+/* Top bar Site info */
+.goog-ws-site-info {
+  float: left;
+}
+
+/* Theme thumbnails for admin/colorsAndFonts page */
+.goog-ws-color {
+  border: 2px solid #b0bdcc;
+  float: left;
+  font-size: 12px;
+  margin: 0 5px 15px;
+  padding: 10px 0 0;
+  text-align: center;
+  width: 140px;
+}
+.goog-ws-color img { padding: 0 5px 5px; }
+.goog-ws-color img:hover, .goog-ws-color label:hover { cursor: pointer; }
+.goog-ws-color input { margin: 0 0 -2px; }
+
+
+/***********************************************************
+ ** COMMENTS **
+ * Styling for comments area and invidual comments *
+ **********************************************************/
+.goog-ws-comments {
+  padding: 5px 0 0 10px;
+}
+.goog-ws-comment {
+  color: #414b56;
+  font-family: Arial, Verdana, sans-serif;
+}
+.goog-ws-comment h4 {
+  color: #000000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0 0 -7px 0;
+  padding: 0 0 0 1px;
+}
+.goog-ws-comment h4 a, .goog-ws-comment h4 a:visited {
+  color: #0066cc !important;
+}
+.goog-ws-bottom-none h4 {
+  padding: 0 0 0 17px;
+}
+.goog-ws-comment p {
+  font-size: 13px;
+  line-height: 1.33em;
+  margin: 10px !important;
+  padding: 0;
+}
+.goog-ws-bottom-none p {
+  padding-left: 15px;  
+}
+.goog-ws-comment-textarea {
+  border: 1px solid #b0bdcc;
+  height: 65px;
+  margin: 0 10px 0 10px;
+  width: 75%;
+}
+.goog-ws-bottom-none .goog-ws-comment-textarea {
+  margin: 0 10px 0 25px;
+}
+.goog-ws-comment-submit {
+  margin: 0 10px;
+  padding: 10px 0;
+}
+
+/* Content styles (headers, p, ul, li, etc.) */
+.goog-ws-content {
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0 10px 10px;
+  min-height: 150px;
+  padding: 0 0 10px;
+}
+.goog-ws-border .goog-ws-content {
+  margin-bottom: 0;
+}
+.goog-ws-content table, body>table {
+  margin: 1px;
+}
+.goog-ws-content-wrapper h1 a, .goog-ws-content-wrapper h2 a,
+.goog-ws-content-wrapper h3 a, .goog-ws-content-wrapper h4 a,
+.goog-ws-content-wrapper h5 a {
+  color: #000000;
+}
+.goog-ws-wrapper .goog-ws-content h2 {
+  background-color: transparent;
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 22px;
+  margin: 10px 10px 10px 0;
+}
+.goog-ws-wrapper .goog-ws-content h3 {
+  background-color: transparent;
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 18px;
+  margin: 10px 10px 10px 0;
+}
+.goog-ws-wrapper .goog-ws-content h4 {
+  background-color: transparent;
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 14px;
+  margin: 10px 10px 10px 0;
+}
+.goog-ws-wrapper .goog-ws-content p {
+  margin: 10px 0;
+  padding: 0;
+}
+.goog-ws-wrapper .goog-ws-content ul { margin-right: 10px; }
+.goog-ws-wrapper .goog-ws-content li {
+  padding: 1px 0;
+}
+.goog-ws-content-wrapper {
+  position: relative;
+}
+
+/* Create page styles */
+.goog-ws-create-main {
+  border-top: 1px solid #b0bdcc;
+  margin: 10px 0 0;
+  padding: 2px 0 10px;
+}
+.goog-ws-create-main p { margin: 10px; }
+.goog-ws-create-submit { padding-top: 15px !important; }
+.goog-ws-create-table {
+  font-size: 12px;
+  width: 100%;
+}
+.goog-ws-create-table .goog-ws-create-text { padding-left: 30px; }
+
+.goog-ws-create-top {
+  font-size: 11px;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+/* Sites breadcrumb styling */
+.goog-ws-crumbs span {
+  color: #5f6a72;
+  display: block;
+  margin: 0 0 -5px;
+  padding: 7px 10px 0 10px;
+}
+.goog-ws-crumbs a { color: #0066cc; }
+.goog-ws-crumbs a:visited { color: #551a8b; }
+.goog-ws-crumbs a:hover { color: #551a8b; }
+.goog-ws-crumbs a:active { color: #0066cc; }
+
+.goog-ws-breadcrumb-highlightDeleted {
+  background-color: yellow;
+  padding: 2px;
+}
+
+/* Sites dashboard */
+.goog-ws-dash-footer {
+  font-size: 11px;
+  margin-top: 20px;
+  padding-top: 10px;
+  color: #41524c;
+  text-align: center;
+}
+.goog-ws-dash-looking-for-sites {
+  border: 1px solid #ccc;
+  padding: 4px;
+  background-color: #ffffcc;
+}
+.goog-ws-dashboard {
+  line-height: 1.33em;
+}
+.goog-ws-dashboard h2 {
+  font-size: 18px;
+  margin: 0;
+}
+.goog-ws-dashboard p {
+  padding-right: 15px;
+}
+.goog-ws-dashboard td {
+  vertical-align: top;
+}
+.goog-ws-dashboard ul {
+  list-style: none;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.goog-ws-dashboard li {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931523697/system/app/images/icon_right.gif) no-repeat 6px 1px;
+  margin: 0 0 16px 0;
+  padding: 0 10px 0 26px;
+}
+.goog-ws-dashboard .goog-ws-dashboard-button {
+  background: none;
+  padding-left: 0;
+}
+
+/* Sites delete page styling */
+.goog-ws-deletePage-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+.goog-ws-deletePage-table th {
+  text-align: left;
+  border-bottom: 1px solid #eee;
+  padding: 3px;
+}
+.goog-ws-deletePage-table td {
+  border-bottom: 1px solid #eee;
+  padding: 3px;
+}
+.goog-ws-deletePage-lockText {
+  background-color: #FFFFCC;
+  padding: 4px;
+}
+
+/***********************************************************
+ ** CURRENT STYLING **
+ * Styling for the 'current' styles used throughout the site *
+ **********************************************************/
+.goog-ws-inside-a-z .goog-ws-current {
+  border: 1px solid #e8edeb;
+  cursor: pointer !important;
+  font-weight: bold;
+}
+.goog-ws-table .goog-ws-current {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931819551/system/app/images/table_background_on.png) repeat-x left top;
+  color: #333;
+}
+.goog-ws-subnav .goog-ws-selected a {
+  background: #5b7957;
+  color: #e8edeb;
+  cursor: default;
+  text-decoration: none;
+}
+.goog-ws-list-gadget .goog-ws-selected, .goog-ws-list-gadget .goog-ws-selected:hover {
+  background-color: #e8edeb;
+  color: #fff;
+}
+
+/**********************************************************
+ ** GADGETS **
+ * Gadget stylings for dashboard pagetype *
+ **********************************************************/
+.goog-ws-content-wrapper .goog-ws-dash-box,
+.goog-ws-content-wrapper .goog-ws-dash-files, 
+.goog-ws-content-wrapper .goog-ws-dash-list, 
+.goog-ws-content-wrapper .goog-ws-dash-text {
+  color: #5f6a72;
+  font-family: ;
+  font-size: 12px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside {
+  background-color: #FFFFFF;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-border {
+  border-top: 1px solid #b0bdcc;
+  border-right: 1px solid #b0bdcc;
+  border-bottom: 1px solid #b0bdcc;
+  border-left: 1px solid #b0bdcc;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside h2 {
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 22px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside h3 {
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 16px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box h4,
+.goog-ws-content-wrapper .goog-ws-dash-files h4, 
+.goog-ws-content-wrapper .goog-ws-dash-list h4,
+.goog-ws-content-wrapper .goog-ws-dash-text h4 {
+  background-color: #e8edeb !important;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 13px;
+  margin: 0 !important;
+  padding: 5px !important;
+  text-align: left !important;
+}
+.goog-ws-dash-text .goog-ws-dash-box-inside h4 {
+  background: none;
+  border: 0;
+  color: #000000;
+  margin-bottom: 10px;
+  padding: 0;
+  text-align: left !important;
+}
+.goog-ws-dash-box-inside a { color: #0066cc; }
+.goog-ws-dash-box-inside a:visited { color: #551a8b; }
+.goog-ws-dash-box-inside a:hover { color: #551a8b; }
+.goog-ws-dash-box-inside a:active { color: #0066cc; }
+
+/*SHARED gadget*/
+.goog-ws-content-wrapper .goog-ws-dash-list ul,
+.goog-ws-content-wrapper .goog-ws-dash-files ul {
+  list-style: none;
+  margin: 0; padding: 0;
+  text-align: left !important;
+}
+.goog-ws-content-wrapper .goog-ws-dash-list li,
+.goog-ws-content-wrapper .goog-ws-dash-files li {
+  border-bottom: 1px solid #dde9f9;
+  margin: 0;
+  padding: 5px 5px 5px 25px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-list span { color: #5f6a72; }
+.goog-ws-content-wrapper .goog-ws-dash-files span {
+  color: #5f6a72;
+  font-size: 11px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-grey {
+  font-size: 13px;
+}
+
+/*LIST gadget*/
+.goog-ws-dash-list .goog-ws-list-table {
+  border: 0;
+  border-collapse: collapse;
+  width: 99.8%;
+}
+.goog-ws-dash-list .goog-ws-list-table th {
+  border: 0;
+}
+.goog-ws-dash-list .goog-ws-list-table td {
+  border-bottom: 1px solid #dde9f9;
+  padding-left: 3px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-list li {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930879806/system/app/images/icon_announce.gif) no-repeat 4px 6px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-dash-list-last,
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-dash-files-last {
+  background: transparent;
+  padding-left: 5px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-dash-list-post {
+  bottom: 5px;
+  font-size: 13px;
+  position: absolute;
+  right: 5px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-dash-list-date,
+.goog-ws-content-wrapper .goog-ws-dash-box-inside .goog-ws-dash-list-last {
+  border-bottom: 0;
+  font-size: 11px;
+}
+.goog-ws-list-col-checkboxes {
+  list-style:none;
+  padding:2px;
+  margin:4px;
+}
+.goog-ws-list-gadget-sort {
+  border-bottom: 1px dotted;
+  padding-bottom:5px;
+}
+ 
+/*TEXT gadget*/
+.goog-ws-content-wrapper .goog-ws-dash-text .goog-ws-dash-box-inside {
+  padding: 5px;
+}
+.goog-ws-dash-box-inside {
+  background-color: #FFFFFF;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  overflow: auto;
+  text-align: left !important;
+}
+
+/*FILES gadget*/
+.goog-ws-content-wrapper .goog-ws-dash-files li {
+  background-repeat: no-repeat;
+  background-position: 4px 4px;
+  padding-left:24px;
+}
+.goog-ws-content-wrapper .goog-ws-dash-files li img {
+  margin-bottom: -3px;
+}
+
+.goog-ws-dialog { z-index: 200; /*200 is for dialogs*/ }
+.modal-dialog-bg { z-index: 199; }
+.goog-ws-dialog .goog-ws-button { margin: 0 5px 0 0; }
+
+/* Styling for the edit nav table */
+.goog-ws-edit-nav .goog-ws-list-gadget {
+  border: 1px solid #ddd;
+  margin-left: 0;
+  width: 180px;
+}
+.goog-ws-edit-nav-table {
+  border-collapse: collapse;
+}
+.goog-ws-edit-nav-table p {
+  margin: 0;
+  padding: 3px;
+}
+.goog-ws-edit-nav-icons {
+  padding-top: 30px;
+}
+
+.goog-ws-editing-toolbar {
+  background-color: #f0f0f0;
+  border-style: solid;
+  border-width: 0px;
+  border-color: #666;
+}
+
+/* Admin elements list */
+.goog-ws-element {
+  border: 1px solid #ddd;
+  margin: 0 0 10px;
+}
+.goog-ws-element .goog-ws-list-gadget {
+  height: 200px;
+  margin-left: 0;
+  width: 100%;
+}
+.goog-ws-element-icon { width: 35px; }
+.goog-ws-element-section {
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+.goog-ws-element-section td {
+  vertical-align: top;
+}
+.goog-ws-element-section p {
+  margin: 0;
+  padding: 0 0 7px;
+}
+
+/* Page header stylings */
+.goog-ws-header {
+  background-color: none;
+  background-image: none;
+  background-position: none;
+  background-repeat: no-repeat;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  font-family: Arial, Verdana, sans-serif;
+  margin: 0px 0px 5px 0px;
+  position: relative;
+  text-align: Left;
+}
+.goog-ws-header-title, .goog-ws-header-search {
+  vertical-align: top;
+}
+.goog-ws-header-title h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0; padding: 0;
+}
+.goog-ws-header-title h2 a {
+  color: #283933;
+  text-decoration: none;
+}
+.goog-ws-header h2 a:visited {
+  color: #283933;
+}
+.goog-ws-header h2 a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+.goog-ws-header h2 a:active {
+  color: #000000;
+}
+.goog-ws-header-table {
+  padding: 5px 5px 5px 5px;
+  width: 100%;
+}
+
+/* Icon styles used for doc items, calendar items, etc. */
+.goog-ws-icon-cal {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931151334/system/app/images/icon_cal.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-doc {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930438241/system/app/images/icon_word.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-img {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931061247/system/app/images/icon_img.gif) no-repeat left 6px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-page {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931732885/system/app/images/icon_page.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-spread {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930433310/system/app/images/icon_xls.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-presentation {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930421837/system/app/images/icon_ppt.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+.goog-ws-icon-pdf {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931210574/system/app/images/icon_pdf.gif) no-repeat left 4px;
+  padding-left: 19px !important;
+}
+
+/* The sitemap pages' toolbar */
+.goog-ws-wrapper .goog-ws-inside-tools {
+  background: #5b7957;
+  color: #ffffff;
+  margin: 0;
+  padding: 8px 8px 8px 20px;
+}
+.goog-ws-wrapper .goog-ws-inside-tools a {
+  color: #ffffff;
+  outline: none;
+}
+
+.goog-ws-invite-first {
+  border-top: 1px solid #b0bdcc;
+  padding: 10px 0 0;
+}
+.goog-ws-label-inline {
+  display: inline !important;
+  font-weight: bold;
+  padding-right: 5px !important;
+}
+.goog-ws-legend-removal {
+  color: blue;
+  text-decoration: line-through;
+}
+
+/*The list-gadget is used throughout Sites to show a scrollable boxed list*/
+.goog-ws-list-gadget {
+  background: #fff;
+  border-top: 1px solid #b0bdcc;
+  border-right: 1px solid #b0bdcc;
+  border-bottom: 1px solid #b0bdcc;
+  border-left: 1px solid #b0bdcc;
+  overflow: auto;
+  overflow-x: hidden;
+  height: 220px;
+  margin: 0 7px;
+  width: 95%;
+}
+.goog-ws-list-gadget ul { margin: 0; padding: 0; }
+.goog-ws-list-gadget li {
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  padding: 2px 3px;
+}
+.goog-ws-list-gadget-swatch {
+  border: 1px solid #999;
+  height: 12px;
+  margin-bottom: -3px;
+  margin-right: 3px;
+  width: 14px;
+}
+.goog-ws-list-gadget li:hover {
+  background-color: #b0bdcc;
+}
+
+.goog-ws-logo {
+  float: left;
+  margin: 0 10px 0 0;
+  vertical-align: top;
+}
+
+/***********************************************************
+ ** LINK PICKER **
+ * Editor link picker stylings *
+ **********************************************************/
+.goog-ws-lp-dialog {
+  border-bottom: 1px solid #5b7957;
+  height: 28em;
+  padding-bottom: 5px !important;
+  position: relative;
+}
+.goog-ws-lp-dialog hr {
+  background: #5b7957;
+}
+.goog-ws-lp-list {
+  height: 25em; /* gives room beneath list for "Create page" button */
+  overflow: auto;
+}
+.lp-list-createpage-btn {
+  margin-top: 10px;
+  margin-left: 8px;
+}
+.lp-createpage-tree {
+  margin-top:7px;
+  height:209px;
+  overflow:auto;
+  border:1px solid #999;
+  padding: 3px;
+}
+.goog-ws-lp-list ul, .goog-ws-lp-list li {
+  margin: 0; padding: 0;
+}
+.goog-ws-lp-list li {
+  border-bottom: 1px solid #e8edeb;
+  clear: both;
+}
+.goog-ws-lp-list li a {
+  color:#111;
+  display:block;
+  padding:3px 1em 3px 2em;
+  text-decoration:none;
+}
+.goog-ws-lp-list li a:hover { background-color: #fffab6; }
+.goog-ws-lp-list li .time {
+  color:#666;
+  float:right;
+  font-size:11px;
+  width:13%;
+}
+.goog-ws-lp-list li strong {
+  background: #b0bdcc none repeat scroll 0%;
+  display: block;
+  padding: 3px 6px;
+}
+.goog-ws-lp-list .selected {
+  background: #fffab6 url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931284815/system/app/images/check.gif) no-repeat 5px 5px;
+}
+.goog-ws-lp-dialog .goog-tabpane-tabs {
+  border-top: 1px solid #5b7957;
+  width: 140px;
+}
+.goog-ws-lp-dialog .goog-tabpane-tabs li {
+  border: 0;
+  border-bottom: 1px solid #5b7957;
+}
+.goog-ws-lp-dialog .goog-tabpane-cont {
+  border-left: 5px solid #5b7957;
+  border-top: 1px solid #5b7957;
+  padding-bottom: 5px;
+}
+.goog-tabpane-top .goog-tabpane-cont {
+  border-left: 0;
+  padding-bottom: 5px;
+}
+.goog-ws-lp-dialog .goog-tabpane-cont input {
+  width: 200px;
+}
+.goog-ws-lp-fullscreenpane {
+  position: absolute;
+  top: 0;
+  background: white;
+  width: 100%;
+}
+
+/* Move page dialog styling */
+.goog-ws-movepage { background: #fff; }
+.goog-ws-movepage p {
+  margin: 0 7px 5px;
+  padding: 5px 0 0;
+}
+.goog-ws-movepage-inside {
+  background: #fff;
+  overflow-y: scroll;
+  height: 200px;
+}
+.goog-ws-movepage-table { width: 100%; }
+.goog-ws-movepage-table td {
+  border-bottom: 1px solid #b0bdcc;
+  padding: 4px 5px;
+}
+
+/* Styling for the update notice at the top of the page */
+.goog-ws-notice {
+  background: #ffcc33;
+  color: #000000;
+  display: inline;
+  font: bold 13px Arial, Verdana, sans-serif;
+  padding: 2px 10px 3px;
+  z-index: 199;
+}
+
+/* The outside and outside-in divs are used mainly for theming */
+.goog-ws-outside {
+  background-color: #ffffff;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  position: relative;
+}
+.goog-ws-outside-in {
+  background-color: #FFFFFF;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  border-left: 1px solid #5b7957;
+  border-right: 1px solid #5b7957;
+  border-top: 1px solid #5b7957;
+  border-bottom: 1px solid #5b7957;
+}
+
+/* Page title styling */
+.goog-ws-page-title {
+  color: #414b56;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+  padding: 9px 10px 8px;
+}
+.goog-ws-page-title input {
+  font-size: 22px;
+  font-weight: bold;
+}
+.goog-ws-page-title span {
+  font-size: 11px;
+  font-weight: normal;
+}
+#goog-ws-page-title-header input {
+  color: #414b56;
+}
+#goog-ws-page-title {
+  color: #414b56;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+}
+.goog-ws-page-title h2 {
+  margin: 0;
+}
+.goog-ws-page-title h2 a, .goog-ws-page-title h2 a:visited {
+  color: #283933;
+  text-decoration: none;
+}
+.goog-ws-page-title h2 a:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Create page, edit page, more actions */
+.goog-ws-create-page {
+  margin-top: 2.5px;
+}
+a.goog-ws-create-page, a.goog-ws-create-page:hover {
+  text-decoration: none;
+  color: #333 !important;
+  font-weight: bold;
+}
+#edit-start-btn {
+  font-weight: bold;
+}
+.goog-ws-create-page .goog-toolbar-button-icon,
+#edit-start-btn .goog-toolbar-button-icon {
+  height: 0;
+  width: 0;
+  padding: 13px 14px 0 0;
+  margin-top: 1px;
+  margin-right: 3px;
+  background: transparent url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931792129/system/app/images/icon_sprites.gif) no-repeat 1px 0;
+}
+
+#edit-start-btn .goog-toolbar-button-icon {
+  background-position: -12px 0;
+}
+
+/* Create page pagetype styling */
+#pagetypes {
+  border-bottom: 1px solid #b0bdcc;
+  border-top: 1px solid #b0bdcc;
+  padding: 15px 0 5px;
+}
+.goog-ws-pagetype {
+  border: 2px solid #b0bdcc;
+  float: left;
+  margin: 0 10px 10px 0;
+  padding: 5px 5px 10px;
+  text-align: center;
+  width: 130px;
+}
+.goog-ws-pagetype img {
+  display: block;
+  margin: 0 auto 3px;
+}
+.goog-ws-pagetype input {
+  margin-bottom: -3px;
+}
+.goog-ws-pagetype-img {
+  height: 48px;
+  margin: 0 0 5px;
+}
+
+.goog-ws-return-home { margin-left: -15px !important; }
+.goog-ws-return-home a { color: #fff; }
+.goog-ws-revision-add{
+  color: #fff;
+  padding: 1px 3px;
+}
+
+/* Revisions page styling */
+.goog-ws-revision-tools { margin-top: 10px;}
+.goog-ws-revision-done {
+  padding: 10px 10px 5px;
+}
+.goog-ws-revision-done p {
+  margin: 0; padding: 0;
+}
+.goog-ws-revision-tools p {
+  margin: 0;
+  padding: 10px;
+}
+.revisionsForm { display: inline; }
+
+.goog-ws-right {
+  float: right;
+  margin-right: 15px;
+}
+.goog-ws-right li { float: right; }
+
+.goog-ws-save {
+  font-weight:bold;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Search form */
+.goog-ws-header-search {
+  width: 400px;
+}
+.goog-ws-search {
+  float: right;
+  font: 12px Arial, Verdana, sans-serif;
+  margin: 0; padding: 0;
+  text-align: right;
+  vertical-align: top;
+}
+.goog-ws-search form { margin: 0; }
+.goog-ws-search span {
+  float: right;
+  margin: 0 0 0 5px;
+}
+#jot-ui-searchInput {
+  width: 150px;
+}
+
+/***********************************************************
+ ** SEARCH RESULTS **
+ * Search results page styling *
+ **********************************************************/
+.goog-ws-search-crumbs {
+  color: #40a040 !important;
+  font-size: 13px !important;
+}
+.goog-ws-search-footer {
+  border-top: 1px solid #b0bdcc;
+  padding-top: 6px;
+}
+.goog-ws-search-result { padding: 0 0 5px; }
+.goog-ws-search-result h3 {
+  font-size: 15px;
+  font-weight: normal;
+  margin: 10px 0 0 !important;
+  padding: 0 !important;
+}
+.goog-ws-search-result h3 span {
+  color: #999;
+  font-size: 13px;
+  font-weight: normal;
+}
+.goog-ws-search-result p {
+  margin: 2px 0 !important;
+  padding: 0 !important;
+}
+.goog-ws-search-subhead {
+  border-bottom: 1px solid #b0bdcc;
+  margin: 0 10px 10px;
+  padding: 4px 0 6px;
+}
+.goog-ws-search-subhead p {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.goog-ws-search-site-title a {
+  color: #060;
+  text-decoration: none;
+}
+.wiki_searchHilite {
+  font-weight: bold;
+}
+
+/* Page settings dialog styling */
+.goog-ws-settings {
+  background: #fff;
+}
+.goog-ws-settings-inside p {
+  line-height: 25px;
+}
+.goog-ws-settings-inside {
+  background: #fff;
+  padding: 3px 0 0 0;
+}
+
+/***********************************************************
+ ** GOOG SIDEBAR and SIDEBAR GADGET **
+ * Sidebar and gadget styling *
+ **********************************************************/
+.goog-ws-sidebar {
+  background-color: transparent;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  font-size: 13px;
+  position: absolute;
+  top: 0;
+}
+.goog-ws-sidebar-content {
+  border-top: none;
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  padding: 0px 0px 0px 0px;
+}
+.goog-ws-sidebar-inside {
+  padding: 0;
+}
+.goog-ws-sidebar-gadget,
+.goog-ws-sidebar-textgadget {
+  border-top: 1px solid #5b7957;
+  border-bottom: 1px solid #5b7957;
+  border-right: 1px solid #5b7957;
+  border-left: 1px solid #5b7957;
+  color: #5f6a72;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0 0 6px;
+}
+.goog-ws-sidebar-gadget-inside,
+.goog-ws-sidebar-textgadget-inside {
+  background-color: #ffffff;
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  color: #5f6a72;
+  overflow: hidden;
+}
+.goog-ws-sidebar-gadget-inside .goog-ws-icon-page {
+  background-position: 5px 3px;
+  padding-left: 25px !important;
+}
+.goog-ws-sidebar-gadget a {
+  color: #0066cc;
+}
+.goog-ws-sidebar .goog-ws-sidebar-gadget a:visited {
+  color: #551a8b;
+}
+.goog-ws-sidebar-gadget h4,
+h4.goog-ws-sidebar-textgadget-header {
+  background-color: #5b7957;
+  background-image: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930606250/system/app/themes/wintermint/gadget-header-bg.gif);
+  background-position: top;
+  background-repeat: repeat-x;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: none;
+  color: #ffffff;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 0;
+  overflow: hidden;
+  padding: 3px 5px;
+}
+.goog-ws-sidebar-gadget .open {
+  border: 0;
+  padding: 0 2px 2px 0;
+}
+/*Need to make sure regular h4's don't look like gadget headers*/
+.goog-ws-sidebar-gadget-inside h1, .goog-ws-sidebar-gadget-inside h2,
+.goog-ws-sidebar-gadget-inside h3, .goog-ws-sidebar-gadget-inside h4, 
+.goog-ws-sidebar-gadget-inside h5 {
+  background: transparent !important;
+  border: 0 !important;
+  color: #5f6a72 !important;
+}
+.goog-ws-sidebar-gadget-inside ul {
+  line-height: 1.33em;
+  margin: 0;
+  padding: 4px 0;
+}
+.goog-ws-sidebar-gadget-inside li {
+  list-style: none;
+  margin: 0;
+  padding: 3px 0 3px 5px;
+}
+.goog-ws-sidebar-gadget-inside li span {
+  display: block;
+  font-size: 11px;
+}
+.goog-ws-sidebar-textgadget-inside {
+  margin: 0;
+  padding: 5px;
+}
+.goog-ws-sidebar-gadget-inside p {
+  line-height: 1.33em;
+  margin: 0;
+  padding: 5px;
+}
+.goog-ws-sidebar-gadget-inside img {
+  padding: 2px 2px 5px;
+}
+.goog-ws-sidebar-gadget-inside p.goog-ws-img-text {
+  color: #222;
+  font-size: 11px;
+  line-height: 12px;
+  padding: 4px;
+}
+.goog-ws-sidebar-gadget .goog-ws-sidebar-viewall {
+  margin-top: 0;
+  padding: 5px;
+}
+.goog-ws-sidebar-viewall-left {
+  float: left;
+  text-align: left;
+  width: 44%;
+}
+.goog-ws-sidebar-viewall-right {
+  float: right;
+  text-align: right;
+  width: 54%;
+}
+
+.goog-ws-sidebar-nav { border-bottom: 0 !important; }
+.goog-ws-sidebar-nav a:visited { color: #0066cc !important; }
+
+/***********************************************************
+ ** SITEMAP **
+ * Sitemap page styling *
+ **********************************************************/
+.goog-ws-sitemap, goog-sites-recent {
+  background: #FFFFFF;
+  position: relative;
+}
+.goog-ws-sitemap .goog-ws-subnav { padding-left: 10px; }
+.goog-ws-sitemap .goog-ws- li { padding-bottom: 5px; }
+.goog-ws-sitemap .goog-ws-selected {
+  background: #5b7957;
+}
+.goog-ws-sitemap .goog-ws-subnav a:visited {
+  color: #0066cc;
+}
+.goog-ws-sitemap .goog-ws-selected a, .goog-ws-sitemap .goog-ws-selected a:visited {
+  color: #ffffff;
+}
+.goog-ws-sitemap-tree a:hover {
+  text-decoration: none !important;
+}
+.goog-ws-sitemap-tree {
+  font-family: Arial, Verdana, sans-serif !important;
+  min-height: 350px;
+  padding: 10px;
+}
+
+/***********************************************************
+ ** SITES SITEMAP TABLE **
+ * Sitemap heirarchy table styling *
+ **********************************************************/
+.goog-ws-sm {
+  border-collapse: collapse;
+  border-bottom: 1px solid #ddd;
+  margin: 0 0 20px;
+  width: 100%;
+}
+.goog-ws-sm td {
+  border-top: 1px solid #ddd;
+  padding: 4px 4px 4px 12px;
+}
+.goog-ws-sm th {
+  background:#fff url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930591716/system/app/themes/wintermint/bg_sprites.gif) repeat-x left bottom;
+  background-position: 0 0; 
+  border-bottom: 1px solid #ddd;
+  color: #444;
+  font-weight: normal;
+  height: 21px;
+  padding: 4px 4px 4px 12px;
+  vertical-align: top;
+}
+.goog-ws-wrapper .goog-ws-sm-letter {
+  background: #e8edeb;
+  border-bottom: 1px solid #ddd;
+  border-right: 0;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 4px 4px 4px 12px;
+}
+.goog-ws-status {
+  position: absolute;
+  z-index: 199;
+}
+.sites-autosaveStatus {
+  color: #999 !important;
+  font-size: 12px !important;
+  font-style: italic !important;
+  padding-top: 2px;
+  text-align: right !important;
+}
+
+/***********************************************************
+ ** SUBFOOTER  **
+ * Subfooter styling (site name, quick links, etc.) *
+ **********************************************************/
+.goog-ws-subfooter {
+  color: #41524c;
+  font-size: 11px;
+  padding: 0 0 5px;
+  text-align: center;
+}
+.goog-ws-subfooter p {
+  margin: 0;
+  padding: 5px;
+}
+.goog-ws-subfooter p span {
+  color: #41524c;
+  font-size: 10px;
+}
+.goog-ws-subfooter p a, .goog-ws-subfooter p a:visited {
+  color: #000000;
+}
+
+/***********************************************************
+ ** SITES TOOLBAR **
+ * Toolbar styling (create, edit buttons, etc.) *
+ **********************************************************/
+.goog-ws-version-history {
+  color: #666;
+  font-size: 12px;
+  padding: 7px 5px 9px 0;
+  text-align:right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+#goog-ws-page-tools-div {
+  border-bottom: 1px solid #b0bdcc;
+  margin: 0;
+  position: relative;
+}
+#goog-ws-page-tools-div .goog-ws-version-history a,
+#goog-ws-page-tools-div .goog-ws-version-history a:visited {
+  color: #00c !important;
+}
+#goog-ws-page-tools-div .goog-ws-version-history a:hover {
+  color:#00c;
+}
+
+/* Subpages styling */
+.goog-ws-subpage {
+  border-top: 1px solid #b0bdcc;
+  background-color: #e8edeb;
+  color: #000000;
+  font-family: Arial, Verdana, sans-serif;
+  margin: 0;
+  padding: 5px 0 5px 10px;
+}
+.goog-ws-subpage h4 {
+  color: #000000;
+  display: block;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0 0 -10px;
+  padding: 10px 0 5px 10px;
+}
+.goog-ws-subpage ul {
+  display: inline;
+  margin: 0; padding: 0;
+}
+.goog-ws-subpage li {
+  display:inline;
+  margin: 0;
+  padding-left: 5px;
+}
+
+.goog-ws-submit {
+  clear: both;
+  margin: 10px 0;
+  text-align: center;
+}
+
+/* Navigation tabs styling */
+.goog-ws-subnav {
+  clear: left;
+  padding: 10px 2px 0 15px;
+}
+.goog-ws-subnav h2 {
+  line-height: 12px;
+  margin: 0;
+  padding: 0 0 10px;
+}
+.goog-ws-subnav ul {
+  margin: 0;
+  padding: 4px 0 0 0;
+}
+.goog-ws-subnav li {
+  float: left;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+.goog-ws-subnav li a {
+  padding: 5px 15px 3px;
+}
+
+/***********************************************************
+ ** SITE TABLES **
+ * Table styling used throughout Sites *
+ **********************************************************/
+.goog-ws-table {
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 0 0 10px;
+  width: 100%;
+}
+.goog-ws-table td {
+  border-bottom: 1px solid #b0bdcc;
+  padding: 6px 9px;
+  vertical-align: top;
+}
+.goog-ws-table th {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930510379/system/app/images/table_background_off.jpg) repeat-x left top;
+  border-bottom: 1px solid #b0bdcc;
+  border-top: 1px solid #b0bdcc;
+  color: #444;
+  font-weight: normal;
+  padding: 5px 10px;
+  text-align: left;
+  vertical-align: top;
+}
+.goog-ws-table .goog-ws-t-edit {
+  text-align: left;
+  width: 45%;
+}
+.goog-ws-table .goog-ws-t-size {
+  padding-right: 3%;
+  text-align: right;
+  width: 7%;
+}
+.goog-ws-table-wrapper {
+  padding: 0 10px;
+}
+
+.goog-ws-t-att, .goog-ws-t-up { text-align: left; width: 15%; }
+.goog-ws-td-chk, .goog-ws-th-chk {
+  border-right: 0;
+  padding: 1px 4px 0px;
+  text-align: right;
+  width: 2%;
+}
+.goog-ws-th-crea, .goog-ws-td-crea { text-align:left; width:24%; }
+.goog-ws-th-last, .goog-ws-td-last { text-align:left; width:24%; }
+.goog-ws-th-page, .goog-ws-td-page { text-align:left; width:44%; }
+.goog-ws-th-star, .goog-ws-td-star { text-align:left; width:2%; }
+.goog-ws-th-revision, .goog-ws-td-revision { text-align:left; width:14%; }
+.goog-ws-th-edited, .goog-ws-td-edited { text-align:left; width:29%; }
+.goog-ws-th-last, .goog-ws-td-last { text-align:left; width:39%; }
+.goog-ws-th-revert, .goog-ws-td-revert { text-align:left; width:19%; }
+.goog-ws-th-edited, .goog-ws-th-last { border-left: 1px solid #ddd; }
+.goog-ws-th-revision, .goog-ws-th-page { border-right: 1px solid #ddd; }
+.goog-ws-t-file, .goog-ws-t-page { text-align: left; width: 40%; }
+.goog-ws-t-rem, .goog-ws-t-ver { text-align: center; width: 15%; }
+
+.goog-ws-title-editor {
+  color: #000;
+  font-size: 20px;
+  width: 55%;
+}
+.goog-ws-top {
+  background-color: #fff;
+  border-bottom: 1px solid #b0bdcc;
+  color: #000;
+  font-size: 12px;
+}
+.goog-ws-top a, .goog-ws-top a:visited {
+  color: #00c;
+}
+div.goog-ws-wrapper {
+  margin: 0 5px;
+  position: relative;
+  text-align: left;
+}
+
+/***********************************************************
+ ** SITES MISCELLANY **
+ * Stuff that couldn't go anywhere else *
+ **********************************************************/
+
+#editorToolbar { background: #eff4f9; }
+.goog-ws-color-selected { border: 2px solid #5b7957; }
+.goog-ws-page-chiclet {
+  padding: 3px 3px 0 3px;
+  position: absolute;
+  right: 3px;
+  top:4px;
+  width: 15px;
+}
+
+.drag-over {
+  background: #900 !important;
+}
+#jot-versionInfo { padding-left: 10px; }
+.goog-ws-clear:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;
+}
+.goog-ws-large { font-size: 13px; }
+.goog-ws-wrapper .goog-ws-inside-a-z {
+  display: inline;
+}
+.goog-ws-wrapper .goog-ws-inside-a-z a {
+  color: #0066cc;
+  cursor: default;
+  margin: 0 1px;
+  padding: 0 3px;
+  text-decoration: none;
+}
+.jot-ui-pageNameErr {
+  color: red;
+  font-weight: bold;
+}
+del.wiki_del {
+  color: #67A7E3;
+  text-decoration: line-through;
+}
+ins.wiki_ins {
+  background-color: #67A7E3;
+  color: #fff;
+  text-decoration: none;
+}
+.disabled {
+  text-decoration: none;
+  color: #666;
+}
+#tr_raw-html-area {
+  font-family: "Andale Mono", "Courier New", Courier, monospace;
+  overflow: auto;
+}
+.jot-insertMenu img {
+  padding: 4px 0 2px 17px !important;
+}
+.goog-toolbar-menu-item-icon {
+  padding-bottom: 1px;
+}
+.jot-tableMenu-menu .goog-menuitem {
+  padding-left: 15px;
+}
+
+/*Goog format menu*/
+.goog-menuitem-checkbox {
+
+}
+.goog-menuitem, .goog-submenu {
+  clear: both;
+}
+.goog-submenu {
+  padding: 5px 0 5px 4px;
+}
+.goog-submenu .goog-menu {
+  right: 0;
+  text-align: left;
+  top: 0;
+}
+.goog-submenu .goog-menu div {
+  padding: 5px 0;
+}
+.goog-menu .goog-option span {
+  margin: 0 3px 0 0;
+}
+.jot-formatblock {
+  padding-bottom: 11px !important;
+  padding-top: 3px !important;
+}
+.goog-edit-submenu-text {
+  margin-left: 15px;
+}
+.goog-menuseparator {
+  border-top: 1px solid #b0bdcc !important;
+}
+
+div.goog-toc {
+  background: #e8edeb;
+  border: 1px solid #b0bdcc;
+  list-style: none;
+  margin-bottom: 5px;
+  overflow: hidden;
+  width: 100%;
+}
+div.goog-toc a { text-decoration: none; }
+  div.goog-toc a:visited { color: #0066cc; }
+div.goog-toc ol {
+  line-height: 1.33em;
+  list-style: none;
+  margin-left: 10px;
+  padding-left: 0;
+  text-align: left;
+}
+.goog-ws-outside-in div.goog-toc p {
+  padding-left: 10px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/***********************************************************
+ ** LINK PICKER TABS **
+ * These goog-tabpane styles go with the link picker dialog *
+ **********************************************************/
+.goog-tabpane {
+  background-color: #FFFFFF;
+  padding: 0;
+  position: relative;
+}
+.goog-tabpane-tabs {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  height: 1ex;
+  position: relative;
+}
+.goog-tabpane-left .goog-tabpane-tabs {
+  float: left;
+}
+.goog-tabpane-cont {
+  overflow: auto;
+  border-left: 10px solid ;
+  height: 100%;
+}
+.goog-tabpane-tab, .goog-tabpane-tab-selected {
+  display: block;
+  padding: 1em 1em;
+  border-color: 1px solid #b0bdcc;
+  border-style: solid;
+  cursor: pointer;
+  border-width: 1px 0;
+  margin: 0px;
+}
+.goog-tabpane-left .goog-tabpane-tab-selected {
+  background-color: #e8edeb;
+  border: 1px solid #b0bdcc;
+}
+.goog-tabpane-top ul.goog-tabpane-tabs {
+  border: 0;
+  height: 20px;
+  outline: none;
+  width: 80%;
+}
+.goog-tabpane-top ul.goog-tabpane-tabs li,
+.goog-tabpane-top ul.goog-tabpane-tabs li.goog-tabpane-tab-selected {
+  border: 0;
+  background: transparent;
+  display: inline;
+  padding: 0 5px;
+}
+.goog-tabpane-top ul.goog-tabpane-tabs li {
+  border-right: 1px solid #ccc;
+  color: #0066cc;
+  text-decoration: underline !important;
+}
+.goog-tabpane-top ul.goog-tabpane-tabs li.goog-tabpane-tab-selected {
+  border-right: 1px solid #ccc;
+  color: #000000 !important;
+  text-decoration: none !important;
+}
+.goog-tabpane-cont li {
+  list-style: none;
+}
+
+/************************************************************
+ ** CCC BUTTON STYLES **
+ * Button style borrowed from Docs *
+ ************************************************************/
+.btn, .btn:visited {
+  color: #334455 !important;
+  cursor: pointer;
+  float: left;
+  font-size: 12px;
+  margin: 0 0 5px 0; 
+  outline: none;
+  text-decoration: none;
+}
+.onbtn {
+  margin-right: 3px; 
+}
+.btn b {
+  background-color: #fff;
+  border: 0;
+  display: block;
+  float: left;
+  font-weight: normal;
+  margin: 0 3px 0 0;
+  position: relative;
+}
+.btn b b {
+  background: none;
+  display: block;
+  position: relative;
+  margin: 0 -1px;
+}
+.btn b b b {
+  padding-bottom: 4px !important;
+  margin: 0;
+}
+.btn b b b b {
+  margin-bottom: 0;
+  padding-bottom: 0 !important;
+}
+.onbtn b {
+  border: solid #bcc7d4;
+  border-width: 1px 0;
+}
+.onbtn b b {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931530266/system/app/images/btn_bg.png) repeat-x left bottom;
+  border-width: 0 1px;
+}
+.onbtn b b b {
+  border-width: 0;
+  padding: 2px 5px 
+}
+.btn:active b {
+  background-color:#ccc;
+  background-image:none;
+}
+.btn:hover { 
+  cursor:pointer;
+}
+.btn img {
+  display:block;
+  border-width:0;
+  margin: -2px 1px 0 -8px;
+  padding:1px;
+}
+.btn strong {
+  color: #000;
+}
+
+/************************************************************
+ ** GOOG PALETTE STYLINGS **
+ * Styling for the colors and fonts color palette *
+ ************************************************************/
+.goog-palette {
+  outline: none;
+  -moz-outline: none;
+  -moz-user-select: none;
+  cursor: default;
+  z-index: 300; /*300 is for dropdowns, flyouts, etc.*/
+}
+.goog-palette-cell {
+  border-left: 1px solid #b0bdcc;
+  border-top: 1px solid #b0bdcc;
+  height: 15px;
+  padding: 3px;
+  width: 15px;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1px;
+}
+.goog-palette-cell-hover {
+  background: #ccc;
+}
+.goog-palette-cell-selected {
+  background: #ccc;
+  border-left: 1px solid #666 !important;
+  border-top: 1px solid #666 !important;
+}
+.goog-palette-colorswatch {
+  position: relative;
+  height: 15px;
+  width: 15px;
+}
+.goog-palette-table {
+  border-right: 1px solid #b0bdcc;
+  border-bottom: 1px solid #b0bdcc;
+}
+
+/************************************************************
+ ** GOOG TREE **
+ * Styles the goog-tree component we use throughout Sites *
+ ************************************************************/
+.goog-tree-row {
+  cursor: default;
+  font: icon;
+  padding: 3px 0 3px 0;
+  white-space: nowrap;
+}
+.goog-tree-root .selected, .goog-tree-root .selected span {
+  background-color: #5b7957;
+  color: #e8edeb;
+}
+.goog-ws-sitemap .goog-tree-root .selected, .goog-ws-sitemap .goog-tree-root .selected span {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+.goog-modal-dialog .goog-tree-root a:hover { text-decoration: none; }
+.goog-ws-sitemap .goog-tree-root a { cursor: pointer; }
+.goog-tree-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.goog-tree-children {
+  background-repeat:  repeat-y;
+  background-position-y:  1px !important; /* IE only */
+  font: icon;
+}
+.goog-tree-children-nolines { font: icon; }
+.goog-tree-icon {
+  background-image: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931816249/system/app/images/tree.gif);
+  height: 16px;
+  width: 16px;
+}
+.goog-tree-expand-icon {
+  cursor: hand;
+  cursor: pointer;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+}
+.goog-tree-expand-icon-plus {
+  background-position: 0 0;
+  width: 19px;
+}
+.goog-tree-expand-icon-minus {
+  background-position: -24px 0;
+  width: 19px;
+}    
+.goog-tree-expand-icon-tplus {
+  background-position: -48px 0;
+  width: 19px;
+}    
+.goog-tree-expand-icon-tminus {
+  background-position: -72px 0;
+  width: 19px;
+}
+.goog-tree-expand-icon-lplus {
+  background-position: -96px 0;
+  width: 19px;
+}
+.goog-tree-expand-icon-lminus {
+  background-position: -120px 0;
+  width: 19px;
+}
+.goog-tree-expand-icon-t {
+  background-position: -144px 0;
+  width: 19px;
+}
+.goog-tree-expand-icon-l {
+  background-position: -168px 0;
+  width: 19px;
+}   
+.goog-tree-expand-icon-blank {
+  background-position: -168px -24px;
+  width: 19px;
+}    
+.goog-tree-collapsed-folder-icon {
+  background-position: 2px -24px;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+}    
+.goog-tree-expanded-folder-icon {
+  background-position: -22px -24px;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+}
+.goog-tree-file-icon {
+  background-position: -48px -24px;
+  height: 16px;
+  vertical-align: middle;
+  width: 16px;
+}
+.goog-tree-item {
+  outline: none;
+  width: 99%;
+}
+.goog-modal-dialog .goog-tree-item { cursor: pointer; }
+.goog-tree-item-label {
+  color: WindowText;
+  margin-left: 3px;
+  padding: 1px 2px 1px 2px;
+  text-decoration:  none;
+}    
+.goog-ws-sitemap .goog-tree-item-label a:hover {
+  text-decoration:  underline;
+}  
+.goog-tree-hide-root { display:  none; }
+
+/**********************************************************
+ ** DIALOGS **
+ * Modal dialogs styling using Goog naming convention *
+ **********************************************************/
+.modal-dialog {
+  background-color: #5b7957;
+  border: 1px solid #000;
+  color: #000000;
+  left: 0px;
+  outline: none;
+  padding: 8px;
+  /*This is a workaround for the FF cursor bug, doesn't seem to
+  affect other browsers */
+  position: fixed;
+  position:expression("absolute");
+  text-align: left;
+  top: 0px;
+  width: 450px;
+  z-index: 200; /*200 is for dialogs*/
+}
+.modal-dialog p {
+  margin: 0 0 10px;
+}
+.modal-dialog-bg {
+  background-color: #000;
+  filter: alpha(opacity=30);
+  left: 0px;
+  opacity: 0.3;
+  position: fixed !important;
+  /* This is a workaround for IE6 because it does not support position:fixed
+   * or the important keyword so it uses position:absolute which works.
+   */
+  position: absolute;
+  top: 0px;
+}
+.modal-dialog-buttons {
+  clear: both;
+  margin: 0 !important;
+  padding: 10px 0 0 !important;
+}
+.modal-dialog-close {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930960487/system/app/images/icon_close.gif) no-repeat;
+  cursor: pointer;
+  height: 15px;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 15px;
+}
+.modal-dialog-close a {
+  display: block;
+  height: 15px;
+  outline: none;
+  text-decoration: none;
+  width: 15px;
+}
+.modal-dialog-content {
+  background: #ffffff; 
+  font: normal 13px Arial, Verdana, sans-serif;
+  padding: 8px !important;
+}
+.modal-dialog-content a {
+  color: #0066cc;
+}
+.modal-dialog-content select {
+  font-size: normal 13px Arial, Verdana, sans-serif;
+}
+.modal-dialog-title {
+  background-color: #e8edeb;
+  color: #000000;
+  cursor: default;
+  font: bold 14px Arial, Verdana, sans-serif;
+  padding: 10px;
+  position:relative;
+}
+.modal-dialog-title-close {
+  display: none;
+}
+.modal-dialog-title-draggable {
+  cursor: move;
+}
+.goog-ws-tree-wrapper {
+  height: 350px;
+  outline: none;
+  overflow: auto;
+  width: 415px;
+}
+.tr_dialog { text-align: left; }
+#tr_image-dialog-your-images-tab,
+#tr_image-dialog-external-image-tab { width: 200px !important; }
+
+.tr_image-dialog-external-image-preview {
+  padding: 5px !important;
+  text-align: left !important;
+}
+
+/* goog.ui.Menu */
+
+.goog-menu {
+  border: 1px solid #B5B6B5;
+  background-color: #F3F3F7;
+  color: #000;
+  cursor: default;
+  font: normal small arial, helvetica, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  position: absolute;
+  z-index: 300; /*300 is for dropdowns, flyouts, etc.*/
+}
+.goog-menuitem {
+  list-style: none;
+  margin: 0;
+  text-align: left;
+  padding: 3px 1.5em 2px 5px;
+  white-space: no-wrap;
+}
+
+.goog-menuitem-rtl {
+  text-align: right; /* hardcode instead of using bidi_right */
+  padding: 2px 5px 2px 1.5em;
+}
+a.goog-menuitem {
+  display: block;
+}
+.goog-menuitem a,
+a.goog-menuitem {
+  color: #000 !important;
+  cursor: default;
+  text-decoration: none;
+}
+.goog-menuitem-highlight {
+  background-color: #5b7957 !important;
+  clear: both;
+  color: #fff !important;
+}
+.goog-menuitem-highlight a {
+  color: #fff !important;
+}
+.goog-menuitem-disabled {
+  color: #999;
+}
+.goog-option {
+  /* Selectable options should leave some room for the check mark. */
+  padding-left: 15px !important;
+}
+.goog-option-selected {
+  background-position: 4px 50%;
+  background-repeat: no-repeat;
+}
+
+/* Page settings icons for menu */
+
+#more-actions-menu .goog-menuitem {
+  padding-left: 24px;
+}
+
+/* goog.ui.MenuSeparator */
+
+.goog-menuseparator {
+  border-top: 1px solid #999;
+  margin: 2px 0;
+  outline: none;
+  padding: 0;
+  position: relative;
+}
+
+/* goog.ui.SubMenu */
+.goog-submenu-arrow {
+  text-align: right;
+  position: absolute;
+  right: 3px;
+  left: auto;
+}
+.goog-menuitem-rtl .goog-submenu-arrow {
+  position: absolute;
+  text-align: left;   /* hardcode instead of using bidi_left */
+  left: 0;            /* hardcode instead of using bidi_left */
+  right: auto;        /* hardcode instead of using bidi_right */
+}
+.goog-menuitem-disabled .goog-submenu-arrow {
+  display: none;
+}
+
+/* TEMP */
+.goog-temp-spew {
+  color: #bdcbc6 !important;
+}
+.command-jot-editor-save div {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.jot-extra-buttony {
+  background: #fff url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930591716/system/app/themes/wintermint/bg_sprites.gif) repeat-x 0 3px;
+}
+/*Hideous Safari hacks*/
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  .jot-foreColor .goog-toolbar-menu-button-caption { background-position: -79px 0 !important; }
+  .jot-backColor .goog-toolbar-menu-button-caption { background-position: -95px 0 !important; }
+}
+
+#jot-content-table {
+  border-collapse: collapse;
+  margin: 1px solid #5b7957 1px solid #5b7957 1px solid #5b7957 1px solid #5b7957;
+}
+.goog-ws-edit-sidebar {
+  font-size: 11px;
+  padding: 2px;
+}
+.goog-ws-edit-sidebar a {
+  color: #000000;
+}
+#goog-add-attachment, #goog-add-comment {
+  margin: 0;
+}
+#goog-attachment-wrapper p, #goog-comment-wrapper p {
+  margin: 10px 10px 10px 20px;
+}
+#goog-attachment-wrapper h3 a, #goog-comment-wrapper h3 a {
+  color: #000000;
+  text-decoration: none;
+}
+#goog-attachment-wrapper h3 a:visited, #goog-comment-wrapper h3 a:visited {
+  color: #000000;
+}
+#goog-attachment-wrapper h3 a:hover, #goog-comment-wrapper h3 a:hover {
+  color: #000000;
+}
+#goog-add-attachment a span, #goog-add-comment a span, .goog-ws-bottom h3 span {
+  color: #414b56;
+  font-size: 12px;
+  font-weight: normal;
+}
+#goog-attachment-wrapper, #goog-comment-wrapper {
+  border-top: 1px solid #b0bdcc;
+  color: #414b56;
+  padding: 0 0 5px;
+}
+#goog-attachment-wrapper .goog-ws-attachment-form p {
+  margin: 0 10px 0 0;
+  padding: 5px 0 10px 10px;
+}
+.goog-ws-bottom-none .goog-ws-attachment-form p {
+  padding: 0 0 10px 26px !important;
+}
+
+.clearfix {
+  clear: both;
+  margin: 5px 0;
+}
+.goog-ws-comment-submit {
+  margin: 0 !important;
+}
+.goog-ws-bottom-none .goog-ws-comment-submit {
+  margin: 0 0 0 15px !important;
+}
+.goog-ws-outer {
+  background-image: none;
+  background-position: top;
+  background-repeat: no-repeat;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  clear: both;
+  margin: 0px 0px 0px 0px;
+  padding: 5px 0 0;
+}
+
+/* Used in the editor embed dialogs */
+.goog-link-box {
+  background: #e8edeb;
+  border: 1px solid #b0bdcc;
+  padding: 8px 0 0 0;
+}
+
+/* Fix iframe layout in text widget embed editor */
+#COMP_dialogembedding .editable {
+  border: 0;
+  height: 300px;
+  margin: 0;
+  padding: 5px;
+  overflow: auto;
+}
+
+#tmpTxtId iframe {
+  top: 5px !important;
+  left: 5px !important;
+}
+
+/* Dashboard search dropdown (have to put here b/c it uses bg images*/
+#scopeSelectMenu .goog-menu-button-outer-box {
+  background: #fff url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930591716/system/app/themes/wintermint/bg_sprites.gif) repeat-x left bottom;
+  background-position: 0 0;
+  height: 21px;
+}
+#scopeSelectMenu .goog-menu-button-inner-box {
+  background: url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930446013/system/app/images/arrow_down.gif) no-repeat 90% center;
+}
+
+/* Base toolbar stylesheets */
+
+/* Gecko hack; Pre-FF3 Gecko uses -moz-inline-box instead of inline-block. */
+html>body .goog-inline-block {
+  display: -moz-inline-box; /* This is ignored by FF3 and later*/
+  display: inline-block; /* This is ignored by pre-FF3 Gecko */
+}
+
+/* Default rule; only Safari, Webkit, and Opera handle it without hacks. */
+.goog-inline-block {
+  position: relative;
+  display: inline-block;
+}
+
+/* Pre-IE7 IE hack.  On IE, "display: inline-block" only gives the element */
+/* layout, but doesn't give it inline behavior.  Subsequently setting display */
+/* to inline does the trick. */
+* html .goog-inline-block {
+  display: inline;
+}
+
+/* IE7-only hack.  On IE, "display: inline-block" only gives the element */
+/* layout, but doesn't give it inline behavior.  Subsequently setting display */
+/* to inline does the trick. */
+*:first-child+html .goog-inline-block {
+  display: inline;
+}
+
+.goog-toolbar {
+  background: #f9f9f9 url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225931046469/system/app/images/toolbar_bg.gif) repeat-x left bottom;
+  border-bottom: 1px solid #b0bdcc;
+  cursor: default;
+  font: 12px Arial, Verdana, sans-serif !important; /* Toolbar stays Arial */
+  margin: 0;
+  padding: 3px 2px;
+  position: relative;
+  outline: none;
+  text-align: left;
+  zoom: 1; /* The toolbar element must have layout on IE. */
+}
+#goog-ws-page-tools-div .goog-toolbar {
+  background-position: left bottom;
+  border-bottom: 0;
+}
+.edit-in-progress-message {
+  color: #666;
+  display: inline-block;
+  font-style: italic;
+  padding-top: 4px;
+}
+#goog-ws-page-tools-div .editing {
+  background-position: 0 2px !important;
+}
+.editing {
+  border: 0 !important;
+}
+/*Firefox 2 hack, b/c FF2 is doing crazy stuff with the toolbar*/
+#goog-ws-page-tools-div .editing, x:-moz-any-link { height: 23px; }
+.edit-in-progress-message, x:-moz-any-link { display: -moz-inline-box; line-height: 25px; padding-left: 5px; }
+
+#goog-ws-page-tools-div .editing, x:-moz-any-link, x:default { height: 24px; }
+.edit-in-progress-message, x:-moz-any-link, x:default { display: inline-block; }
+.edit-in-progress-message, x:-moz-any-link { display: -moz-inline-box; line-height: 15px; padding-left: 0; }
+
+.goog-toolbar-button {
+  margin: 0 2px;
+  border: 0;
+  padding: 0;
+  font: normal Tahoma, Arial, sans-serif;
+  color: #333;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: middle;
+  cursor: default;
+  outline: none;
+}
+
+/* Pseudo-rounded corners. */
+.goog-toolbar-button-outer-box {
+  margin: 0;
+  border: 0;
+  padding: 1px 0;
+  vertical-align: middle;
+}
+
+.goog-toolbar-button-inner-box {
+  margin: 0 -1px;
+  border: 0;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px;
+}
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-toolbar-button-rtl .goog-toolbar-button-outer-box {
+  left: -1px;   /* hardcode instead of using bidi_left */
+}
+* html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  left: 0;      /* hardcode instead of using bidi_right */
+}
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child+html .goog-toolbar-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px;
+}
+
+/* IE7 BiDi fix. */
+*:first-child+html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  left: 1px;   /* hardcode instead of using bidi_right */
+}
+
+/* Safari-only hacks. */
+::root .goog-toolbar-button,
+::root .goog-toolbar-button-outer-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0;
+}
+
+::root .goog-toolbar-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal;
+}
+
+/* Disabled styles. */
+.goog-toolbar-button-disabled {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+.goog-toolbar-button-disabled .goog-toolbar-button-outer-box,
+.goog-toolbar-button-disabled .goog-toolbar-button-inner-box {
+  /* Disabled text/border color trumps everything else. */
+  color: #333 !important;
+  border-color: #999 !important;
+}
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px;
+}
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child+html .goog-toolbar-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px;
+}
+
+.goog-toolbar-menu-button {
+  margin: 0 2px;
+  border: 0;
+  padding: 0;
+  font: normal Tahoma, Arial, sans-serif;
+  color: #333;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: middle;
+  cursor: default;
+  outline: none;
+}
+
+/* Pseudo-rounded corners. */
+.goog-toolbar-menu-button-outer-box {
+  margin: 0;
+  border: 0;
+  padding: 1px 0;
+  vertical-align: middle;
+}
+
+.goog-toolbar-menu-button-inner-box {
+  margin: 0 -1px;
+  border: 0;
+  padding: 3px 5px;
+  vertical-align: middle;
+}
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-menu-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px;
+}
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-outer-box {
+  left: -1px;   /* hardcode instead of using bidi_left */
+}
+* html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-inner-box {
+  left: 0;   /* hardcode instead of using bidi_left */
+}
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child+html .goog-toolbar-menu-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px;
+}
+
+/* IE7 BiDi fix. */
+*:first-child+html .goog-toolbar-menu-button-rtl
+  .goog-toolbar-menu-button-inner-box {
+  left: 1px;   /* hardcode instead of using bidi_ */
+}
+
+/* Safari-only hacks. */
+::root .goog-toolbar-menu-button,
+::root .goog-toolbar-menu-button-outer-box,
+::root .goog-toolbar-menu-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0;
+}
+
+::root .goog-toolbar-menu-button-caption,
+::root .goog-toolbar-menu-button-dropdown {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal;
+}
+
+/* Disabled styles. */
+.goog-toolbar-menu-button-disabled {
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30);
+}
+
+.goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-inner-box {
+  /* Disabled text/border color trumps everything else. */
+  color: #333 !important;
+  border-color: #999 !important;
+}
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-toolbar-menu-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px;
+}
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child+html .goog-toolbar-menu-button-disabled {
+  /* IE can't apply alpha to an element with a transparent background... */
+  background-color: #f0f0f0;
+  margin: 0 1px;
+  padding: 0 1px;
+}
+
+/* Only draw borders when in a non-default state. */
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box {
+  border-width: 1px 0;
+  border-style: solid;
+  padding: 0;
+}
+
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
+  border-width: 0 1px;
+  border-style: solid;
+  padding: 3px 4px;
+}
+
+/* Hover styles. */
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box {
+  /* Hover border color trumps active/open style. */
+  border-color: #a1badf !important;
+}
+
+/* Active/open styles. */
+.goog-toolbar-menu-button-active,
+.goog-toolbar-menu-button-open {
+  /* Active/open background color wins. */
+  background-color: #dde1eb !important;
+}
+
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box,
+.goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
+  border-color: #729bd1;
+}
+
+/* BiDi hack. */
+.goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-caption {
+  padding: 0 0 0 4px;   /* hardcode instead of using bidi_ */
+}
+
+.goog-toolbar-menu-button-caption {
+  background-image: none;
+  padding-right: 5px;
+}
+
+.goog-toolbar-separator {
+  margin: 0 2px;
+  border-left: 1px solid #d6d6d6;
+  border-right: 1px solid #f7f7f7;
+  padding: 0;
+  width: 0;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+  vertical-align: middle;
+  line-height: normal;
+  font-size: 120%;
+  overflow: hidden;
+}
+
+.jot-extra-buttony {
+  vertical-align: top;
+}
+
+/* Only draw borders when in a non-default state, or for
+   selected extra-buttony buttons  */
+.goog-toolbar-button-hover .goog-toolbar-button-outer-box,
+.goog-toolbar-button-active .goog-toolbar-button-outer-box,
+.goog-toolbar-button-checked .goog-toolbar-button-outer-box,
+.goog-toolbar-button-selected .goog-toolbar-button-outer-box,
+.jot-extra-buttony .goog-toolbar-button-outer-box,
+.jot-extra-buttony .goog-toolbar-menu-button-outer-box {
+  border-width: 1px 0;
+  border-style: solid;
+  padding: 0;
+}
+
+.goog-toolbar-button-hover .goog-toolbar-button-inner-box,
+.goog-toolbar-button-active .goog-toolbar-button-inner-box,
+.goog-toolbar-button-checked .goog-toolbar-button-inner-box,
+.goog-toolbar-button-selected .goog-toolbar-button-inner-box,
+.jot-extra-buttony .goog-toolbar-button-inner-box,
+.jot-extra-buttony .goog-toolbar-menu-button-inner-box {
+  border-width: 0 1px;
+  border-style: solid;
+  padding: 3px 4px 4px;
+}
+
+.jot-extra-buttony .goog-toolbar-button-inner-box,
+.jot-extra-buttony .goog-toolbar-button-outer-box,
+.jot-extra-buttony .goog-toolbar-menu-button-inner-box,
+.jot-extra-buttony .goog-toolbar-menu-button-outer-box {
+  border-color: #bfcbdf;
+}
+
+/* Hover styles. */
+.goog-toolbar-button-hover .goog-toolbar-button-outer-box,
+.goog-toolbar-button-hover .goog-toolbar-button-inner-box {
+  /* Hover border style wins over active/checked/selected. */
+  border-color: #a1badf !important;
+}
+
+/* Active/checked/selected styles. */
+.goog-toolbar-button-active,
+.goog-toolbar-button-checked,
+.goog-toolbar-button-selected {
+  /* Active/checked/selected background color always wins. */
+  background-color: #dde1eb !important;
+}
+
+.goog-toolbar-button-active .goog-toolbar-button-outer-box,
+.goog-toolbar-button-active .goog-toolbar-button-inner-box,
+.goog-toolbar-button-checked .goog-toolbar-button-outer-box,
+.goog-toolbar-button-checked .goog-toolbar-button-inner-box,
+.goog-toolbar-button-selected .goog-toolbar-button-outer-box,
+.goog-toolbar-button-selected .goog-toolbar-button-inner-box {
+  border-color: #729bd1;
+}
+
+/* Dropdown style. */
+.goog-toolbar-menu-button-dropdown,
+div .goog-toolbar-button-inner-box div.goog-toolbar-menu-button-dropdown {
+  width: 7px !important;
+  background: transparent url(http://sites.google.com/a/flowgram.com/intranet/_/rsrc/1225930709922/system/app/images/toolbar2.gif) no-repeat -287px !important;
+  vertical-align: middle;
+}
+
+/* Temp */
+
+#gbar {
+  font-size: 12px !important;
+  height: 20px !important;
+  margin: 5px 0 0 5px;
+  padding: 0 !important;
+}
+.goog-sites-user-settings {
+  padding: 0 10px;
+}
+.goog-sites-user-settings-table {
+  border-top: 1px solid #ccc;
+  padding: 10px 0 0;
+  width: 100%;
+}
+.goog-sites-user-settings-table td {
+  padding: 0 0 20px;
+}
+.goog-sites-user-settings-table th {
+  padding-right: 10px;
+  text-align:right;
+  vertical-align:top;
+  width:125px;
+}
+#more-actions-btn .goog-toolbar-menu-button-inner-box,
+#site-settings-btn .goog-toolbar-menu-button-inner-box {
+  padding-bottom: 3px;
+  padding-top: 3px;
+}
+#edit-btn-separator {
+  margin: 3px 0 0 1px;
+}
+#settings-menu-separator {
+  margin: 3px 0 0 1px;
+}
+.edit-in-progress-message {
+  color: #666;
+  display: inline-block;
+  font-style: italic;
+  padding-top: 4px;
+}
+.goog-ws-site-info {
+  color: #666;
+  float: left;
+  font-family: Arial, Verdana, sans-serif !important;
+  font-weight: bold;
+  padding: 4px 0 0;
+}
+.goog-ws-site-info a, .goog-ws-site-info a:visited {
+  color: #666;
+  text-decoration: none;
+}
+.goog-ws-site-info a:hover {
+  color: #0066cc;
+  text-decoration: underline;
+}
+.goog-ws-siteinfo-siteslogo {
+  color: #3366cc;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 0 0 5px;
+}
+.goog-ws-siteinfo-domain {
+  font-weight: normal;
+}
+.editing-page-tools-div {
+  background-color: #fceab5;
+  border-top: 1px solid #efdda8;
+  border-bottom: 1px solid #d6c48f !important;
+}
+.goog-ws-create-page, #page-btns .goog-toolbar-button, #page-btns .goog-toolbar-menu-button {
+  cursor: pointer;
+}
+.goog-ws-pagetype-blurb {
+  min-height: 0;
+}
+
+.modal-dialog-content .goog-toolbar {
+  background-position: left bottom;
+}
+.goog-s-text-box-editor-wrapper {
+  background: #FFFFFF;
+  border: 1px solid #efefef;
+  color: #5f6a72;
+}
+.goog-s-text-box-editor-wrapper a {
+  color: #0066cc;
+}
+
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<project name="dom_renderer_supervise" basedir="." default="deploy" xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
+    <fail unless="deploy.stage">Error: deploy.stage not set</fail>
+    
+    <target name="clean">
+        <delete file="settings.py"/>
+    </target>
+
+    <target name="deploy" depends="clean">
+    	<copy tofile="settings.py" overwrite="true">
+            <fileset file="conf/${deploy.stage}.settings.py"/>
+            <filterchain>
+                <expandproperties/>
+            </filterchain>
+        </copy>
+    </target>
+</project>

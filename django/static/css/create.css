@@ -1,0 +1,414 @@
+/* Create Section CSS */
+
+/* Add URLS */
+
+div#add_urls_sidenav {
+	width: 86px;
+	position: absolute;
+	z-index: 99;
+	left: 0px;
+}
+
+div#add_urls_sidenav ul {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+	border-top: 1px solid #B4D3DB;
+}
+
+div#add_urls_sidenav ul li {
+	border-left: 1px solid #B4D3DB;
+	border-bottom: 1px solid #B4D3DB;
+	width: 74px;
+	padding: 5px;
+	background: url(/media/images/bg_sidenav.png) repeat-x;
+	color: #999999;
+	font-weight: bold;
+	border-right: 1px solid #B4D3DB;
+}
+
+div#add_urls_sidenav ul li a {
+	color: #999999 !important;
+	text-decoration: none !important;
+}
+
+div#add_urls_sidenav ul li.over, 
+div#add_urls_sidenav ul li a:hover,
+div#add_urls_sidenav ul li a:active
+{
+	color: #333333 !important;
+	cursor: pointer;
+}
+
+div#add_urls_sidenav ul li.on {
+	background-image: none !important;
+	background-color: #E1F1F5;
+	color: #333333 !important;
+	border-right: none !important;
+	cursor: auto;
+	width: 75px !important;
+}
+
+div.add_urls {
+	margin-left: 85px;
+	width: 592px !important;
+}
+
+div.add_urls div.module {
+	position: relative;
+	font-size: 13px !important;
+	width: 592px !important;
+	_height: 460px;
+	min-height: 460px;
+}
+
+div.add_urls div.divider_horiz {
+	width: 580px !important;
+}
+
+div.add_urls h3 {
+	margin-top: 15px !important;
+	margin-bottom: 0px !important;
+}
+
+div.add_urls h3.step {
+	padding: 10px 0px 0px 50px;
+	height: 30px;
+}
+
+div.add_urls h3#step1 {
+	background: url(/media/images/add_urls_step1.gif) top left no-repeat;
+	margin-top: 25px !important;
+}
+
+div.add_urls img#fgMakerArrow {
+	position: absolute;
+	top: 10px;
+	left: 420px;
+	_left: 405px !important;
+}
+
+div.add_urls h3#step2 {
+	background: url(/media/images/add_urls_step2.gif) top left no-repeat;
+}
+
+div.add_urls h3#step3 {
+	background: url(/media/images/add_urls_step3.gif) top left no-repeat;
+}
+
+div.add_urls div#content_webpages p,
+div.add_urls div#content_webpages div.messageArea
+{
+	margin-left: 50px;
+	width: 525px;
+}
+
+div.add_urls div.instructions {
+	margin-bottom: 10px;
+}
+
+div.add_urls form {
+	margin-left: 50px;
+	position: relative;
+}
+
+div.add_urls form input {
+	float: left;
+}
+
+div.add_urls form input#url_to_add {
+	width: 290px;
+	height: 24px !important;
+	font-size: 14px;
+	background-color: #ffff99;
+}
+
+div.add_urls form input.submit {
+	margin: -3px 0px 0px 5px;
+}
+
+div.add_urls img#loading_stripes {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin-top: -1px;
+	visibility: hidden;
+}
+
+div.add_urls .messageArea
+{
+    display: none;
+    margin: 0px 0px 10px 0px;
+	overflow: hidden;
+}
+
+div.add_urls div#fileUploaderMessageArea {
+	margin: 0px 0px 15px 130px;
+	width: 440px;
+}
+
+div.add_urls .photoImportStatus {
+	display: inline;
+	margin-left: 5px;
+}
+
+div.add_urls .messageArea-normal,
+div.add_urls .rssMessageArea-normal,
+div.add_urls .photoImportStatus-normal
+{
+    color: #33cc00;
+}
+
+div.add_urls .messageArea-normal,
+div.add_urls .rssMessageArea-normal
+{
+	display: block;
+}
+
+div.add_urls .messageArea-error,
+div.add_urls .rssMessageArea-error,
+div.add_urls .photoImportStatus-error
+{
+    color: #FF0000;
+    font-weight: bold;
+}
+
+div.add_urls .messageArea-error,
+div.add_urls .rssMessageArea-error
+{
+	display: block;
+}
+
+div.add_urls .messageArea-intermediate {
+    color: #33cc00;
+    display: block;
+}
+
+div.add_urls div#photo_services {
+	margin-bottom: 10px;
+}
+
+div.add_urls div#facebook,
+div.add_urls div#flickr
+{
+	float: left;
+}
+
+div.add_urls div#facebook a:link img,
+div.add_urls div#facebook a:visited img,
+div.add_urls div#flickr a:link img,
+div.add_urls div#flickr a:visited img
+{
+	padding: 10px;
+}
+
+div.add_urls div#facebook a:hover img,
+div.add_urls div#facebook a:active img,
+div.add_urls div#flickr a:hover img,
+div.add_urls div#flickr a:active img
+{
+	padding: 0px;
+	border: 10px solid #FEB100;
+}
+
+div.add_urls div#content_photos form#fileUploaderForm {
+	margin-left: 0px;
+}
+
+div.add_urls div#content_photos form#fileUploaderForm input.submit {
+	margin: -10px 0px 0px 130px !important;
+	float: none !important;
+	width: 65px;
+	height: 19px;
+	border: 0px;
+	background-color: #E1F1F5;
+}
+
+div.add_urls div#content_photos iframe {
+	position: absolute;
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	border: 0px;
+}
+
+div.add_urls div#content_ppt input.submit {
+	float: none !important;
+	margin: 0px !important;
+}
+
+div.add_urls div#content_ppt iframe {
+	position: absolute;
+	visibility: hidden;
+	width: 0px;
+	height: 0px;
+	border: 0px;
+}
+
+div.add_urls div#content_ppt img#loading_stripes_ppt {
+	position: absolute;
+	top: 15px;
+	left: 0px;
+	margin-left: -5px;
+	visibility: hidden;
+}
+
+div.add_urls div#content_ppt #status_ppt {
+	margin: 0px !important;
+}
+
+div.add_urls img#loading_stripes_file_uploader {
+	position: absolute;
+	top: 0px;
+	left: 125px;
+	width: 275px;
+	height: 28px;
+	margin-top: -3px;
+	z-index: 99;
+	visibility: hidden;
+}
+
+div.add_urls img#loading_stripes_rss {
+	position: absolute;
+	top: 0px;
+	left: 125px;
+	width: 275px;
+	height: 28px;
+	margin-top: -3px;
+	z-index: 99;
+	visibility: hidden;
+}
+
+div.add_urls div#rssMessageArea {
+	margin-left: 130px;
+	margin-bottom: 10px;
+}
+
+div#content_rss input.submit {
+	margin-left: 130px;
+}
+
+
+
+/* Bookmarklet Install */
+div#hdr_section {
+	width: 600px;
+}
+
+div#content_main h2 {
+	margin: 0 0 15px 0;
+	font-size: 18px;
+}
+
+div#content_main div.hero div.module h3 {
+	margin: 0 0 10px 0;
+	color: #000000;
+}	
+
+div#content_main div.hero div.module div.help_bubble {
+	display: none;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/bg_help_bubble.png');
+	background-repeat: none;
+	width: 168px;
+	height: 89px;
+	padding: 30px 25px 0 20px;
+	margin: 15px 0 0 10px;
+	z-index: 99;
+}
+
+div#content_main div.hero div.module div.help_bubble[class] {
+	background: url(/media/images/bg_help_bubble.png) no-repeat;
+}
+
+a.bookmarklet {
+	text-decoration: underline;
+}
+
+div#content_main div.hero div.module h2#or {
+	margin: 25px 0;
+	color: #999999;
+}
+	
+	/* IE */
+	
+	div#content_main div.hero div.module div#IE {
+		position: relative;
+	}
+
+	div#content_main div.hero div.module h2#or {
+		margin: 25px 0;
+		color: #999999;
+	}
+
+	div#content_main div.hero div.module div#IE div#IE_manual {
+		margin-bottom: 20px;
+	}
+
+	div#content_main div.hero div.module div#IE div#IE_manual div#IE_bookmarklet_links h3,
+	div#content_main div.hero div.module div#IE div#IE_manual div#IE_bookmarklet_links div.help_bubble
+	{
+		float: left;
+	}
+	
+	div#content_main div.hero div.module div#IE h2.continue {
+		margin-top: 18px !important;
+	}
+	
+	/* FIREFOX */
+	
+	div#content_main div.hero div.module div#firefox {
+		position: relative;
+	}
+	
+	div#content_main div.hero div.module div#firefox h2.continue {
+		margin-top: 18px !important;
+	}
+	
+	div#content_main div.hero div.module div#firefox div#firefox_video,
+	div#content_main div.hero div.module div#firefox div#firefox_bookmarklet_links
+	{
+		float: left;
+	}
+	
+	div#content_main div.hero div.module div#firefox div#firefox_video {
+		width: 345px;
+		height: 315px;
+		text-align: center;
+	}
+
+	div#content_main div.hero div.module div#firefox div#firefox_video div#firefox_video_loading {
+		padding-top: 100px;
+	}
+	
+	div#content_main div.hero div.module div#firefox div#firefox_bookmarklet_links {
+		margin: 60px 0 0 15px;
+		position: relative;
+	}
+	
+	div#content_main div.hero div.module div#firefox div#firefox_bookmarklet_links h3 {
+		font-size: 22px;
+	}
+
+	div#content_main div.hero div.module div#firefox div#firefox_bookmarklet_links div.help_bubble
+	{
+		position: absolute;
+		top: 15px;
+		left: 230px;
+	}
+	
+	div#content_right div#firefox_express img {
+		width: 210px;
+		height: 37px;
+		border: 0;
+	}
+	
+
+div#content_main div.hero div.module div#tutorial_launch h3 {
+	margin: 0 0 10px 0;
+	color: #000000;
+}
+
+div#content_main div.hero div.module div#tutorial_launch h2#or {
+	margin: 25px 0;
+	color: #999999;
+}

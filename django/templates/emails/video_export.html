@@ -1,0 +1,49 @@
+<div>
+    <br/>
+	
+	{% comment %}
+	<div>
+	 	<b> Hi&nbsp;
+		{% ifequal recipient 'AnonymousUser' %}
+			{{ recipient_email }}
+		{% else %}
+			{{recipient}}
+		{% endifequal %}
+		</b>!
+	</div>
+	{% endcomment %}
+
+	<p>Hi,<br/>We are finished converting the Flowgram <b>{{title}}</b> into video, as you requested.  You can now download the video and/or export it to YouTube.</p>
+<div style="display: block;
+         margin: 1em;
+         border: 1px dotted ;
+         padding: 10px;
+         background: rgb(238,247,251);
+		 width:auto;
+         height:auto;">
+         <table>
+            <tr>
+			<td>
+              <table>
+               <tr>
+                <td> 
+                <a href="{{preview_url}}"><img style="border: solid rgb(28,28,206); border-width:1px;" src="{{image_url}}" alt="video thumbnail" /></a>
+			    </td>
+			   </tr>
+			</table>
+			</td>
+		    <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>
+			  <table>
+               <tr><td><b>{{title}}</b><br/>
+			   by <a href="{{ fg_owner_url }}">{{ fg_owner }}</a><br/>
+               <a href="{{ preview_url }}"><b>Download the video to your computer</b></a><br/>
+               <a href="{{ export_url }}"><b>Export the video to YouTube</b></a><br/>
+			   <a href="{{ fg_url }}">View the original interactive Flowgram</a>
+              </table>
+			</td>
+			</tr>
+         </table>
+    </div>
+ 	<p>Having problems? Please <a href="{{contact_us}}">contact us</a> for help. </p>
+</div>

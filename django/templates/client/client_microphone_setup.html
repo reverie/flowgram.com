@@ -1,0 +1,42 @@
+{% extends "client/client_base.html" %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/client/client_panels.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block title %}
+	| Make a Flowgram - Microphone Setup
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper_page_header">
+	<h2 class="sifr_dark">Microphone Setup</h2>
+</div>
+<div class="generic_text">
+	<p>On the following screen, you will be asked for permission to access your microphone.<br/>
+	Click the '<strong>Continue</strong>' button now.</p>
+	
+	<img src="/media/images/client/micSetupInstructions.gif" width="374" height="146" border="0" id="mic_setup_screenshot" alt="Microphone Setup" />
+	
+	<div id="microphone_steps">
+		<p>
+			1. Click '<strong>Allow</strong>'<br/>
+			2. Click '<strong>Remember</strong>'<br/>
+			3. Click '<strong>Close</strong>'
+		</p>
+		<p>
+			<a href="javascript:void(0);"><img src="/media/images/btn_continue.gif" width="85" height="23" border="0" id="mic_setup_continue" alt="Continue" /></a><br/><br/>
+			<a href="#">Need some help?</a>
+		</p>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block js_init %}
+	var client_mic_setup = new ClientMicSetupController();
+	
+	// TODO(cyap): is this deprecated?
+{% endblock %}
+

@@ -1,0 +1,450 @@
+
+{% extends "base/base_home.html" %}
+{% load filters tags %}
+
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		div#hdr_section {
+			width: 600px;
+		}
+	</style>
+{% comment %}
+	<!--[if lte IE 7]>
+		<style type="text/css" media="screen">
+			div#talkingEmail ol {
+				padding: 0px;
+				margin: -10px 0px 0px 0px;
+			}
+		</style>
+	<![endif]-->
+{% endcomment %}
+{% endblock %}
+
+{% block bodyclass %} class="home"{% endblock %}
+
+{% block pageheader %}
+	Welcome to the Talking Web
+{% endblock %}
+
+{% block content %}
+	<div id="content_main">
+  
+		<div class="hero home_wedge">
+			<div id="homeWedgeHero">
+				<a href="/create"><img src="/media/images/homeherotext.png" alt="Create interactive guided presentations by combining web pages, photos, Powerpoint and more with your voice, notes and highlights. Viewers can control the pages, scroll, click on links, view videos and more." title="Create interactive guided presentations by combining web pages, photos, Powerpoint and more with your voice, notes and highlights. Viewers can control the pages, scroll, click on links, view videos and more." border="0" /></a>
+			</div>
+			<!--<iframe src="/home_hero" id="homeHeroVideo" scrolling="no" frameborder="0"></iframe>-->
+			<div id="homeHeroVideo"></div>
+			<div class="clearer"></div>
+			
+			<div class="homeWedgeCallToAction"><a href="/go/what_is_a_flowgram"><img src="/media/images/btn_home_action1.png" alt="See Flowgram in action" border="0" /></a></div>		
+			{% comment %}
+			<!-- google optimizer make a fg button experiment -->
+			<script>utmx_section("Create_FG_Button")</script>
+			{% endcomment %}		
+			<div class="homeWedgeCallToAction"><a href="/create"><img src="/media/images/2buttons/makeafgnow.png" alt="Get started" border="0" /></a></div>
+			{% comment %}
+			</noscript>
+			{% endcomment %}
+			<div class="clearer"></div>
+        </div>
+
+		<div class="grid home">
+			
+			<h2 class="hdr_bar">Hot Flowgrams</h2>
+			<div id="wrapper_nav_ajax_browse">
+				<ul id="nav_ajax_browse">
+					<li id="nav_ajax_browse_most_viewed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('most_viewed');">Most Popular</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_newest"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('newest');">Newest</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_featured" class="selected"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('featured');">Featured</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_most_discussed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('most_discussed');">Most Discussed</a></li>		
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_top_rated"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('top_rated');">Top Rated</a></li>
+				</ul>
+				<div class="clearer"></div>
+			</div>
+			
+			<div id="wrapper_fg_browse_content">
+				<div id="fg_browse_content_loading" style="display: none;"><img src="/media/images/loading_ajax_browse.gif" border="0" alt="Loading..."/></div>
+				<div id="fg_browse_content">
+					{% for fg in featured %}
+						<div class="module {% cycle odd,even %}">
+							<a href="{{ fg.flex_url }}" target="_blank"><img src="{{ fg.thumb_url }}" width="100" height="67" border="0" /></a>
+							<div class="fg_info">
+								<h2 class="title"><a href="{{ fg.flex_url }}" target="_blank" title="{{ fg.title|escape }}">{{ fg.title|escape|truncate:26 }}</a></h2>	
+								<div class="description">
+									{% ifnotequal fg.description ''  %}
+										<span title="{{ fg.description|escape }}">
+										{{ fg.description|escape|truncate:48 }}</span><br/>
+									{% endifnotequal %}
+								</div>
+								By {{ fg.owner.get_profile.link|safe }} | {{ fg.views }} views<br/>
+								{% if fg_timestamp  %}
+									{{ fg.date_for_display|date }}
+								{% endif %}
+							</div>
+							<div class="clearer"></div>
+							<div class="divider_horiz"></div>
+						</div>
+					{% endfor %}
+					<div class="clearer"></div>
+				</div>
+			</div>
+
+			<p><strong><a class="browse_more_link" id="fg_browse_content_more_link" href="/browse/featured/">See more Hot Flowgrams &raquo;</a></strong></p>
+		</div>
+		
+	</div>
+
+	<div id="content_right">
+{% comment %}
+		<div class="module">
+		    <h2>Be Heard - Send a talking email</h2>
+		    <div class="module_body">
+		    	The simple and most natural way to discuss a web page with others.
+		
+				<div id="talkingEmail">
+					<div id="talkingEmailInstructions">
+						<form action="" method="post">
+						<ol>
+							<li style="background: url(/media/images/home_bullet_1.png) top left no-repeat;">
+								<h3>What web page would you like to talk about?</h3>
+								<p>
+									<label>Paste in any web page URL:</label><br/>
+									<input type="text" id="txtMessage" />
+								</p>
+								<p>
+									<label>Record your audio commentary.</label>
+									<div id="talkingEmailRecordButtonContainer">
+										<a href="javascript:void(0);"><img src="/media/images/btn_start_recording_off.png" id="btnRecord" onclick="btnRecordClick();" /></a>
+										<div id="micStatus">
+											<span id="spanStatus"></span><br/>
+											<div id="micLevel">
+												<div id="micLevelIndicator"></div>
+											</div>
+										</div>
+										<div class="clearer"></div>
+									</div>
+									<div class="clearer"></div>
+									
+									
+								</p>
+							</li>
+							<li style="background: url(/media/images/home_bullet_2.png) top left no-repeat;">
+								<h3>Who would you like to send it to?</h3>
+								<p>
+									<label>To: (<a href="javascript:void(0);" onclick="var gmailDialog = new DialogController('/media/dialogs/talkingEmail_addressImport.html');">Import Gmail address book</a>)</label><br/>
+									<input type="text" id="txtTo" />
+								</p>
+								<p>
+									<label>From:</label><br/>
+									<input type="text" id="txtFrom" />
+								</p>
+								<p>
+									<label>Subject:</label><br/>
+									<input type="text" id="txtSubject" />
+								</p>
+								
+									<div class="float">
+										<a href="javascript:void(0);"><img src="/media/images/btn_send.gif" id="btnSend" onclick="btnSendClick();" /></a>
+									</div>
+									<div class="float">
+										<img src="/media/images/loading_grey_bg.gif" id="talkingEmail_loading" />
+									</div>
+									<div id="talkingEmail_sendStatus" class="float success"></div>
+									<div class="clearer"></div>
+								
+							
+							
+								<div class="error" id="talkingEmail_error"></div>
+							</li>
+							<div class="clearer"></div>
+						</ol>
+						</form>
+					
+						<div class="clearer"></div>
+					</div>
+				</div>
+
+		    </div>
+		</div>
+{% endcomment %}
+		
+		{% include "includes/modules/other_content/ideas_module_home.incl" %}
+		
+		{% include "includes/modules/login/login_module_home.incl" %}
+		
+		{# include "includes/modules/other_content/invite_module_home.incl" #}
+		
+	    {% include "includes/promos/whats_new_pod.incl" %}
+ 		{% include "includes/promos/tips_pod_home.incl" %}
+    	{% include "includes/promos/community_pod.incl" %}
+ 
+		
+		{% include "includes/promos/press_promo_home.incl" %}
+		
+		{# include "includes/modules/flowgram/sidebar_categories_best_of.incl" #}
+		
+	</div>
+	
+	
+
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/swf/jwplayer/swfobject.js"></script>
+{% endblock %}
+
+{% block js_init %}
+
+var abc = new AjaxBrowseController();
+
+var asrc = new AjaxStatRecordController();
+
+// embed hero video
+var so = new SWFObject('/media/swf/jwplayer/player.swf','mpl','322','276','9');
+so.addParam('allowscriptaccess','always');
+so.addParam('allowfullscreen','true');
+so.addParam('wmode','opaque');
+so.addParam('flashvars','&file=http://{{ s3_bucket_static }}/media/swf/homeHero/homepagemovie8a.flv&image=/media/swf/homeHero/screen.png');
+so.write('homeHeroVideo');
+
+var player;
+
+function videoPlayStatRecord(obj) {
+	var newstate =obj['newstate'];
+	if (newstate == 'BUFFERING') {
+		asrc.recordStat('view_hero_video_website', '0', 'video start');
+	}
+	else if (newstate == 'COMPLETED') {
+		asrc.recordStat('view_hero_video_website', '0', 'video end');
+	}
+	
+}
+
+function playerReady(obj) {
+	var id = obj['id'];
+	var version = obj['version'];
+	var client = obj['client'];
+	player = $(id);
+	player.addModelListener("STATE","videoPlayStatRecord");
+}
+
+{% comment %}
+
+	/*
+	{% widget hero 350 220 "opaque" "" %}
+	{% for fgs,tagline in tagline_fgs %}
+		{% for fg in fgs %}
+            {# Note -- a template tag in a loop only creates one (Widget)Node #}
+            {% widget fg 300 200 "opaque" "/create/" %}
+		{% endfor %}
+	{% endfor %}
+	*/
+	
+	var txtTo = $("txtTo");
+	
+	var txtGmailUserName = $("txtGmailUserName");
+	var txtGmailPassword = $("txtGmailPassword");
+	var divGmailAddresses = $("divGmailAddresses");
+	var g_gmailAddresses;
+	var recordClicked = false;
+	
+	function closeSecurity() {
+		$('divFGInstaRecorderBackdrop').style.display = 'none';
+		$('divFGInstaRecorderMicMessage').style.display = 'none';
+	}
+	
+	function LoadGmailAddressBook() {
+		
+		$('gmail_loading').style.visibility = "visible";
+		$('gmail_errors').style.display = "none";
+		
+		function onSuccess(response) {
+			
+			$('gmail_loading').style.visibility = "hidden";
+			
+			var json = response.responseJSON;
+			
+			if(json.success) {
+				g_gmailAddresses = new Array();
+				
+				var html = "<ul id='gmailAddressList'>";
+				
+				for(var i = 0; i < json.emails.length; i++) {
+					g_gmailAddresses[i] = json.emails[i].toLowerCase();
+					html += "<li><nobr><input type=\"checkbox\" id=\"gmailAddress_" + i + "\" />" + json.emails[i] + "</nobr></li>";
+				}
+				
+				html += "</ul><div class=\"clearer\"></div>";
+				
+				$('divGmailAddresses').innerHTML = html;
+				new Effect.SlideDown($('divGmailAddresses'), {duration: .5});
+				
+			} else {
+				$('gmail_errors').innerHTML = json.message;
+				$('gmail_errors').style.display = "block";
+			}
+		}
+		
+		function onFailure() {
+			
+			$('gmail_loading').style.visibility = "hidden";
+			$('gmail_errors').innerHTML = 'There has been an error.  Please try again later.';
+			$('gmail_errors').style.display = "block";
+			
+		}
+		
+		var params = new Object();
+		params.gmailUserName = $('txtGmailUserName').value;
+		params.gmailPassword = $('txtGmailPassword').value;
+		
+		new Ajax.Request("/php/gmail_loader.php", {
+			method: "POST",
+			parameters: params,
+			evalJSON: true,
+			onSuccess: onSuccess,
+			onFailure: onFailure,
+			asynchronous: true
+		});
+	}
+	
+	var btnRecord = $("btnRecord"), btnSend = $("btnSend");
+	
+	function onRecordingStarted() {
+		btnRecord.onclick = btnStopClick;
+	}
+	
+	function onRecordingCancelled() {
+		btnRecord.src = "/media/images/btn_start_recording_off.png";
+		btnRecord.onclick = btnRecordClick;
+		
+		btnSend.disabled = false;
+	}
+	
+	function btnRecordClick() {
+		if (!FGServer.g_havePostToken) {
+			//alert("don't have post token yet - retrying in 1 second");
+			setTimeout("btnRecordClick();", 1000);
+			return;
+		}
+
+		if(g_talkingEmail.btnRecordClick()) {
+			btnRecord.src = "/media/images/btn_stop_recording_off.png";
+			btnRecord.onclick = btnStopClick;
+			$('micStatus').style.visibility = 'visible';
+			
+			btnSend.disabled = true;
+			recordClicked = true;
+		}
+	}
+	
+	function btnStopClick() {
+		btnRecord.src = "/media/images/btn_start_recording_off.png";
+		btnRecord.onclick = btnRecordClick;
+		$('micStatus').style.visibility = 'hidden';
+		
+		btnSend.disabled = false;
+		
+		g_talkingEmail.btnStopClick();
+	}
+	
+	function onGmailDone() {
+		var gmails = "";
+		var first = true;
+		var emails = txtTo.value.split(",");
+		
+		for(var i = 0; true; i++) {
+			var chk = $("gmailAddress_" + i);
+			if(!chk) {
+				break;
+			}
+			
+			if(chk.checked) {
+				var skip = false;
+				
+				for(var j = 0; j < emails.length; j++) {
+					if(emails[j] == g_gmailAddresses[i]) {
+						skip = true;
+					}
+				}
+				
+				if(skip) {
+					continue;
+				}
+				
+				if(!first) {
+					gmails += ",";
+				}
+				
+				gmails += g_gmailAddresses[i];
+			
+				first = false;
+			}
+		}
+		
+		if(gmails != "") {
+			if(txtTo.value != "") {
+				txtTo.value += ",";
+			}
+			
+			txtTo.value += gmails;
+		}
+		
+	}
+	
+	function btnSendClick() {	
+		
+		if (!recordClicked) {
+			alert('You must record audio first.');
+			return false;
+		}
+		
+		else if ($('txtTo').value == '') {
+			alert('Please fill in the "To" field.');
+			return false;
+		}
+		
+		else if ($('txtFrom').value == '') {
+			alert('Please fill in the "From" field.');
+			return false;
+		}
+		
+		$('talkingEmail_loading').style.display = "block";
+		$('talkingEmail_sendStatus').innerHTML = "";
+			
+		if (!FGServer.g_postToken) {
+			//alert("don't have post token yet - retrying in 1 second");
+			setTimeout("btnSendClick();", 1000);
+			return;
+		}
+		
+		function onSend() {
+			$('talkingEmail_loading').style.display = "none";
+			$('talkingEmail_sendStatus').innerHTML = "Talking email sent!";
+			btnSend.disabled = false;
+			btnRecord.disabled = false;
+		}
+		
+		var emails = txtTo.value.split(",");
+		for(var i = 0; i < emails.length; i++) {
+			emails[i] = emails[i].replace(/^\s+/, "").replace(/\s+$/, "").toLowerCase();
+		}
+		
+		g_talkingEmail.btnSendClick(onSend);
+	}
+	
+	FGServer.InitPostToken();
+
+	var g_talkingEmail = new TalkingEmail("txtFrom", "txtTo", "txtSubject", "txtMessage",
+						"spanStatus", "micLevelIndicator",
+						"divFGInstaRecorder", "FGInstaRecorder",
+						onRecordingStarted, onRecordingCancelled);
+
+
+{% endcomment %}
+{% endblock %}

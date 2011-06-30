@@ -1,0 +1,23 @@
+{% extends "base/base.html" %}
+
+{% block pageheader %}
+Tell yo momz!
+{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+<script type="text/javascript">function onABCommComplete() { }</script>
+The invitation will appear from: <b>{{ from_email }}</b><br><br>
+<form method="post" action="">
+    Send an invitation to:<br>
+    <a href="javascript:void(0);" onclick="$('fg_recipients').value = ''; showPlaxoABChooser('fg_recipients', '/media/plaxo_cb.html'); return false;">
+        Access your address books from Gmail, Yahoo, Outlook, and more...</a><br>
+    <textarea id="fg_recipients" name="recipients" cols="80" rows="5">example@one.com, example@two.edu, ...</textarea><br><br>
+    Email body<br>
+    <textarea name="email_body" cols="80" rows="10">{{default_email}}</textarea><br><br>
+<input type="submit" value="Send"><br>
+</form>
+{% endblock %}

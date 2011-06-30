@@ -1,0 +1,92 @@
+{% extends "base/base.html" %}
+
+{% block sign_in_suppress %}
+	style="visibility: hidden;"
+{% endblock %}
+
+{% block pageheader %}
+	Login or Register
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+	
+	<div class="hero wide">
+		<div class="module">
+			
+			{% ifnotequal next_greeting '' %}
+				<div class="system_message_inline">{{ next_greeting }}</div>
+			{% endifnotequal %}
+			
+			
+			<div class="generic_form" id="wrapper_login_inline">		
+				<form method="post" id="login_inline" action="/login/">
+					<h2>Please log in to proceed.</h2>
+					{{ login_form }}
+					<div class="clearer"></div>
+		            <input type="hidden" name="next" value="{{next|escape}}" />
+					<input type="hidden" name="which_form" value="login" />
+					<input type="image" src="/media/images/btn_sign_in_green.gif" id="btn_sign_in" />
+					<div id="forgot_password">
+						<a href="/reset/">Forgot your password<br/>or username?</a>
+					</div>
+					<div class="clearer"></div>
+				</form>	
+				
+				<div class="divider_vert"></div>
+									
+				<form action="/register_steps/" method="post" id="register_inline">
+					<h2>No account yet?  Register here.</h2>
+					<strong>Let's get started by picking a username and password.</strong><br/><br/>
+					
+					{% for field in reg_form %}	
+
+						<div class="form-field">
+							{{ field.label_tag }}{{ field }}
+							{% if field.errors %}
+								<span class="errorlist">{{ field.errors|join:", " }}</span>
+							{% endif %}							
+						</div>
+						
+					{% endfor %}
+					<input type="hidden" name="which_form" value="{{ which_form_reg }}" />
+					<input type="hidden" name="next" value="{{next|escape}}" />
+					<input type="image" src="/media/images/btn_continue.gif" id="btn_reg_continue" class="submit" />
+					<div class="clearer"></div>
+				</form>
+					
+				<!--
+				<br/>
+				<a href="/register/{% ifnotequal next '/' %}?next={{next|escape}}{% endifnotequal %}"><img src="/media/images/btn_register.gif" id="btn_register" /></a>
+				-->
+				
+				<div class="clearer"></div>
+
+			</div>
+			
+		</div>
+	</div>
+	
+
+	
+</div>
+{% endblock %}
+
+{% block login_type %}
+	var login_type = 'page';
+{% endblock %}
+
+{% block google_optimizer %}
+<script>
+if(typeof(urchinTracker)!='function')document.write('<sc'+'ript src="'+
+'http'+(document.location.protocol=='https:'?'s://ssl':'://www')+
+'.google-analytics.com/urchin.js'+'"></sc'+'ript>')
+</script>
+<script>
+_uacct = 'UA-5368934-2';
+urchinTracker("/2642065068/goal");
+</script>
+
+{% endblock %}
+
+

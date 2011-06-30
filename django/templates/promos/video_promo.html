@@ -1,0 +1,51 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Demo Video
+{% endblock %}
+
+{% block pageheader %}
+	Demo Video
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero">
+		<div class="module">
+			
+			<div id="wrapper_video" class="float" style="width: 322px;"></div>
+			<div class="float" style="width: 315px; margin-left: 20px;"><h2>Check out our demo video.</h2><h3>When you're finished, you can also <a href="/browse/featured/">check out some cool Flowgrams</a>, or explore our <a href="/help/">help section</a> and <a href="http://blog.flowgram.com" target="_blank">blog</a>.</h3></div>
+			<div class="clearer"></div>
+			
+		</div>
+	</div>
+</div>
+
+<div id="content_right">
+	<a href="/create"><img src="/media/images/btn_makeaFG.png" alt="Make a Flowgram" id="btn_make_FG_right_col" border="0" /></a>
+	{% include "includes/modules/other_content/invite_module.incl" %}
+    {% include "includes/promos/whats_new_pod.incl" %}
+    {% include "includes/promos/tips_pod.incl" %}
+    {% include "includes/promos/community_pod.incl" %}
+	{% include "includes/modules/other_content/blog_module.incl" %}
+</div>
+	
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/swf/jwplayer/swfobject.js"></script>
+{% endblock %}
+
+{% block js_init %}
+
+	// embed hero video
+	var so = new SWFObject('/media/swf/jwplayer/player.swf','mpl','322','276','9');
+	so.addParam('allowscriptaccess','always');
+	so.addParam('allowfullscreen','true');
+	so.addParam('wmode','opaque');
+	so.addParam('flashvars','&file=http://{{ s3_bucket_static }}/media/swf/homeHero/homepagemovie8a.flv&image=/media/swf/homeHero/screen.png');
+	so.write('wrapper_video');
+
+{% endblock %}

@@ -1,0 +1,25 @@
+
+	<div id="wrapper_login" style="display: none;">
+		<a href="javascript:void(0);"><img src="/media/images/btn_close_login.gif" id="login_pane_btn_close_login" alt="Close login window" /></a>
+		<img src="/media/images/title_sign_in.gif" id="title_sign_in" alt="Sign In"/>
+		<form method="post" id="login" action="/login/">
+			<input type="hidden" name="which_form" value="login"/>
+			{{ login_form }}
+			<div class="clearer"></div>
+               <input type="hidden" name="next" value="{{next}}" />
+			<input type="image" src="/media/images/btn_sign_in.gif" id="btn_sign_in" />
+			<div id="forgot_password">
+				<a href="/reset/">Forgot your password<br/>or username?</a>
+			</div>
+			<div class="clearer"></div>
+		</form>	
+			
+		<div id="register">
+			<img src="/media/images/title_no_acct_yet.gif" id="title_no_acct_yet" alt="No Account Yet?"/>
+			<br/>
+			<strong>No problem! Just click the button to register.  It's easy.</strong>
+			<br/>
+			<a href="/register/"><img src="/media/images/btn_register.gif" id="btn_register" /></a>
+		</div>
+	</div>
+

@@ -1,0 +1,95 @@
+<div class="module" id="homeIdeas">
+    <h2>Ideas for your Flowgram</h2>
+    <div class="module_body">
+    	<ul>
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_photos" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/talk_about_photos.html'); asrc.recordStat('view_ideas_website', '0', 'photos')";><strong>Talk about your photos</strong></a>
+						<br/>
+						Import from Facebook and Flickr then add your voice.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_blog" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/blogger_promo.html'); asrc.recordStat('view_ideas_website', '0', 'blog');"><strong>Blogging</strong></a>
+						<br/>
+						Post to your blog in ways never before possible.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_presentations" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/presentations.html'); asrc.recordStat('view_ideas_website', '0', 'presentations');"><strong>Presentations</strong></a>
+						<br/>
+						Combine PowerPoint with online media and you.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_education" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/education.html'); asrc.recordStat('view_ideas_website', '0', 'education');"><strong>Education &amp; Learning</strong></a>
+						<br/>
+						Easily &amp; quickly create interactive training materials.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			{% comment %}
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_travel" class="icon_home"></div>
+					<div class="ideas_content">
+						<span style="font-size: 12px;"><a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/travel_planning.html'); asrc.recordStat('view_ideas_website', '0', 'travel');"><strong>Travel planning &amp; travel logs</strong></a></span>
+						<br/>
+						Easily plan, then share your vacation with family &amp; friends.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_personal" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/say_whats_up.html'); asrc.recordStat('view_ideas_website', '0', 'whatup');"><strong>Personal messages</strong></a>
+						<br/>
+						When a cheesy ecard won't do - nothing is more personal than a Flowgram.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			{% endcomment %}
+			<li>
+				<div class="ideas_content_row">
+					<div id="ideas_explain" class="icon_home"></div>
+					<div class="ideas_content">
+						<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/explain_something.html'); asrc.recordStat('view_ideas_website', '0', 'explain');"><strong>Explain everything</strong></a>
+						<br/>
+						Interactive guided tours, how-to's and more.
+					</div>
+					<div class="clearer"></div>
+				</div>
+				<div class="divider_horiz"></div>
+			</li>
+			<li><a href="/browse/featured/">See some featured Flowgrams &raquo;</a></li>
+		</ul>
+		
+    </div>
+</div>

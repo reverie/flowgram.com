@@ -1,0 +1,15 @@
+<html>
+	<head>
+		<meta name="title" content="{{ fg.title }}" />
+		<meta name="description" content="{{ fg.description }}" />
+        <link rel="image_src" href="{{ fg.thumb_url }}" />
+    </head>
+    <body>
+        <script type="text/javascript">
+            document.location.href = "/fg/{{ fg.id }}";
+        </script>
+        <noscript>
+            This site requires JavaScript.
+        </noscript>
+    </body>
+</html>

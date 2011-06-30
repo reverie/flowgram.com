@@ -1,0 +1,45 @@
+{% if user.is_authenticated %}
+
+		<h2 class="hdr_bar">Invite a Friend to Flowgram</h2>
+		<div class="module blue" id="invite_module">
+    
+        <script type="text/javascript">
+            var has_invite_module = true;
+		</script>
+		
+		<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+		<script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+		<script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+		<script type="text/javascript">function onABCommComplete() { }</script>
+
+			<div id="wrapper_invite_form">
+				Send invites to: <br/>(separate addresses with comma)<br/>
+			    <a href="javascript:void(0);" onclick="$('invite_email').value = ''; showPlaxoABChooser('invite_email', '/media/plaxo_cb.html'); return false;">
+        			Access your address books from Gmail, Yahoo, Outlook, and more...</a><br/>
+				<form action="/api/invite/" id="invite_form" method="post" onsubmit="invc.submitForm(); return false;" accept-charset="utf-8">
+					<input type="text" name="invitees" value="" id="invite_email">
+					<div id="personal_link">
+					<a href="javascript:void(0);" onclick="invc.showPersonalBox();">Add a personal message</a>
+					</div>
+					
+					<div id="personal_box">
+						Enter a personal note:
+						<textarea id="personal_message_email" name="personal_message" value=""> </textarea>
+					</div> 
+
+					<div id="wrapper_invite_submit">
+						<a href="javascript:void(0);" onclick="invc.submitForm();"><img src="/media/images/btn_invite.gif" id="invite_submit" alt="Invite" /></a><img src="/media/images/loading_blue.gif" class="loading" id="invite_loading" />									
+					
+						<!--
+						<div id="invite_info">
+							<span id="invite_count">{{ request.user.get_profile.invitations }}</span> invites left
+						</div>
+						-->
+						<div class="clearer"></div>
+					</div>
+				</form>
+		
+			</div>
+		</div>
+
+{% endif %}

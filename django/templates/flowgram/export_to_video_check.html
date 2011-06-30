@@ -1,0 +1,11 @@
+{% extends "base/base.html" %}
+
+{% block pageheader %}
+Video Rendering Status
+{% endblock %}
+
+{% block content %}
+
+Your Flowgram "{{ title }}" is {{ status }}.  We expect your video to be processed in {{ approx_wait }} minutes or less.<br>
+
+{% endblock %}

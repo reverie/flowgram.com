@@ -1,0 +1,5 @@
+<div id="wrapper_nav_footer"></div>
+<div id="wrapper_logo_copyright_footer">
+	<img src="/media/images/logo_footer.png" alt="FlowGram" />
+	<div id="copyright">Copyright &copy; 2008 FlowGram</div>
+</div>

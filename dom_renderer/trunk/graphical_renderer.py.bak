@@ -1,0 +1,445 @@
+#!/usr/bin/python
+
+import os, sys, Queue, mutex, MySQLdb, datetime, Image, itertools, urllib, urllib2, threading
+from time import sleep
+from settings import WEB_HOST, DB_HOST, DB_NAME, DB_USER, DB_PASS, TMP_DIR, NUM_PROCS
+
+from flowgram.core import controller
+from flowgram.core.models import ThumbQueue, AddPageRequest
+
+display_number = int(sys.argv[sys.argv.index('-display') + 1])
+
+# Subtracting 1 from the worker number (which is 1-based on the command-line) to make it 0-based
+# for performing mod operations.
+proc_number = int(sys.argv[sys.argv.index('-worker') + 1]) - 1
+
+os.environ['DISPLAY'] = 'localhost:%d.0' % display_number
+
+if '-nosleep' not in sys.argv:
+    print "Sleeping..."
+    sleep(60)
+else:
+    print "Not sleeping"
+
+# These imports must be down here because the display has to be set up beforehand
+print "Connecting to", os.environ['DISPLAY']
+import gtk, webkit, gobject
+
+def excepthook(exctype, value, traceback):
+    """Make sure that the program quits completely once a single gtk thread dies. This
+    way daemontools can restart it."""
+    
+    print "Exception -- quitting:", exctype, value, traceback
+    gtk.main_quit()
+
+sys.excepthook = excepthook
+
+g_AddURLLink = "http://%s/bj/AddURL.js" % WEB_HOST;
+g_AddURLJS = urllib2.urlopen(g_AddURLLink).read()
+g_QAddPageProcessedLink = "http://%s/api/q-addpageprocessed/" % WEB_HOST;
+
+class Enum:
+    pass
+
+StatusCode = Enum()
+StatusCode.UNPROCESSED = 0
+StatusCode.PROCESSING = 1
+StatusCode.DONE = 2
+StatusCode.ERROR = 100
+
+QueueType = Enum()
+QueueType.TQ_WEBPAGE = "tq_webpage"
+QueueType.TQ_IMAGE = "tq_image"
+QueueType.APR = "apr"
+
+TABLES_DICT = dict([(QueueType.TQ_WEBPAGE, "core_thumbqueue"), (QueueType.TQ_IMAGE, "core_thumbqueue"), (QueueType.APR, "core_addpagerequest")])
+TYPES_DICT = dict([(0, QueueType.TQ_WEBPAGE), (1, QueueType.TQ_IMAGE), (2, QueueType.APR)])
+
+TABLES = dict([(v, 1) for v in TABLES_DICT.values()])
+
+THUMB_WIDTH = 800
+THUMB_HEIGHT = 600
+
+MAX_ATTEMPTS = 3
+ROWS_TO_FETCH = 100
+
+MAIN_DELAY = 1000
+WORKER_DELAY = 1000
+RENDER_DELAY = 2500
+TIMEOUT_SECS = 60
+DB_TIMEOUT_SECS = 80
+
+NUM_WORKERS = 4
+
+def page_id_url(pid):
+    return "http://%s/api/getpage/%s/" % (WEB_HOST, pid)
+
+class WebBrowser(gtk.Window):
+    def __init__(self):
+        gtk.Window.__init__(self)
+        
+        self._webview = webkit.WebView()
+        self._webview.fg_browser = self
+        
+        self.add(self._webview)
+        
+        self.set_decorated(False)
+        self.connect('destroy', gtk.main_quit)
+        self.show_all()
+
+main_lock = mutex.mutex()
+worker_locks = [mutex.mutex() for i in range(NUM_WORKERS)]
+
+# Set up database connections and shared data
+conn = MySQLdb.connect(host=DB_HOST, db=DB_NAME, user=DB_USER, passwd=DB_PASS)
+main_cursor = conn.cursor()
+worker_cursors = [conn.cursor() for i in range(NUM_WORKERS)]
+
+windows = [WebBrowser() for i in range(NUM_WORKERS)]
+webviews = [win._webview for win in windows]
+
+for view in webviews:
+    view.fg_lock = threading.Lock()
+
+q = Queue.Queue(0)
+
+# Place windows
+desktop_width, desktop_height = windows[0].get_root_window().get_size()
+
+if NUM_WORKERS == 4:
+    win_x, win_y = desktop_width / 2, desktop_height / 2
+elif NUM_WORKERS == 1:
+    win_x, win_y = desktop_width, desktop_height
+else:
+    print "ERROR invalid NUM_WORKERS = %d" % NUM_WORKERS
+    exit()
+    
+print "desktop_width = %d desktop_height = %s win_x = %d win_y = %d" % (desktop_width, desktop_height, win_x, win_y)
+
+for position, window in itertools.izip(itertools.cycle(range(4)), windows):
+    window.resize(win_x, win_y)
+    #window.resize(win_x - 10, win_y - 50) # just to make sure they don't overlap (account for toolbars etc)
+    
+    if position & 1:
+        this_x = win_x
+    else:
+        this_x = 0
+
+    if position & 2:
+        this_y = win_y
+    else:
+        this_y = 0
+
+    window.move(this_x, this_y)
+
+def resize_to_thumbnail(index, id, url):
+    print "%d resizing thumbnail for id=%s url=%s" % (index, id, url)
+    
+    try:
+        u = urllib2.urlopen(url)
+    except Exception, e:
+        print e
+    
+    temp_filepath = TMP_DIR + "/%s_orig.jpg" % id
+    f = open(temp_filepath, 'wb')
+    f.write(u.read())
+    f.close()
+    
+    i = Image.open(temp_filepath)
+    
+    i.thumbnail((THUMB_WIDTH, THUMB_HEIGHT), Image.ANTIALIAS)
+    if i.mode != 'RGB':
+        i = i.convert('RGB')
+    
+    w, h = i.size
+    centered = Image.new("RGB", (THUMB_WIDTH, THUMB_HEIGHT))
+    centered.paste(i, ((THUMB_WIDTH - w) / 2, (THUMB_HEIGHT - h) / 2))
+
+    path = TMP_DIR + "/%s.jpg" % id
+    centered.save(path, 'jpeg', quality=95)
+    
+    print "%d done resizing thumbnail for id=%s" % (index, id)
+    
+    tq = ThumbQueue.objects.get(id=id)
+    page_id = tq.page.id
+    controller.save_thumb_to_s3(tq.page, path)
+    tq.delete()
+    
+    os.remove(temp_filepath)
+    
+    print "%d done saving to s3 id=%s page_id=%s" % (index, id, page_id)
+
+def stop_and_clear(view):
+    print "%d stopping load and going to about:blank at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+    view.stop_loading()
+    
+    view.fg_loading_blank = True
+    
+    view.open("about:blank")
+
+def make_screenshot(view, frame):
+    print "%d starting screenshot at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+    
+    browser = view.fg_browser
+    gdk_win = browser.window
+    
+    #print "toplevel:", browser.has_toplevel_focus()
+    #desktop = browser.get_root_window()
+    
+    width, height = gdk_win.get_size()
+    pb = gtk.gdk.Pixbuf(gtk.gdk.COLORSPACE_RGB, True, 8, width, height)
+    
+    pb.get_from_drawable(gdk_win, gdk_win.get_colormap(), 0, 0, 0, 0, width, height)
+    #pb = pb.scale_simple(THUMB_WIDTH, THUMB_HEIGHT, gtk.gdk.INTERP_BILINEAR)
+    
+    pixel_rows = pb.get_pixels_array().tolist()
+    
+    all_white = True
+    
+    for row in pixel_rows:
+        for p in row:
+            if p != [255, 255, 255, 255]:
+                all_white = False
+                break
+    
+    if all_white:
+        print "%d all_white at %s for %s id=%s DELAYING" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+        return False
+    
+    filepath = TMP_DIR + "/%s.jpg" % view.fg_id
+    pb.save(filepath, 'jpeg', {'quality' : '50'})
+    
+    print "%d starting save to s3 id=%s" % (view.fg_owner, view.fg_id)
+    
+    if view.fg_type == QueueType.APR:
+        apr = AddPageRequest.objects.get(id=view.fg_id)
+        page_id = apr.page.id
+        controller.save_thumb_to_s3(apr.page, filepath)
+        
+        print "%d done saving to s3 id=%s page_id=%s" % (view.fg_owner, view.fg_id, page_id)
+    elif view.fg_type == QueueType.TQ_WEBPAGE:
+        tq = ThumbQueue.objects.get(id=view.fg_id)
+        page_id = tq.page.id
+        controller.save_thumb_to_s3(tq.page, filepath)
+        tq.delete()
+        
+        print "%d done saving to s3 id=%s page_id=%s" % (view.fg_owner, view.fg_id, page_id)
+    else:
+        print "%d make_screenshot for unknown type=%d" % (view.fg_owner, view.fg_type)
+    
+    os.remove(filepath);
+
+    print "%d finishing screenshot at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+    
+    return True
+
+def take_sshot(fg_id, view, frame):
+    if fg_id != view.fg_id:
+        print "ERROR: %d take_sshot at %s for %s fg_id=%s BUT view.fg_id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, fg_id, view.fg_id)
+        return
+    
+    print "%d take_sshot at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+    if not make_screenshot(view, frame):
+        gobject.timeout_add(RENDER_DELAY, take_sshot, fg_id, view, frame)
+        return
+    
+    done = False
+    view.fg_lock.acquire()
+    
+    view.fg_sshot_done = True
+    if view.fg_posted_done:
+        done = True
+        
+    view.fg_lock.release()
+    
+    if view.fg_type != QueueType.APR or done:
+        stop_and_clear(view)
+
+def load_finished(view, frame):
+    main_frame = view.get_main_frame()
+    if not frame is main_frame:
+        print "%d load_finished for %s id=%s NOT main_frame" % (view.fg_owner, view.fg_type, view.fg_id)
+        return
+    else:
+        print "%d load_finished at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+        
+    if view.fg_loading_blank:
+        print "%d unlocking at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+        worker_locks[view.fg_owner].unlock()
+        return
+    
+    if view.fg_scheduled_sshot == False:
+        print "%d scheduling sshot at %s for %s id=%s" % (view.fg_owner, datetime.datetime.now(), view.fg_type, view.fg_id)
+        gobject.timeout_add(RENDER_DELAY, take_sshot, view.fg_id, view, frame)
+        view.fg_scheduled_sshot = True
+    
+    if view.fg_type == QueueType.APR and view.fg_inserted_bookmarklet == False:
+        view.fg_inserted_bookmarklet = True
+        
+        print "%d inserting bookmarklet for %s id=%s" % (view.fg_owner, view.fg_type, view.fg_id)
+        
+        view.execute_script("var fg_apr_id='%s';" % view.fg_id)
+        view.execute_script("document.title = '';")
+        view.execute_script(g_AddURLJS)
+        
+        view.execute_script("SetTitleToTitle();")
+        title = frame.get_title()
+        
+        if title == None:
+            title = "Untitled"
+        
+        view.execute_script("SetURLToTitle();")
+        url = frame.get_title()
+        view.execute_script("SetAPRIDToTitle();")
+        addpagerequest_id = frame.get_title()
+        view.execute_script("SetHTMLToTitle();")
+        html = frame.get_title()
+        
+        data = "title=%s&url=%s&addpagerequest_id=%s&html=%s" % (urllib.quote(title), urllib.quote(url), urllib.quote(addpagerequest_id), urllib.quote(html))
+        
+        try:
+            urllib2.urlopen(g_QAddPageProcessedLink, data)
+        except:
+            pass
+        
+        view.fg_posted_done = True
+        
+        print "%d done posting for %s id=%s" % (view.fg_owner, view.fg_type, view.fg_id)
+
+        done = False
+        view.fg_lock.acquire()
+        
+        if view.fg_sshot_done:
+            done = True
+
+        view.fg_lock.release()
+
+        if done:
+            stop_and_clear(view)
+
+for i in range(NUM_WORKERS):
+    webviews[i].connect('load-finished', load_finished)
+
+def start_worker(index):
+    v = webviews[index]
+    
+    if not worker_locks[index].testandset():
+        print "%d could not acquire lock" % index
+        
+        if (datetime.datetime.now() - v.fg_starttime).seconds > TIMEOUT_SECS:
+            print "%d has timed out - canceling %s id=%s url=%s" % (index, v.fg_type, v.fg_id, v.fg_url)
+            stop_and_clear(v)
+            
+            query = "UPDATE %s SET status_code=%d WHERE id='%s'" % (TABLES_DICT[v.fg_type], StatusCode.UNPROCESSED, v.fg_id)
+            main_cursor.execute(query)
+
+        return True
+    
+    try:
+        type, id, url = q.get(False)
+    except Queue.Empty:
+        worker_locks[index].unlock()
+        return True
+    
+    v.fg_type = type
+    
+    print "%d at %s got %s id=%s url=%s" % (index, datetime.datetime.now(), v.fg_type, id, url)
+    
+    if type == QueueType.APR or type == QueueType.TQ_WEBPAGE:
+        v.fg_owner = index
+        v.fg_id = id
+        v.fg_starttime = datetime.datetime.now()
+        v.fg_url = url
+        
+        v.fg_inserted_bookmarklet = False
+        v.fg_scheduled_sshot = False
+        v.fg_posted_done = False
+        v.fg_sshot_done = False
+        v.fg_loading_blank = False
+        
+        v.open(url)
+    elif type == QueueType.TQ_IMAGE:
+        resize_to_thumbnail(index, id, url)
+        worker_locks[index].unlock()
+    else:
+        print "%d got unknown TYPE = %d" %(index, type)
+    
+    return True
+
+def main_loop():
+    print "Starting main_loop"
+
+    for table in TABLES:
+        # case where row is stuck processing and not actually being processed - dom_renderer crashed or something
+        query = "UPDATE %s SET status_code=%d WHERE " % (table, StatusCode.UNPROCESSED) + \
+                "status_code=%d AND TIME_TO_SEC(TIMEDIFF(NOW(), started_at)) > %d" % (StatusCode.PROCESSING, DB_TIMEOUT_SECS)
+        c = main_cursor.execute(query)
+        if c:
+            print "Set %s" % table, c, "rows to UNPROCESSED because DB_TIMEOUT_SECS"
+    
+        # set rows to error that have exceeded MAX_ATTEMPTS
+        query = "UPDATE %s SET status_code=%d WHERE " % (table, StatusCode.ERROR) + \
+                "status_code=%d AND attempts>%d" % (StatusCode.UNPROCESSED, MAX_ATTEMPTS)
+        c = main_cursor.execute(query)
+        if c:
+            print "Set %s" % table, c, "rows to ERROR because MAX_ATTEMPTS"
+    
+    #print "Main loop called"
+    if q.qsize() > ROWS_TO_FETCH:
+        print "Queue full"
+        return True
+    
+    if not main_lock.testandset():
+        print "Main loop could not acquire lock"
+        return True
+    
+    query = "SELECT id, url FROM core_addpagerequest WHERE status_code=%d LIMIT %d" % (StatusCode.UNPROCESSED, ROWS_TO_FETCH)
+    main_cursor.execute(query)
+    
+    for job in main_cursor.fetchall():
+        # Skipping jobs that are not meant to be processed by this worker (using a simple last
+        # character hash).
+        if ord(job[0][-1]) % NUM_PROCS != proc_number:
+            continue
+        
+        query = "UPDATE core_addpagerequest SET " + \
+                "status_code=%d, started_at=NOW(), attempts=attempts+1 WHERE id='%s'" % (StatusCode.PROCESSING, job[0])
+        main_cursor.execute(query)
+        q.put((QueueType.APR, job[0], job[1]))
+        
+    query = "SELECT id, page_id, type FROM core_thumbqueue WHERE status_code=%d LIMIT %d" % (StatusCode.UNPROCESSED, ROWS_TO_FETCH)
+    main_cursor.execute(query)
+    
+    for (tq_id, page_id, tq_type) in main_cursor.fetchall():
+        # Skipping jobs that are not meant to be processed by this worker (using a simple last
+        # character hash).
+        if ord(tq_id[-1]) % NUM_PROCS != proc_number:
+            continue
+        
+        query = "UPDATE core_thumbqueue SET " + \
+                "status_code=%d, started_at=NOW(), attempts=attempts+1 WHERE id='%s'" % (StatusCode.PROCESSING, tq_id)
+        main_cursor.execute(query)
+        
+        type = TYPES_DICT[tq_type]
+        
+        if type == QueueType.TQ_WEBPAGE:
+            url = page_id_url(page_id)
+        elif type == QueueType.TQ_IMAGE:
+            temp_cursor = conn.cursor()
+            query = "SELECT source_url FROM core_page WHERE id='%s'" % page_id
+            temp_cursor.execute(query)
+            
+            url = temp_cursor.fetchall()[0][0]
+
+        q.put((type, tq_id, url))
+
+    main_lock.unlock()
+    return True
+
+gobject.timeout_add(MAIN_DELAY, main_loop)
+
+for i in range(NUM_WORKERS):
+    gobject.timeout_add(WORKER_DELAY, start_worker, i)
+    sleep(MAIN_DELAY / 1000)
+
+gtk.main()

@@ -1,0 +1,33 @@
+Personal Message from {{ senderName }}
+
+{% ifnotequal message '' %}
+{{ message }}
+
+{% else %}
+Hey,
+
+Check this out.
+
+-{{ senderName }}
+{% endifnotequal %}
+
+=====
+
+{{ title }}, by {{ owner }}
+
+You can see this Flowgram by going to the following web address:
+
+{{ url }}
+
+{% ifnotequal w.description '' %}
+Description
+
+{{ w.description }}
+{% endifnotequal %}
+
+=====
+	
+More About Flowgram
+
+Flowgram gives you a powerful new way of enjoying web pages.  You won't need to install anything to watch a Flowgram, and of course it doesn't include any spyware. Just sit back and enjoy!
+

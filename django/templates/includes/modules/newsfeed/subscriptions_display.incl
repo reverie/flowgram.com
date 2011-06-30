@@ -1,0 +1,44 @@
+{% if not subscription_profiles|length_is:0 %}
+	<h2 class="hdr_bar">
+		<div>{% ifequal request.user u %}Your{% else %}{{ u }}'s{% endifequal %} Subscriptions ({{ subscription_profiles|length }} subscription{% if subscription_profiles|length_is:"1" %}{% else %}s{% endif %})</div><div class="clearer"></div>
+	</h2>
+	<div class="subs-container">
+		{% for user in subscription_profiles %}
+			    <div class="sub">
+		    		<div class="sub-avatar"><img src="{{ user.avatar_url }}" /></div>
+		    		<div class="sub-username"><a href="/{{ user.username }}">{{ user.username }}</a></div>
+		    		{% if show_unsubscribe %}
+		    			<div class="sub-unsubscribe"><a href="/unsubscribe/{{ user.username }}">Unsubscribe</a></div>
+		    		{% endif %}
+			    </div>
+		{% endfor %}
+		<div class="clearer"></div>
+		{% comment %}
+		{% ifequal request.user u  %}
+			{% if not show_unsubscribe %}
+				<div class="seemore">
+					<a href="/subscriptions/">Manage your subscriptions &raquo;</a><br/><br/>
+				</div>
+			{% endif %}
+		{% endifequal %}
+		{% endcomment %}
+		
+	</div>
+{% endif %}
+
+<div class="clearer"></div>
+		
+{% if not subscriber_profiles|length_is:0 %}
+	<h2 class="hdr_bar">
+		<div>{% ifequal request.user u %}Your{% else %}{{ u }}'s{% endifequal %} Subscribers ({{ subscriber_profiles|length }} subscriber{% if subscriber_profiles|length_is:"1" %}{% else %}s{% endif %})</div><div class="clearer"></div>
+	</h2>
+	<div class="subs-container">
+		{% for user in subscriber_profiles %}
+			<div class="sub">
+		    	<div class="sub-avatar"><img src="{{ user.avatar_url }}" /></div>
+		    	<div class="sub-username"><a href="/{{ user.username }}">{{ user.username }}</a></div>
+		    </div>	
+		{% endfor %}
+		<div class="clearer"></div>			
+	</div>
+{% endif %}

@@ -1,0 +1,127 @@
+.fg_helpbubble {
+    position: absolute;
+    width: 180px;
+    z-index: 99998;
+}
+
+.fg_helpbubble table,
+.fg_helpbubble tr,
+.fg_helpbubble td {
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    border: 0px;
+}
+
+.fg_helpbubble-contents {
+    background-color: #F4F5C1;
+}
+
+.fg_helpbubble-upArrow {
+    background-image: url('/media/images/helpbubble/arrow_up.png');
+    behavior: url(/media/css/iepngfix.htc);
+    position: absolute;
+    width: 36px;
+    height: 26px;
+    top: -17px;
+    visibility: hidden;
+}
+
+.fg_helpbubble-downArrow {
+    background-image: url('/media/images/helpbubble/arrow_down.png');
+    behavior: url(/media/css/iepngfix.htc);
+    position: absolute;
+    width: 36px;
+    height: 26px;
+    bottom: -14px;
+    visibility: hidden;
+}
+
+.fg_helpbubble-title {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.fg_helpbubble-instructions {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.fg_helpbubble-nextTipArea {
+    text-align: right;
+}
+
+.fg_helpbubble-closeButton {
+    cursor: pointer;
+}
+
+.fg_helpbubble-dontShowTips {
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fg_helpbubble-nextTip {
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fg_helpbubble-tl {
+    background-image: url('/media/images/helpbubble/box_tl.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+    height: 17px;
+}
+
+.fg_helpbubble-t {
+    background-image: url('/media/images/helpbubble/box_t.png');
+    behavior: url(/media/css/iepngfix.htc);
+    height: 17px;
+}
+
+.fg_helpbubble-tr {
+    background-image: url('/media/images/helpbubble/box_tr.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+    height: 17px;
+}
+
+.fg_helpbubble-bl {
+    background-image: url('/media/images/helpbubble/box_bl.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+    height: 17px;
+}
+
+.fg_helpbubble-b {
+    background-image: url('/media/images/helpbubble/box_b.png');
+    behavior: url(/media/css/iepngfix.htc);
+    height: 17px;
+}
+
+.fg_helpbubble-br {
+    background-image: url('/media/images/helpbubble/box_br.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+    height: 17px;
+}
+
+.fg_helpbubble-l {
+    background-image: url('/media/images/helpbubble/box_l.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+}
+
+.fg_helpbubble-r {
+    background-image: url('/media/images/helpbubble/box_r.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 17px;
+}
+
+.fg_helpbubble-closeButton {
+    background-image: url('/media/images/closebutton_x.png');
+    behavior: url(/media/css/iepngfix.htc);
+    width: 15px;
+    height: 15px;
+}

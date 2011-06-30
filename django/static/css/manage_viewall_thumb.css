@@ -1,0 +1,49 @@
+/* Manage - View All Flowgrams - Thumbnail View */
+div#wrapper_content {
+	margin-top: -5px;
+	width: 950px;
+	background: url(/media/images/bg_grey_column.gif) top left repeat-y;
+}
+
+div.wrapper_cols {
+	padding: 20px 0 10px 0;
+	background: url(/media/images/bg_grey_left_column.gif) bottom left no-repeat;
+}
+
+div#wrapper_content div.col2 {
+	width: 630px;
+}
+
+div#wrapper_content div.col2 div.col1 {
+	background-color: #FFFFFF;
+}
+
+div#wrapper_content div.col2 div.col2 {
+	border-bottom: none;	
+}
+
+ul.spaced_list li {
+	margin: 0 0 20px 0;
+}
+
+ul.spaced_list div.col1,
+ul.spaced_list div.col2 
+{
+	width: 290px !important;
+}
+
+ul.spaced_list div.col1 {
+	margin: 0 20px 0 0;
+}
+
+ul.spaced_list input {
+	width: 290px;
+	position: relative;
+}
+
+h4 {
+	font-size: 1.4em;
+	margin: 0 0 15px 0;
+	color: #007B9A;
+	width: 290px;
+}

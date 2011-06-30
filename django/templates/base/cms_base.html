@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Flowgram | {{ page.titletag }}</title>
+    <link rel="stylesheet" href="/media/css/{% include "includes/style_css.incl" %}" type="text/css" media="screen" />
+	{% include "includes/includesIE.incl" %}
+    <link rel="stylesheet" href="/media/css/style_cms.css" type="text/css" media="screen" />
+</head>
+
+<body class="cms"><a name="top"></a>
+	<div id="wrapper_site">
+		<div id="wrapper_shadow">
+			<div id="wrapper_main">
+				<div id="wrapper_header_main"></div>
+				
+				<div id="wrapper_header_sub"></div>
+				
+				<div id="wrapper_content">
+					
+					<div id="content_main">
+						
+						<div class="hero wide">
+							
+							<div class="module">					
+								<!-- CONTENT -->
+								{{ page.content|safe }}
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="clearer"></div>
+					
+				</div>
+			
+			</div>
+			<div id="wrapper_footer">
+				{% include "includes/modules/site/footer_cms.incl" %}
+				<div class="clearer"></div>
+			</div>
+		</div>
+		<div id="wrapper_bottom"></div>
+	</div>	
+	
+
+{% include "includes/js.incl" %}
+<script type="text/javascript" charset="utf-8">
+	// init footer controller
+	var fc = new FooterController();
+</script>
+
+{% include "includes/analytics.incl" %}
+
+</body>
+</html>

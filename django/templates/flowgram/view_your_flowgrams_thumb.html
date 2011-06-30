@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	{% if pageowner %}
+		| You - View All - Thumbnail View
+	
+	{% else %}
+		| Browse - People - {{ u }} - View All - Thumbnail View
+		
+	{% endif %}
+{% endblock %}
+
+{% block pageheader %}
+	{% if pageowner %}
+		Your Flowgrams
+	
+	{% else %}
+		Browse Flowgrams
+		
+	{% endif %}
+{% endblock %}
+
+
+{% block subnav %}
+	{% if pageowner %}
+		{% include "includes/nav/nav_sub_you.incl" %}
+	
+	{% else %}
+		{% include "includes/nav/nav_sub_browse_people.incl" %}
+			
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+        {% include "includes/modules/flowgram/fg_modules.html" %}
+		
+		{% load digg_paginator %}
+		{% digg_paginator %}
+		
+		
+	</div>
+
+	<div id="content_right">
+		<a href="/create"><img src="/media/images/btn_makeaFG.png" id="btn_make_FG_right_col" alt="Make a Flowgram" border="0" /></a>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+        {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+		{% include "includes/promos/tutorials.incl" %}
+		{% include "includes/modules/other_content/blog_module.incl" %}  
+	</div>
+	
+{% endblock content %}
+
+{% block js_init %}
+	{% if flowgram_list %}
+		{% for fg in flowgram_list %}
+			{% star-rating fg user False %}
+			{% favorite-heart fg user True %}
+			{# {% widget fg 140 100 "opaque" %} #}
+		{% endfor %}
+	{% endif %}
+
+	var path = location.href;
+	var lastPath = "viewyourflowgramsthumb"
+	var index = path.indexOf(lastPath);
+	path = path.substring(0, index+lastPath.length);
+	
+	dfc = new DisplayFiltersController( "{{sort_criterion}}", "{{ pub_priv }}", path );
+
+{% endblock %}
+

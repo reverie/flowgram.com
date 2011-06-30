@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    {% include "includes/js.incl" %}
+    <link rel="stylesheet" type="text/css" href="/media/css/StarRating.css"></link>
+	<title>Flowgram {% block title %}{% endblock %}</title>
+	{% include "includes/analytics.incl" %}
+	{% include "includes/client_includes.incl" %}
+    
+	<!-- SECTION/PAGE CSS -->
+	{% block styles %}
+	
+	{% endblock %}
+	
+	{% include "includes/includesIE.incl" %}
+</head>
+
+<body>
+	<div id="wrapper">
+		<div id="wrapper_shadow">
+			<div id="wrapper_main">
+		
+            {% block content %}
+
+            {% endblock %}
+            <div class="clearer"></div>
+            </div>
+        </div>
+        <div id="wrapper_bottom_white"></div>
+	</div>
+
+<!-- SECTION/PAGE JS -->
+{% block js %}
+
+{% endblock %}
+	
+<script type="text/javascript" charset="utf-8">
+	
+	// init footer controller
+	//var fc = new FooterController();
+	
+	// init section/page specific js
+	{% block js_init %}
+		
+	{% endblock %}
+	
+	{% if visitor_messages %}
+		// set system messages
+		var messages_array = new Array();
+	    {% for message in visitor_messages %}
+	        messages_array[{{ forloop.counter0 }}] = '{{ message|safe }}';
+	    {% endfor %}
+		// init system messages controller
+		var smc = new SystemMessagesController();
+	{% endif %}
+</script>
+
+{% include "includes/analytics.incl" %}
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| About Us - Contact Us/Feedback
+{% endblock %}
+
+{% block pageheader %}
+	Feedback
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_about_us.incl" %}
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero wide">
+		<div class="module">
+			
+			<div class="generic_form">
+				<h2 class="first">Questions, comments, feedback?</h2>
+				<p><strong>Use this form to contact us, and we'll get in touch with you as soon as possible.</strong></p>
+				<form method="post" action="/about_us/contact_us/email/" id="email_form" onsubmit="return validateEmailForm();">
+					<p><label for="contact_us_name">Name:</label>
+					<input type="text" id="contact_us_name" required="true" name="name" value=""></p>
+					<p><label for="contact_us_email">Email:</label>
+					<input type="text" id="contact_us_email" required="true" name="email" value=""></p>
+					<p><label for="contact_us_subject">Subject:</label>
+					<input type="text" id="contact_us_subject" required="true" name="subject" value=""></p>
+					<p><label for="contact_us_comments">Comments:</label>
+					<textarea id="contact_us_comments" maxlength="1000" name="comments" required="true" style="height: 120px;"></textarea></p>
+					<div class="clearer"></div>
+					<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+				</form>
+				<div class="clearer"></div>
+			</div>
+			
+		</div>
+	</div>
+	
+</div>
+
+	
+{% endblock content %}

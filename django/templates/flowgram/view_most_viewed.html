@@ -1,0 +1,59 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Browse - Most Popular
+{% endblock %}
+
+{% block pageheader %}
+	Browse Flowgrams
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_browse.incl" %}
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+        {% with object_list as flowgram_list %}
+            {% include "includes/modules/flowgram/fg_modules.html" %}
+        {% endwith %}	
+		
+		{% load digg_paginator %}
+		{% digg_paginator %}
+
+	</div>
+
+	<div id="content_right">
+		{% include "includes/modules/other_content/invite_module.incl" %}
+        {% with "Most Discussed Flowgrams" as sidebar_fgs_title %}
+	        {% with discussed as mostviewed %}
+	            {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+	        {% endwith %}
+        {% endwith %}
+		{% include "includes/promos/tutorials.incl" %}
+		{% comment %}
+	    {% include "includes/modules/flowgram/sidebar_categories_best_of.incl" %}
+		{% endcomment %}
+		{% include "includes/modules/other_content/blog_module.incl" %}
+        
+	</div>
+	
+{% endblock content %}
+
+{% block js_init %}
+	{% if object_list %}
+	{% for fg in object_list %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+		{# % widget fg 140 100 "opaque" % #}
+	{% endfor %}
+	{% endif %}
+	
+	dfc = new DisplayFiltersController();
+{% endblock %}
+

@@ -1,0 +1,3 @@
+<!-- GLOBAL CSS -->
+<link rel="stylesheet" href="/media/css/{% include "includes/style_css.incl" %}" type="text/css" media="screen" />
+<link rel="stylesheet" href="/media/css/sifr_screen.css" type="text/css" media="screen" />

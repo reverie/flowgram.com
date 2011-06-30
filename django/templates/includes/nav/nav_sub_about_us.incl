@@ -1,0 +1,11 @@
+<li{% ifequal activesecondary 'aboutflowgram' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/about_flowgram/">About</a></li>
+<li{% ifequal activesecondary 'jobs' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/jobs/">Jobs</a></li>
+<li{% ifequal activesecondary 'contactus' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/contact_us/">Contact Us/Feedback</a></li>
+<li{% ifequal activesecondary 'blog' %} class="on"{% endifequal %}><a class="nav_item" href="http://blog.flowgram.com" target="_blank">Blog</a></li>
+<li{% ifequal activesecondary 'press' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/press/">Press</a></li>
+<!--
+<li{% ifequal activesecondary 'termsofservice' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/terms_of_service/">Terms of Service</a></li>
+<li{% ifequal activesecondary 'privacypolicy' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/privacy_policy/">Privacy Policy</a></li>
+<li{% ifequal activesecondary 'copyright' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/copyright/">Copyright</a></li>
+<li{% ifequal activesecondary 'copyrightfaq' %} class="on"{% endifequal %}><a class="nav_item" href="/about_us/copyright_faq/">Copyright FAQ</a></li>
+-->

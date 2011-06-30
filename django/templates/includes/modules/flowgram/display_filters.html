@@ -1,0 +1,47 @@
+<div class="display_filters">
+	<div class="module">
+
+		{% if sortable %}	
+		<div id="flowgram_organizer">
+				<ul id="flowgram_organizer_ajax">
+					<li> Sort  by:  </li>
+					<li class="seperator"></li>
+					
+					<li id="flowgram_organizer_date_modified" {% ifequal sort_criterion 'modified' %} class="selected" {% endifequal %}>
+						<a href="javascript:void(0);" onClick="dfc.updateSort('modified')"> Date Modified</a></li>
+					<li class="seperator">|</li>
+					<li id="flowgram_organizer_title" {% ifequal sort_criterion 'title' %} class="selected" {% endifequal %}>
+						<a href="javascript:void(0);" onClick="dfc.updateSort('title')"> Title</a></li>		
+					{% if multiple_owners %}
+						<li class="seperator">|</li>
+						<li id="flowgram_organizer_author" {% ifequal sort_criterion 'author' %} class="selected" {% endifequal %}> 
+						<a href="javascript:void(0);" onClick="dfc.updateSort('author')"> Author</a></li>
+					{% endif %}		
+					<li class="seperator">|</li>
+					<li id="flowgram_organizer__most_viewed" {% ifequal sort_criterion 'popular' %} class="selected" {% endifequal %}>
+						<a href="javascript:void(0);" onClick="dfc.updateSort('popular')"> Most Popular </a></li>
+					<li class="seperator"></li>
+					
+		 			{% if pageowner %} <li>
+					<select id="display_filter_select" onChange="dfc.updateSelectMenu(this.value)">
+						<option value="all"> All </option>
+						<option value="public" {% ifequal pub_priv 'public' %}selected="yes"{% endifequal %} > Public </option>
+						<option value="private" {% ifequal pub_priv 'private' %}selected="yes"{% endifequal %} > Private </option>
+					</select>
+					</li> {% endif %}						
+						
+				</ul>
+				<div class="clearer"></div>
+			</div>
+			{% endif %}
+	
+
+		<div class="results_display_toggle">
+			<div class="toggle_label">Display:</div><div class="toggle_buttons"><a href="javascript:void(0);" onClick="dfc.toggleDisplay('list');"><img src="/media/images/btn_results_toggle_list_{% ifequal display_mode 'list' %}down{% else %}up{% endifequal %}.gif" id="btn_results_toggle_list" border="0" /></a><a href="javascript:void(0);" onclick="dfc.toggleDisplay('grid');"><img src="/media/images/btn_results_toggle_grid_{% ifequal display_mode 'list' %}up{% else %}down{% endifequal %}.gif" id="btn_results_toggle_grid" border="0" /></a></div>
+			<div class="clearer"></div>
+		</div>
+		<div class="clearer"></div>
+	</div>
+	<div class="clearer"></div>
+</div>
+

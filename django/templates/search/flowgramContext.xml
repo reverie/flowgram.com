@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<GoogleCustomizations version="1.0">
+	<CustomSearchEngine id="vwsqcpoatxw" creator="009541780893123626179" volunteers="false" keywords="flowgram user generated content" language="en" visible="false" encoding="UTF-8">
+	  	<Title>Flowgram Search Engine</Title>
+		<Description>Search tool for flowgram.com</Description>
+		<Context>
+			<BackgroundLabels>
+				<Label name="_cse_vwsqcpoatxw" mode="FILTER" />
+				<Label name="_cse_exclude_vwsqcpoatxw" mode="ELIMINATE" />
+			</BackgroundLabels>
+		</Context>
+		<LookAndFeel nonprofit="false" />
+		<AdSense />
+		<EnterpriseAccount>
+			<AccountAdmin first_name="Tony" last_name="Lopez" email="tony@flowgram.com" phone="415-794-6239" country="US" job_title="VP of Product" />
+			<Organization name="Flowgram" type="other" size="20" />
+		</EnterpriseAccount>
+	</CustomSearchEngine>
+	<Annotations>
+		<Annotation about="dev.flowgram.com/*">
+			<Label name="_cse_vwsqcpoatxw"/>
+		</Annotation>
+		<Annotation about="dev.flowgram.com/p/*">
+			<Label name="_cse_vwsqcpoatxw"/>
+		</Annotation>
+		<Annotation about="dev.flowgram.com/fg/*">
+			<Label name="_cse_vwsqcpoatxw"/>
+		</Annotation>
+		<Annotation about="dev.flowgram.com/p/8HBDOR5O2QVZQO">
+			<Label name="_cse_vwsqcpoatxw"/>
+		</Annotation>
+		<Annotation about="dev.flowgram.com/fg/8HBDOR5O2QVZQO">
+			<Label name="_cse_vwsqcpoatxw"/>
+		</Annotation>
+	 </Annotations>
+</GoogleCustomizations>

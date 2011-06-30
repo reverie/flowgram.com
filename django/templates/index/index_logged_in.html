@@ -1,0 +1,167 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Home | {{ user.username }}
+{% endblock %}
+
+{% block pageheader %}
+	Welcome {{ user.username }}
+{% endblock %}
+
+{% block subnav %}
+
+	{% include "includes/nav/nav_sub_home_logged_in.incl" %}
+	
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+
+	<div class="hero profile">
+		<div class="module">
+			<div class="avatar">
+              
+				<a href="/edit_avatar/"><img src="{{ profile.avatar_200 }}" height="200" width="200" id="profile_avatar" /></a><br/>
+				<a href="/edit_avatar/">Change your avatar</a>
+				{% if profile_complete  %}
+					<br/><a href="/editprofile">Update your profile</a>
+				{% else %}
+					<br/><a href="/editprofile/">Finish your profile! Inquiring minds want to know.</a>
+				{% endif %}
+
+			</div>
+			
+			<div class="user_info">
+				<div class="badges">
+					{% ifnotequal badgeTeamFG '' %}
+						<a title="Member of Flowgram Product Team"><img src="/media/images/badges/badgeTeamFG.gif" alt="" border="0" /></a>
+					{% endifnotequal %}
+					{% ifnotequal badgeViews '' %}
+						{% ifequal badgeViews '100'  %}
+							<a title="My Flowgrams have 100+ views!"><img src="/media/images/badges/badgeViews100.gif" alt="My Flowgrams have 100+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '500'  %}
+							<a title="My Flowgrams have 500+ views!"><img src="/media/images/badges/badgeViews500.gif" alt="My Flowgrams have 500+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '1000'  %}
+							<a title="My Flowgrams have 1000+ views!"><img src="/media/images/badges/badgeViews1k.gif" alt="My Flowgrams have 1000+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '5000'  %}
+							<a title="My Flowgrams have 5000+ views!"><img src="/media/images/badges/badgeViews5k.gif" alt="My Flowgrams have 5000+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '10000'  %}
+							<a title="My Flowgrams have 10000+ views!"><img src="/media/images/badges/badgeViews10k.gif" alt="My Flowgrams have 10000+ views!" border="0" /></a>
+						{% endifequal %}
+					{% endifnotequal %}
+				</div>
+				
+				<h2>{{ user }}</h2>
+				
+				<div class="stats">
+					<table id="userStats" border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td class="statData">{{ public_fgs_count }}</td>
+							<td class="statLabel">Public Flowgrams</td>
+						</tr>
+						<tr>
+							<td class="statData">{{ private_fgs_count }}</td>
+							<td class="statLabel">Private Flowgrams</td>
+						</tr>
+						<tr>
+							<td class="statData">{{ total_views }}</td>
+							<td class="statLabel">Flowgram Views (<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/how_to_increase_your_views.html');">Increase your views</a>)</td>
+						</tr>
+						<tr>
+							<td class="statData">{{ profile_views }}</td>
+							<td class="statLabel">Profile Views</td>
+						</tr>
+						<tr>
+							<td class="statData">{{ total_favs }}</td>
+							<td class="statLabel">{{ user }} Flowgrams Favorited</td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="clearer"></div>
+			</div>
+			
+			<div class="clearer"></div>
+		</div>
+	</div>
+	
+	{% if subs_active %}
+		{{ newsfeed_display }}
+	{% endif %}
+	
+	<div class="grid home">
+		
+		<h2 class="hdr_bar">Browse Flowgrams</h2>
+		<div id="wrapper_nav_ajax_browse">
+			<ul id="nav_ajax_browse">
+				<li id="nav_ajax_browse_most_viewed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('most_viewed');">Most Popular</a></li>
+				<li class="seperator">|</li>
+				<li id="nav_ajax_browse_newest"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('newest');">Newest</a></li>
+				<li class="seperator">|</li>
+				<li id="nav_ajax_browse_featured" class="selected"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('featured');">Featured</a></li>
+				<li class="seperator">|</li>
+				<li id="nav_ajax_browse_most_discussed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('most_discussed');">Most Discussed</a></li>		
+				<li class="seperator">|</li>
+				<li id="nav_ajax_browse_top_rated"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('top_rated');">Top Rated</a></li>
+			</ul>
+			<div class="clearer"></div>
+		</div>
+		
+		<div id="wrapper_fg_browse_content">
+			<div id="fg_browse_content_loading" style="display: none;"><img src="/media/images/loading_ajax_browse.gif" border="0" alt="Loading..."/></div>
+			<div id="fg_browse_content">
+				{% with featured as fg_data_set %}
+			        {% include "includes/modules/flowgram/fg_modules_ajax.incl" %}
+			    {% endwith %}
+			</div>
+		</div>
+		<p><strong><a class="browse_more_link" href="/browse/featured/" id="fg_browse_content_more_link">See more Hot Flowgrams &raquo;</a></strong></p>
+	</div>
+	
+</div>
+
+<div id="content_right">
+	<a href="/create"><img src="/media/images/btn_makeaFG.png" alt="Make a Flowgram" id="btn_make_FG_right_col" border="0" /></a>
+	{% include "includes/modules/other_content/invite_module.incl" %}
+    {% include "includes/promos/whats_new_pod.incl" %}
+    {% include "includes/promos/tips_pod.incl" %}
+    {% include "includes/promos/community_pod.incl" %}
+	{% include "includes/promos/tutorials.incl" %}
+	{% comment %}
+	{% if poll_exists %}
+		{% include "includes/modules/other_content/poll_module.incl" %}
+	{% endif %}
+	{% endcomment %}
+	{% comment %}
+    {% include "includes/modules/flowgram/sidebar_categories_best_of.incl" %}
+	{% endcomment %}
+	{% include "includes/modules/other_content/blog_module.incl" %}
+</div>
+
+{% endblock %}
+
+{% block js_init %}
+	
+	var abc = new AjaxBrowseController();
+	
+	{% comment %}
+	{% if poll_exists %}
+		var pmc = new PollModuleController();
+	{% endif %}
+	{% endcomment %}
+	
+	{% comment %}
+	{% for fg in fgs %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+	{% endfor %}
+	{% endcomment %}
+{% endblock %}
+

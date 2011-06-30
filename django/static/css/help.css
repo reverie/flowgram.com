@@ -1,0 +1,36 @@
+/* HELP SECTION CSS */
+
+div.answer {
+	position: absolute !important;
+	top: 146px;
+}
+
+ul.help {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.help li {
+	margin-bottom: 5px;
+}
+
+div.help h2 {
+	margin: 0 0 5px 0;
+}
+
+div.help h2.category,
+div.help h2.question
+{
+	margin: 15px 0 5px 0;
+}
+
+div.category_list {
+	margin-bottom: 15px;
+}
+
+div.divider {
+	width: 680px;
+	height: 1px;
+	background: url(/media/images/bg_dotted_line_blue.png) repeat-x;
+}

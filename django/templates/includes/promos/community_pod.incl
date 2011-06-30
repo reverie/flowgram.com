@@ -1,0 +1,6 @@
+{% if community  %}
+<div class="module">
+    <h2>{% firstof sidebar_fgs_title community.title %}</h2>
+	{{ community.embeddedHTML|safe }}
+</div>
+{% endif %}

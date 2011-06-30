@@ -1,0 +1,57 @@
+{% load filters %}
+<div class="module" id="poll_module">
+    <h2>Vote for {{ current_poll.poll_title }}</h2>
+	<div id="poll_module_content">
+		
+		<div id="poll_module_not_voted_yet"{% ifequal poll_module_status 'already_voted' %} style="display: none;"{% endifequal %}>
+			<form action="/ajax_poll_vote/" id="poll_module_form" onsubmit="return false;">
+				<input type="hidden" name="poll_id" value="{{ current_poll.id }}" id="poll_id" />
+				<ul>
+					{% for fg in current_poll_fgs %}
+						<li{% ifequal forloop.last 1 %} class="last"{% endifequal %}>
+							<input type="radio" name="poll_set" value="{{ fg.id }}" class="poll_item" />
+							<div class="poll_module_fg_wrapper">
+								<a href="{{ fg.flex_url }}" target="_blank"><img src="{{ fg.thumb_url }}" align="left" class="screenshot" border="0" /></a>
+					            <div class="info"><a href="{{ fg.flex_url }}" target="_blank" title="{{ fg.title|escape }}"><span class="title">{{ fg.title|escape|truncate:21 }}</span></a><br/>
+					                By {{ fg.owner.get_profile.link|safe }}</div><div class="clearer"></div>
+							</div>
+							<div class="clearer"></div>
+						</li>
+					{% endfor %}
+
+			    </ul>
+				<a href="javascript:void(0);" onclick="pmc.submitForm();"><img src="/media/images/btn_vote.gif" class="submit"/></a>
+			</form>
+			<div class="clearer"></div>
+		</div>
+		
+		<div id="poll_module_already_voted" class="blue"{% ifnotequal poll_module_status 'already_voted' %} style="display: none;"{% endifnotequal %}>
+			<h3>Thanks for voting!</h3>
+			<strong>Here are the current standings:</strong>
+			<ul>
+				<li class="last">
+		            <div class="info"><a href="{{ current_poll_fg1.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg1.title|escape|truncate:40 }}</span></a><br/>
+		                By {{ current_poll_fg1.owner.get_profile.link|safe }} | <strong>{{ current_poll.percentage_1 }}% of votes</strong>
+						<div id="vote_meter_1" class="vote_meter" style="width: {{ current_poll.percentage_1 }}%;"></div>
+					</div>
+					<div class="clearer"></div>
+				</li>
+				<li class="last">
+		            <div class="info"><a href="{{ current_poll_fg2.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg2.title|escape|truncate:40 }}</span></a><br/>
+		                By {{ current_poll_fg2.owner.get_profile.link|safe }} | <strong>{{ current_poll.percentage_2 }}% of votes</strong>
+						<div id="vote_meter_2" class="vote_meter" style="width: {{ current_poll.percentage_2 }}%;"></div>
+					</div>
+					<div class="clearer"></div>
+				</li>
+				<li class="last">
+		            <div class="info"><a href="{{ current_poll_fg3.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg3.title|escape|truncate:40 }}</span></a><br/>
+		                By {{ current_poll_fg3.owner.get_profile.link|safe }} | <strong>{{ current_poll.percentage_3 }}% of votes</strong>
+						<div id="vote_meter_3" class="vote_meter" style="width: {{ current_poll.percentage_3 }}%;"></div>
+					</div>
+					<div class="clearer"></div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</div>

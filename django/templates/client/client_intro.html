@@ -1,0 +1,204 @@
+{% extends "client/client_base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/client/client_panels.css" type="text/css" media="screen" charset="utf-8">
+    <style type="text/css">
+		.fg_avatarNameAndBubble {
+            margin: 0 auto;
+        }
+
+        .fg_avatarAndName {
+            margin-top: 8px;
+        }
+
+        .fg_avatar {
+            border: 2px solid black;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+        }
+
+		.fg_avatar img {
+			width: 100px;
+			height: 100px;
+		}
+
+        .fg_name,
+        .fg_views,
+        .fg_publishedAt,
+        .fg_rating {
+            color: #3D3D3D;
+        }
+
+        .fg_bubbleArrow {
+            background-image: url(/media/images/client/intro/bubbleArrow.gif);
+            margin-top: 50px;
+            margin-left: -30px;
+            position: absolute;
+            width: 30px;
+            height: 26px;
+        }
+
+        .fg_bubble {
+            background-color: #E1F1F5;
+            border: 1px solid #B7D7E0;
+            margin: 0 0 100px 30px;
+            width: 500px;
+        }
+
+        .fg_bubble-contents {
+            padding: 20px;
+        }
+
+        .fg_title {
+            color: #000;
+            font-size: 24px;
+        }
+
+        .fg_description {
+            color: #000;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        
+        .fg_notes {
+            color: #666;
+            font-size: 10px;
+            text-align: center;
+        }
+        
+        .fg_watchNowArea {
+            margin: 25px 0 8px 0;
+        }
+        
+        .fg_watchNowArea .fg_notes {
+            font-size: 12px;
+        }
+                
+        .fg_watchNow {
+            background-image: url(/media/images/client/intro/watchNow.gif);
+            cursor: pointer;
+            margin: 0 auto 25px auto;
+            width: 169px;
+            height: 36px;
+        }
+                
+        .fg_pages {
+            margin: 10px auto 20px auto;
+            text-align: center;
+        }
+
+        .fg_page {
+            border: 1px solid #BFBFBF;
+            margin: 5px;
+        }
+
+        .fg_postACommentLink {
+            text-align: right;
+            margin-bottom: 8px;
+        }
+
+        .fg_comments {
+            width: 640px;
+            margin: 0 auto;
+        }
+
+        .fg_commentsTable {
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .fg_timeCell {
+            text-align: right;
+        }
+
+        .fg_commentsTable .hr {
+            border-top: 1px dotted #CCC;
+            background-color: transparent;
+            margin: 4px 0;
+            padding: 0;
+            height: 1px;
+            width: 100%;
+        }
+
+        .fg_commentsTable p {
+            margin: 0;
+        }
+		.fg_rating {
+			position: absolute;
+			left: 127px;
+		}
+    </style>
+	<!--[if IE 7]>
+	<style type="text/css" media="screen">
+		.fg_rating {
+			left: 163px;
+		}
+	</style>
+	<![endif]-->
+	<!--[if lt IE 7]>
+	<style type="text/css" media="screen">
+		.fg_bubbleArrow {
+            margin-top: 110px;
+            margin-left: 134px;
+        }
+
+		.fg_rating {
+			left: 143px;
+			top: 217px;
+		}
+	</style>
+	<![endif]-->
+{% endblock %}
+
+{% block title %}
+	| Intro
+{% endblock %}
+
+{% block content %}
+    <div id="wrapper_header_sub">
+        <div id="hdr_full_section">
+            <h1 class="sifr_white">Flowgram</h1>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <table class="fg_avatarNameAndBubble"><tr>
+        <td valign="top">
+            <div class="fg_avatarAndName">
+                <div class="fg_avatar"><img src="{{ fg.owner.get_profile.avatar_100 }}" /></div>
+                <div class="fg_name">By <a href="{{ fg.owner.get_profile.url }}" target="_top">{{ fg.owner.username }}</a></div>
+                <div class="fg_views">{{ fg.views }} views</div>
+                {% if fg.published_at %}
+                    <div class="fg_publishedAt">added {{ fg.published_at|timesince|chop_at:"," }} ago</div>
+                {% endif %}
+                <div class="fg_rating fg_rating-{{ fg.id }}"></div>
+                <script type="text/javascript">
+                    {% star-rating fg request.user False %}
+                </script>
+            </div>
+        </td>
+        <td valign="top">
+            <div class="fg_bubble">
+                <div class="fg_bubbleArrow"></div>
+                <div class="fg_bubble-contents">
+                    <div class="fg_title">{{ fg.title }}</div>
+                    {% if fg.description %}
+                        <div class="fg_description">{{ fg.description }}</div>
+                    {% endif %}                
+                    <div class="fg_watchNowArea">
+                        {% if has_audio %}
+                            <div class="fg_notes"><strong>This FlowGram features audio.</strong></div>
+                            <div class="fg_notes"><strong>Turn your speakers on!</strong></div>
+                        {% endif %}
+                    </div>
+                    <div class="fg_watchNow" onclick="window.parent.g_FlashConnection.flex.playCurrentFlowgram();"></div>
+                    <div class="fg_notes">You can pause FlowGrams, scroll pages, click on links, and<br>interact just like with regular web pages.</div>
+                </div>
+            </div>
+        </td>
+    </tr></table>
+{% endblock content %}

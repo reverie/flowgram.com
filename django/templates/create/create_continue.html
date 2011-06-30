@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		p,
+		ol
+		{
+			font-size: 14px;
+		}
+		
+		
+	</style>
+{% endblock %}
+
+{% block title %}
+	| Make a Flowgram
+{% endblock %}
+
+{% block pageheader %}
+	Success
+{% endblock %}
+
+{% block content %}
+	<div id="content_main">
+		<div class="hero">
+			<div class="module">
+				<h2>Getting the Flowgram bookmarklets was a smart move!</h2>
+				<p>Now you can add pages as you browse.  No more copying and pasting URLs!  You can also add a wider range of pages.</p>
+				<ol>
+				<li>Clicking the <strong>Flowgram Maker</strong> bookmarklet brings up the Flowgram Maker right away.</li>
+				<li>Clicking the <strong>Quick Add</strong> bookmarklet adds the page your browser is currently on.  The next time you launch the Flowgram Maker your new page will be there.</li>
+				</ol>
+				<p><strong>Enjoy and get with the Flowgram!</strong></p>
+			</div>
+		</div>	
+	</div>
+
+	<div id="content_right">
+		<div class="module">
+			<h2>Help</h2>
+			<ul id="help_list_IE"{% ifnotequal browser "MSIE" %} style="display: none;"{% endifnotequal %}>
+				<li><a href="/help/16/">I can't see my bookmarks toolbar.</a></li>
+				<li><a href="/help/3/">I can see my bookmarks toolbar.  Now how do I add the links to my bookmarks toolbar?</a></li>
+				<li class="last"><a href="/help/1/">I have added the links to my bookmarks toolbar, now what?</a></li>
+			</ul>
+			<ul id="help_list_firefox_safari"{% ifnotequal browser "Gecko" %} style="display: none;"{% endifnotequal %}>
+				<li><a href="/help/16/">I can't see my bookmark's toolbar.</a></li>
+				<li><a href="/help/3/">How do I drag and drop the links to my bookmarks toolbar?</a></li>
+				<li class="last"><a href="/help/1/">I have added the links to my bookmarks toolbar, now what?</a></li>
+			</ul>
+		</div>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+	</div>
+
+{% endblock content %}

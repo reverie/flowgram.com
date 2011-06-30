@@ -1,0 +1,38 @@
+{% load filters %}
+{% load tags %}
+
+{% for fg in fg_data_set %}
+<div class="module {% cycle odd,even %}">
+	{% if send_to_details %}
+		<a href="{{ fg.url }}"><img src="{{ fg.thumb_url }}" width="100" height="67" border="0" /></a>
+	{% else %}
+		<a href="{{ fg.flex_url }}" target="_blank"><img src="{{ fg.thumb_url }}" width="100" height="67" border="0" /></a>
+	{% endif %}
+	
+	<div class="fg_info">
+		{% if send_to_details %}
+			<h2 class="title"><a href="{{ fg.url }}" title="{{ fg.title|escape }}">{{ fg.title|escape|truncate:26 }}</a></h2>
+		{% else %}
+			<h2 class="title"><a href="{{ fg.flex_url }}" target="_blank" title="{{ fg.title|escape }}">{{ fg.title|escape|truncate:26 }}</a></h2>
+		{% endif %}
+			
+		<div class="description">
+			{% ifnotequal fg.description ''  %}
+				<span title="{{ fg.description|escape }}">
+				{{ fg.description|escape|truncate:40 }}</span><br/>
+			{% endifnotequal %}
+		</div>
+		By {{ fg.owner.get_profile.link|safe }} | {{ fg.views }} views<br/>
+		{% if fg_timestamp  %}
+			{{ fg.date_for_display|date }}
+			&nbsp;|&nbsp;
+		{% endif %}
+		{% if not send_to_details %}
+			<a href="{{ fg.url }}" class="details_link">Details &raquo;</a>
+		{% endif %}
+	</div>
+	<div class="clearer"></div>
+	<div class="divider_horiz"></div>
+</div>
+{% endfor %}
+<div class="clearer"></div>

@@ -1,0 +1,107 @@
+h3#next_greeting {
+	margin-bottom: 20px !important;
+}
+
+#register .form-field,
+#register_inline .form-field
+{
+	padding:0px;
+	margin:0px 0px 10px 0px;
+	clear:both;
+}
+
+#register .form-field label,
+#register_inline .form-field label
+{
+	float:left;
+	display:block;
+	width:118px;
+	padding:3px 10px 0px 0px;
+	text-align:right;
+/*	border:1px solid green;*/
+}
+
+#register .form-field textarea, 
+#register .form-field input, 
+#register .form-field select,
+#register_inline .form-field textarea, 
+#register_inline .form-field input, 
+#register_inline .form-field select
+{
+	width:260px;
+}
+
+#register .form-field input,
+#register_inline .form-field input
+{
+	padding:3px;
+	margin:0px;
+	border:1px solid #B4D3DB;
+}
+
+#register .form-field #id_newsletter_optin,
+#register_inline .form-field #id_newsletter_optin
+{
+	padding:0px;
+	margin:20px 0px 0px 0px; 
+	width:5px;
+}
+
+#register .form-field select,
+#register_inline .form-field select
+{
+	width:84px;
+	padding:3px;
+	margin:0px;
+	border:1px solid #B4D3DB;
+	/*text-align:center;*/
+}
+
+#regcode_form div{
+	clear:both;
+	padding:0px;
+	margin:0px 0px 10px 0px;
+}
+
+#regcode_form div label {
+	display:block;
+	float:left;
+	width:118px;
+	margin:0px;
+	padding:0px 10px 0px 0px;
+	text-align:right;
+}
+
+#regcode_form div input, #regcode_form div textarea {
+	margin:0px;
+	padding:3px;
+	width:260px;
+	border:1px solid #B4D3DB;
+}
+
+.errorlist{
+	color:#FF0000;
+	font-weight:bold;
+	margin:0px 0px 0px 5px;
+	padding:0px;
+	font-size:9px;
+}
+
+.error-info{
+	color:#FF0000;
+	font-weight:bold;
+	margin:0px 0px 0px 2px;
+	padding:5px 0px 0px 0px;
+	font-size:11px;
+}
+
+.required-info{
+	padding:0px;
+	margin:0px 0px 0px 133px;
+}
+
+.required-field {
+	font-size:16px;
+	color:#333333;
+	font-weight:bold;
+}

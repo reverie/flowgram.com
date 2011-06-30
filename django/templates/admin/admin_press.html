@@ -1,0 +1,127 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Admin Press
+{% endblock %}
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		#id_link_date_month,
+		#id_link_date_day,
+		#id_link_date_year
+		{
+			width: 84px;
+			margin-right: 5px;
+		}
+	</style>
+{% endblock %}
+
+{% block pageheader %}
+	Admin Press
+{% endblock %}
+
+{% block content %}
+	<div class="generic_text">
+		
+		{% if current_press_item %}
+			
+			<h2>Modify Press Item</h2>
+			<span id="pressStatus" class="error"></span>
+			<form method="post" action="/adminpress/" id="pressForm" onsubmit="return handlePressSubmit();">
+			<input type="hidden" name="form" value="modify" />
+			<input type="hidden" name="press_id" value="{{ current_press_item.id }}" id="press_id">
+			{{ fpf.as_p }}
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</form>
+		
+		{% else %}
+			
+			<h2>Create New Press Item</h2>
+			<span id="pressStatus" class="error"></span>
+			<form method="post" action="/adminpress/" id="pollForm" onsubmit="return handlePressSubmit();">
+			<input type="hidden" name="form" value="create_new" />
+			{{ fpf.as_p }}
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</form>
+			
+			{% if press_list %}
+				<h2>View/Modify Existing Press Item</h2>
+
+				{% if fgpr_press_list %}
+					<h3>Press Releases</h3>
+					<ul>
+						{% for press_item in fgpr_press_list %}
+							<li>
+								<a href="/about_us/press/{{ press_item.id }}"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }} | <strong>Category:</strong> {% ifequal press_item.press_category 'F' %}Featured Article{% endifequal %}{% ifequal press_item.press_category 'M' %}More Press{% endifequal %}{% ifequal press_item.press_category 'R' %}FG Press Release{% endifequal %}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+								<br/><strong>Actions &raquo;</strong> <a href="/adminpress/{{ press_item.id }}"><strong>Modify</strong></a> | <a href="javascript:void(0);" onclick="var dialog = new DialogController('/adminpress/{{ press_item.id }}/delete/');"><strong>Delete</strong></a><br/><br/></li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+				
+				{% if featured_press_list %}
+					<h3>Featured Articles</h3>
+					<ul>
+						{% for press_item in featured_press_list %}
+							<li>
+								<a href="{{ press_item.link_url }}" target="_blank"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }} | <strong>Category:</strong> {% ifequal press_item.press_category 'F' %}Featured Article{% endifequal %}{% ifequal press_item.press_category 'M' %}More Press{% endifequal %}{% ifequal press_item.press_category 'R' %}FG Press Release{% endifequal %}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+								<br/><strong>Actions &raquo;</strong> <a href="/adminpress/{{ press_item.id }}"><strong>Modify</strong></a> | <a href="javascript:void(0);" onclick="var dialog = new DialogController('/adminpress/{{ press_item.id }}/delete/');"><strong>Delete</strong></a><br/><br/></li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+				
+				{% if more_press_list %}
+					<h3>More Press</h3>
+					<ul>
+						{% for press_item in more_press_list %}
+							<li>
+								<a href="{{ press_item.link_url }}" target="_blank"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }} | <strong>Category:</strong> {% ifequal press_item.press_category 'F' %}Featured Article{% endifequal %}{% ifequal press_item.press_category 'M' %}More Press{% endifequal %}{% ifequal press_item.press_category 'R' %}FG Press Release{% endifequal %}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+								<br/><strong>Actions &raquo;</strong> <a href="/adminpress/{{ press_item.id }}"><strong>Modify</strong></a> | <a href="javascript:void(0);" onclick="var dialog = new DialogController('/adminpress/{{ press_item.id }}/delete/');"><strong>Delete</strong></a><br/><br/></li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+			
+			{% else %}
+				<p>No press items.</p>
+				
+			{% endif %}
+			
+			
+		{% endif %}
+		
+		
+	</div>
+{% endblock %}
+
+{% block js_init %}
+
+	function handlePressSubmit() {
+		
+		if ($('id_link_text').value == '' || $('id_link_url').value == '') {
+			if ($('id_press_category').selectedIndex != 2) {
+				$('pressStatus').innerHTML = 'Link date, Link text and Link url are required fields, cheeto-breath.';
+				return false;
+			}
+		}
+		
+		if ($('id_link_text').value == '' || $('id_full_text').value == '') {
+			if ($('id_press_category').selectedIndex == 2) {
+				$('pressStatus').innerHTML = 'Link date, Link text and Full text are required fields for FG Press Releases, cheeto-breath.';
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+{% endblock %}

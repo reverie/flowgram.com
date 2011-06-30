@@ -1,0 +1,432 @@
+{% extends "client/client_base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/client/client_panels.css" type="text/css" media="screen" charset="utf-8">
+    <style type="text/css">
+        .fg_avatarNameAndBubble {
+            margin-bottom: 10px;
+        }
+
+        .fg_avatarAndName {
+            margin-top: 8px;
+        }
+
+        .fg_avatar {
+            border: 2px solid black;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+        }
+
+		.fg_avatar img {
+			width: 100px;
+			height: 100px;
+		}
+
+        .fg_name,
+        .fg_views,
+        .fg_publishedAt,
+        .fg_rating {
+            color: #3D3D3D;
+        }
+
+		.fg_third_party {
+			margin-top: 5px;
+			text-align: left;
+		}
+		
+		.fg_digg,
+		.fg_reddit,
+		.fg_stumbleupon,
+		.fg_delicious
+		{
+			margin-bottom: 3px;
+		}
+		
+		.fg_digg {
+
+		}
+		
+		.fg_reddit {
+
+		}
+
+        .fg_bubbleArrow {
+            background-image: url(/media/images/client/intro/bubbleArrow.gif);
+            margin-top: 50px;
+            margin-left: -30px;
+            position: absolute;
+            width: 30px;
+            height: 26px;
+        }
+
+        .fg_bubble {
+            background-color: #E1F1F5;
+            border: 1px solid #B7D7E0;
+            margin-left: 30px;
+            width: 500px;
+        }
+
+        .fg_bubble-contents {
+            padding: 20px;
+        }
+
+        .fg_title {
+            color: #000;
+            font-size: 24px;
+        }
+        
+        .fg_make {
+            background: transparent url(/media/images/client/outro/make.gif) 0 0 no-repeat;
+            color: #006080;
+            padding-left: 178px;
+            height: 36px;
+            margin: 10px;
+            line-height: 36px;
+            vertical-align: middle;
+            text-decoration: none;
+            cursor: pointer;
+			text-align: left;
+        }
+
+        .fg_comment {
+            background: transparent url(/media/images/client/outro/comment.gif) 0 0 no-repeat;
+            color: #006080;
+            padding-left: 178px;
+            height: 36px;
+            margin: 10px;
+            line-height: 36px;
+            vertical-align: middle;
+            cursor: pointer;
+			text-align: left;
+        }
+
+        .fg_replay {
+            background: transparent url(/media/images/client/outro/replay.gif) 0 0 no-repeat;
+            color: #006080;
+            padding-left: 178px;
+            height: 36px;
+            margin: 10px;
+            line-height: 36px;
+            vertical-align: middle;
+            cursor: pointer;
+			text-align: left;
+        }
+
+        .fg_share {
+            background: transparent url(/media/images/client/outro/shareIt.gif) 0 0 no-repeat;
+            color: #006080;
+            padding-left: 178px;
+            height: 36px;
+            margin: 10px;
+            line-height: 36px;
+            vertical-align: middle;
+            cursor: pointer;
+			text-align: left;
+        }
+        
+        .fg_backToReferrer {
+            text-align: right;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+        
+        .fg_whatIsAFlowgram {
+            background-color: #FECA01;
+            border: 1px solid #F90;
+            color: #930;
+            float: left;
+            padding: 12px;
+            margin-left: 10px;
+            width: 200px;
+        }
+
+        .fg_whatIsAFlowgram h1 {
+            font-size: 18px;
+            margin: 0 0 12px 0;
+        }
+
+        .fg_whatIsAFlowgram a {
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .module {
+            width: 636px;
+        }
+
+        .fg_page {
+            border: 1px solid #BFBFBF;
+            float: left;
+            margin: 3px 8px;
+            width: 75px;
+            height: 50px;
+        }
+
+        .fg_page img {
+            border: 0px;
+            width: 75px;
+            height: 50px;
+        }
+        
+        .fg_featuredTitle {
+            float: left;
+            margin-right: 10px;
+            width: 160px;
+        }
+
+        .fg_featuredTitle td {
+            font-size: 14px;
+        }
+        
+        .fg_featuredDescription {
+            float: left;
+            margin-right: 10px;
+            width: 294px;
+        }
+        
+        .fg_featuredProperties {
+            border-left: 1px dotted #BFBFBF;
+            float: left;
+            margin-right: 8px;
+            width: 111px;
+        }
+
+        .fg_featuredProperties td {
+            padding-left: 8px;
+        }
+
+        .fg_postACommentLink {
+            text-align: right;
+            margin-bottom: 8px;
+        }
+
+        .fg_commentsTable {
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .fg_timeCell {
+            text-align: right;
+        }
+
+        .fg_commentsTable .hr {
+            border-top: 1px dotted #CCC;
+            background-color: transparent;
+            margin: 4px 0;
+            padding: 0;
+            height: 1px;
+            width: 100%;
+        }
+
+        .fg_commentsTable p {
+            margin: 0;
+        }
+
+		.fg_rating {
+			margin-left: -40px;
+		}
+    </style>
+	<!--[if lt IE 7]>
+	<style type="text/css" media="screen">
+		.fg_bubble-contents {
+			text-align: left;
+		}
+		
+		.fg_bubbleArrow {
+            top: 50px;
+			left: 183px;
+        }
+
+		.fg_avatarAndName {
+			text-align: left;
+		}
+
+		.fg_avatarAndName .fg_rating {
+			position: absolute;
+			top: 217px;
+			left: 82px;
+		}
+	
+		.fg_third_party {
+			margin-top: 30px;
+		}
+		
+		.fg_featuredFlowgrams {
+			text-align: left;
+		}
+		
+		.fg_featuredProperties {
+			position: relative;
+			top: 60px;
+			left: 10px;
+			vertical-align: top;
+		}
+		
+		.fg_featuredProperties .fg_rating {
+			position: absolute;
+			top: 30px;
+			left: 43px;
+		}
+		
+		.fg_comments {
+			text-align: left;
+		}
+	</style>
+	<![endif]-->
+{% endblock %}
+
+{% block title %}
+	| Outro
+{% endblock %}
+
+{% block content %}
+    <div id="wrapper_header_sub">
+        <div id="hdr_full_section">
+            <h1 class="sifr_white">The End</h1>
+        </div>
+        <div class="clearer"></div>
+    </div>
+
+    <table width="100%"><tr><td>
+        <table width="100%"><tr>
+            <td width="100%" align="right" valign="top">
+                <table class="fg_avatarNameAndBubble"><tr>
+                    <td valign="top">
+                        <div class="fg_avatarAndName">
+                            <div class="fg_avatar"><img src="{{ fg.owner.get_profile.avatar_100 }}" /></div>
+                            <div class="fg_name">By <a href="{{ fg.owner.get_profile.url }}" target="_top">{{ fg.owner.username }}</a></div>
+                            <div class="fg_views">{{ fg.views }} views</div>
+                            {% if fg.published_at %}
+                                <div class="fg_publishedAt">added {{ fg.published_at|timesince|chop_at:"," }} ago</div>
+                            {% endif %}
+                            <div class="fg_rating fg_rating-{{ fg.id }}"></div>
+                            <script type="text/javascript">
+                                new StarRating('{{ fg.id }}', {{ fg.get_rating }}, {{ rating }}, {% if request.user.is_authenticated %}true{% else %}false{% endif %}).render($$('div.fg_rating-{{ fg.id }}')[0]);
+                            </script>
+							<div class="fg_third_party">
+								<div class="fg_digg">
+									<a href="http://digg.com/submit?phase=2&url={{ fg.flex_url|urlencode }}&title={{ fg.title|urlencode }}" target="_blank"><img src="/media/images/digg_badge.png" border="0" /></a>
+								</div>
+								<div class="fg_reddit">
+									<script>reddit_url='{{ fg.flex_url }}'</script>
+									<script>reddit_title='{{ fg.title }}'</script>
+									<script type="text/javascript" src="http://reddit.com/button.js?t=1"></script>
+								</div>
+								<div class="fg_stumbleupon">
+									<a href="javascript:void(0);" onclick="var fgURL = getFGURL('/p/{{ fg.id }}'); var suURL = 'http://www.stumbleupon.com/submit?url=' + fgURL;  window.location.href = suURL;"><img border="0" src="http://www.stumbleupon.com/images/su_micro.gif" alt="StumbleUpon" /></a>
+								</div>
+								<div class="delicious">
+									<img src="http://images.del.icio.us/static/img/delicious.small.gif"/>
+									<a href="javascript:void(0);" onclick="var fgURL = getFGURL('/p/{{ fg.id }}'); var delURL = 'http://del.icio.us/post?v=4&noui&jump=close&url=' + fgURL + '&title={{ fg.title }}'; window.location.href = delURL;">Save This Page</a>
+								</div>
+								<div class="clearer"></div>
+							</div>
+                        </div>
+                    </td>
+                    <td valign="top">
+                        <div class="fg_bubble">
+                            <div class="fg_bubbleArrow"></div>
+                            <div class="fg_bubble-contents">
+                                <div class="fg_title">What next?</div>
+                                
+                                {% if not user.is_authenticated %}
+                                    <div class="generic_form" style="background-color: #F8F8F8; border: 1px solid #DDD; margin: 16px; padding: 8px;">
+                                        <span style="display:block; width: 420px; margin-bottom:10px; font-weight:bold; text-align: left;">Sign up to be a beta participant.</span>
+                                        <form method="post" id="regcode_form" action="/request_regcode/" onsubmit="return check_regcode_form();">
+                                            <span id="regcode_error" class="error"></span>
+                                            <p><label for "rc_request_name">Name:</label>
+                                            <input style="background-color: #FFF;" type="text" id="rc_request_name" name="name" value=""/></p>
+                                            <p><label for="rc_request_email">Email address:</label>
+                                            <input style="background-color: #FFF;" type="text" id="rc_request_email" name="email" value=""/></p>
+                                            <p><label for="rc_request_comments">Tell us about yourself:</label>
+                                            <textarea style="background-color: #FFF;" id="rc_request_comments" name="comment"></textarea></p>
+                                            <div class="clearer"></div>
+                                            <input type="image" src="/media/images/btn_submit.gif" class="submit" />
+                                        </form>
+                                        <div class="clearer"></div>
+                                    </div>
+                                {% endif %}
+
+                                <a href="/create/" target="_top"><div class="fg_make">Create your own FlowGram &raquo;</div></a>
+                                <div class="fg_share" onclick="window.parent.g_FlashConnection.flex.showSharePanel();">Email, post to Facebook, Myspace &amp; more &raquo;</div>
+                                <div class="fg_comment" onclick="window.parent.g_FlashConnection.flex.showCommentsPanel();">Give your take &raquo;</div>
+                                <div class="fg_replay" onclick="window.parent.g_FlashConnection.flex.playCurrentFlowgram();">Watch it again &raquo;</div>
+                                <a id="fg_backToReferrer" href="javascript:window.parent.document.location = window.parent.document.referrer;" target="_top" style="display: none;"><div class="fg_backToReferrer">Back to referring site &raquo;</div></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr></table>
+
+
+                    <table width="100%"><tr><td>
+                        <div class="moduleHeader">Other Featured FlowGrams</div>
+                        <div class="fg_featuredFlowgrams">
+                            {% for featuredFg, featuredFgRating in featured %}
+                                <table class="fg_featuredFlowgram"><tr><td>
+                                    <div class="fg_page">
+                                        <a href="{{ featuredFg.flex_url }}" target="_top"><img src="{{ featuredFg.thumb_url }}" /></a>
+                                    </div>
+                                    <table class="fg_featuredTitle"><tr><td>
+                                        <a href="{{ featuredFg.flex_url }}" target="_top">{{ featuredFg.title|escape|truncate:40 }}&nbsp;</a>
+                                    </td></tr></table>
+                                    <table class="fg_featuredDescription"><tr><td>{{ featuredFg.description|truncate:100 }}&nbsp;</td></tr></table>
+                                    <table class="fg_featuredProperties"><tr><td>
+                                        <div class="fg_name">By <a href="{{ featuredFg.owner.get_profile.url }}" target="_top">{{ featuredFg.owner.username }}</a></div>
+                                        <div class="fg_views">{{ featuredFg.views }} views</div>
+                                        <div class="fg_rating fg_rating-{{ featuredFg.id }}"></div>
+                                        <script type="text/javascript">
+                                            {% star-rating featuredFg request.user False %}
+                                        </script>
+                                    </td></tr></table>
+
+									<div class="clearer"></div>
+                                </td></tr></table>
+                            {% endfor %}
+                        </div>
+                    </td></tr></table>
+
+
+                <table width="100%" style="margin-top: 20px;"><tr><td>
+                    <div class="fg_comments">
+                        <div class="moduleHeader">Comments &amp; Responses</div>
+
+                        <div class="fg_postACommentLink"><a href="javascript: window.parent.g_FlashConnection.flex.showCommentsPanel();">Post a comment</a></div>
+
+                        {% for comment in comments %}
+                            <table class="fg_commentsTable">
+                                <tr>
+                                    <td class="fg_nameCell"><a href="{{ comment.owner.get_profile.url }}" target="_top">{{ comment.owner.username }}</a></td>
+                                    <td class="fg_timeCell">{{ comment.created_at|timesince|chop_at:"," }} ago</td>
+                                </tr>
+                                <tr><td colspan="2">
+                                    <div class="hr"></div>
+                                    <p>{{ comment.text }}</p>
+                                </td></tr>
+                            </table>
+                        {% endfor %}
+                    </div>
+                </td></tr></table>
+            </td>
+            <td valign="top">
+                <div class="fg_whatIsAFlowgram">
+                    <h1>What is a FlowGram?</h1>
+                    <p>Learn about this powerful new communication tool that allows you to combine your voice, with existing web pages highlights, notes, and more...</p>
+                    <div style="text-align: center;"><a href="/" target="_top">Check it out &raquo;</a></div>
+                </div>
+            </td>
+        </tr></table>
+    </td></tr></table>    
+{% endblock content %}
+
+{% block js_init %}
+
+var referrer = window.parent.document.referrer + '';
+if (referrer.indexOf('flowgram.com') < 0) {
+    $('fg_backToReferrer').style.display = 'block';
+}
+
+{% endblock %}

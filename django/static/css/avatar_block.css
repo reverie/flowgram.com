@@ -1,0 +1,60 @@
+#wrapper_avatar_selector {
+	margin-left: 130px;
+	width: 300px;
+}
+
+#avatar_selector {
+    width: 190px;
+    padding: 3px;
+    border: 1px solid #B4D3DB;
+	background-color: #FFFFFF;
+	margin-bottom: 5px;
+}
+
+p#or {
+}
+
+.avatar_imgbox {
+    float: left;
+    width: 32px;
+    padding: 3px;
+}
+
+.avatar_imgbox img {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.avatar_selected {
+    background: #FEB100;
+}
+
+/* Change Avatar page */
+div.change_avatar div#current_avatar,
+div.change_avatar div#new_avatar
+{
+	float: left;
+}
+
+div.change_avatar div#current_avatar {
+	width: 210px;
+}
+
+div.change_avatar div#current_avatar img {
+	border: 5px solid #666666;
+}
+
+div.change_avatar #wrapper_avatar_selector {
+	margin-left: 0px;
+	width: 320px;
+}
+
+div.change_avatar div.divider_vert {
+	height: 1px;
+	margin: 0 20px;
+}
+
+div.change_avatar input.submit {
+	border: 0px;
+}

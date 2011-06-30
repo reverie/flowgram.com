@@ -1,0 +1,106 @@
+/* This is the style of your browser text */
+
+body {
+	font-family: "Lucida Grande", Verdana, sans-serif;
+	background-color: #AFB9C2;
+	font-size: 11px;
+	line-height: 1.7em;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+}
+
+p {
+	margin: .5em 0 1em 0;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: #000099;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-weight: bold;
+	letter-spacing: -.05em;
+	margin: 0;
+	padding: 0;
+	line-height: 1em;
+}
+
+
+h1 {
+	text-align: center;
+	font-size: 65px;
+	padding: 20px 0 20px 0;
+	margin: 0 20px 0 20px;
+}
+
+h2 {
+	font-size: 42px;
+	display: inline;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+h4 {
+	color: #660000;
+	font-size: 16px;
+	margin: 20px 0 20px 0;
+	display: inline;	
+}
+
+h5 {
+	font-size: 20px;
+}
+
+#container {
+	width: 740px;
+	margin: 0 auto;
+	border-left: 3px #000 double;
+	border-right: 3px #000 double;	
+	background-color: #FFF;
+}
+
+#main {
+	margin: .5em 20px 0 20px;
+	border-top: 1px solid #000;
+	text-align: left;
+	padding: 20px 0 20px 0;
+}
+
+#left {
+	float: left;
+	width: 140px;
+	margin: 0 20px 14px 0;
+	background-color: #DCDCDC;
+	border: 3px double #FFF;
+	font-size: 10px;
+	line-height: 1.4em;
+}
+
+.gutter {
+	margin: 10px;
+}
+
+#right {
+	float: right;
+	width: 120px;
+	margin: 0 0 14px 20px;
+}
+
+#center {
+
+}
+
+#pullquote {
+	float: right;
+	margin: 0 0 .4em 1em;
+	width: 145px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-variant: small-caps;
+	font-size: 20px;
+	line-height: 1.3em;
+}

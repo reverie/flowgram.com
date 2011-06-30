@@ -1,0 +1,24 @@
+{# Default title: "Most Viewed Flowgrams". Override with sidebar_fgs_title variable #}
+{# Set of flowgrams: variable called mostviewed. #}
+
+{% load filters %}
+<div class="module">
+    <h2>{% firstof sidebar_fgs_title "Most Popular Flowgrams" %}</h2>
+    <ul>
+        {% for fg in mostviewed  %}
+            <li{% ifequal forloop.last 1 %} class="last"{% endifequal %}>
+            {% if send_to_details %}
+            	<a href="{{ fg.url }}"><img src="{{ fg.thumb_url }}" align="left" class="screenshot" border="0" /></a>
+			{% else %}
+				<a href="{{ fg.flex_url }}" target="_blank"><img src="{{ fg.thumb_url }}" align="left" class="screenshot" border="0" /></a>
+            {% endif %}
+            <div class="info">
+				{% if send_to_details %}
+					<a href="{{ fg.url }}" title="{{ fg.title|escape }}"><span class="title">{{ fg.title|escape|truncate:21 }}</span></a><br/>
+				{% else %}
+					<a href="{{ fg.flex_url }}" target="_blank" title="{{ fg.title|escape }}"><span class="title">{{ fg.title|escape|truncate:21 }}</span></a><br/>
+				{% endif %}
+                By {{ fg.owner.get_profile.link|safe }} | {{ fg.views }} views</div><div class="clearer"></div></li>
+        {% endfor %}
+    </ul>
+</div>

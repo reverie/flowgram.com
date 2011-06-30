@@ -1,0 +1,35 @@
+/* GLOBAL */
+
+h1#logo {
+	top: 12px;
+}
+
+div#logout_link {
+	margin-top: 10px;
+}
+
+div.generic_text p input,
+div.generic_text p textarea,
+div.generic_text p select
+{
+	margin-bottom: 5px;
+}
+
+div#global_search_box {
+	left: 715px;
+}
+
+
+/* PAGE SPECIFIC */
+
+/* show profile */
+
+ul.spaced_list input {
+	width: 284px;
+}
+
+ul.spaced_list textarea
+{
+	width: 284px;
+}
+

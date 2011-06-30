@@ -1,0 +1,27 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Registration Success
+{% endblock %}
+
+{% block pageheader %}
+	Registration Success
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+	
+	<div class="hero wide">
+		<div class="module" style="padding-bottom: 300px;">
+			
+			<h2>Your account has been successfully created.  Welcome to Flowgram!</h2>
+			{% ifequal next 'create' %}
+				<p><strong>We'll now take you to the Flowgram Maker where you can start making your Flowgram.</strong></p>
+			{% endifequal %}
+			<p><a href="/{{ next }}"><img src="/media/images/btn_reg_success_continue.png" border="0" alt="Click here to continue"></a></p>
+			
+		</div>	
+	</div>
+</div>
+{% endblock %}
+

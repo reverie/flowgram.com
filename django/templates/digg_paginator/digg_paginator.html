@@ -1,0 +1,53 @@
+{% spaceless %}
+ 
+{% if is_paginated %}
+
+<div class="wrapper_pagination">
+
+	{% if has_previous %}
+		<div class="prev"><a href="?{{get_args}}&page={{ previous }}" title="Previous Page">&laquo; Previous</a></div>
+	
+	{% else %}
+		<div class="prev-na">&laquo; Previous</div>
+	
+	{% endif %}
+
+	<div class="paginator">
+	<ul id="paginator_ul">
+	{% if not in_leading_range %}
+	    {% for num in pages_outside_trailing_range %}
+			<li class="page"><a href="?{{get_args}}&page={{ num }}" >{{ num }}</a></li>
+		{% endfor %}
+		<li>...</li>
+	{% endif %}
+ 
+	{% for num in page_numbers %}
+	  {% ifequal num page %}
+	    <li class="curr" title="Current Page"><a>{{ num }}</a></li>
+	  {% else %}
+      <li class="page"><a href="?{{get_args}}&page={{ num }}" title="Page {{ num }}">{{ num }}</a></li>
+	  {% endifequal %}
+	{% endfor %}
+ 
+	{% if not in_trailing_range %}
+		<li>...</li>
+		{% for num in pages_outside_leading_range reversed %}
+			<li class="page"><a href="?{{get_args}}&page={{ num }}" >{{ num }}</a></li>
+		{% endfor %}
+	{% endif %}
+	</ul>
+	</div>
+
+	{% if has_next %}
+		<div class="next"><a href="?{{get_args}}&page={{ next_page_num }}" title="Next Page">Next &raquo;</a></div>
+		
+	{% else %}
+		<div class="next-na">Next &raquo;</div>
+	
+	{% endif %}
+
+</div>
+
+{% endif %}
+ 
+{% endspaceless %}

@@ -1,0 +1,311 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	{% ifequal fg.owner user %}
+		| You - View Flowgram - {{ fg.title|escape }}
+		
+	{% else %}
+		| Browse - View Flowgram - {{ fg.title|escape }} 
+	
+	{% endifequal %}
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/browse_view_flowgram.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	{% ifequal fg.owner user %}
+		Your Flowgrams
+	
+	{% else %}
+		Browse
+		
+	{% endifequal %}
+{% endblock %}
+
+{% block subnav %}
+	{% ifequal fg.owner user %}
+		{% include "includes/nav/nav_sub_you.incl" %}
+	
+	{% else %}
+		{% include "includes/nav/nav_sub_browse.incl" %}
+	
+	{% endifequal %}
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+	<div class="hero details">
+		<div class="module">
+			<div class="fg_player">
+				<div class="wrapper_widget">
+					<div id="alt_{{ fg.id }}"></div>
+				</div>
+				{% ifequal fg.owner user %}			
+				<div class="wrapper_change_privacy">
+					<h3>Privacy status:</h3> 
+					<form method="post" action="/api/changeprivacy/" id="privacy_form">
+	                    <input type="hidden" name="flowgram_id" id="privacy_form_flowgram_id" value="{{ fg.id }}"></td>
+	                    <table>
+	                        <tr>
+	                            <td valign="top"><input type="radio" {% if fg.public %}checked{% endif%} name="public" value="true" id="make_public" /></td>
+	                            <td valign="top"><label for="make_public">&nbsp;Public&nbsp;-&nbsp;</label></td>
+	                            <td valign="top"><label for="make_public">For FlowGrams you want to show publicly.</label></td>
+	                        </tr>
+	                        <tr>
+	                            <td valign="top"><input type="radio" {% if not fg.public %}checked{% endif%} name="public" value="false" id="make_private" /></td>
+	                            <td valign="top"><label for="make_private">&nbsp;Unlisted&nbsp;-&nbsp;</label></td>
+	                            <td valign="top"><label for="make_private">For FlowGrams you only want to share with select people.</label></td>
+	                        </tr>
+	                    </table>
+					</form>
+				</div>
+				{% endifequal %}
+			</div>
+		
+			<div class="fg_info">
+			
+				<div class="fg_owner_info">
+					<img src="{{ fg.owner.get_profile.avatar_32 }}" class="avatar" />
+					<div class="info">
+						By {{ fg.owner.get_profile.link|safe }}<br/>
+						{{ fg.views }} views<br/>
+						<div class="wrapper_heart_rating">
+							<div class="fg_heart fg_heart-{{ fg.id }}"></div>
+							<div class="fg_rating fg_rating-{{ fg.id }}"></div>
+						</div>
+					</div>
+					<div class="clearer"></div>
+				</div>
+				
+				<div class="links">
+					<a href="{{ fg.flex_url }}" target="_blank" id="btn_launch" title="Launch Interactive Flowgram"><img src="/media/images/btn_launch.gif" alt="Launch Interactive Flowgram" border="0" /></a>
+					{% ifequal fg.owner user %}
+						<a href="{{ fg.edit_url }}">Edit</a>
+					{% endifequal %}
+					<a href="/share/{{fg.id}}/">Share</a>
+					{% ifequal fg.owner user %}
+				        <a href="javascript:void(0);" onclick="var dialog = new DialogController('/fg/{{fg.id}}/delete/');">Delete</a>
+					{% endifequal %}
+					<div class="clearer"></div>
+				</div>
+				
+				{% ifequal fg.owner user %}
+					<div class="wrapper_editable_data" id="wrapper_fg_title_{{ fg.id }}">
+						<h2 id="fg_title_{{ fg.id }}" class="editable_data_display in_place">{{ fg.title|escape }} <span class="note">(<span class="click_to_edit">click to edit</span>)</span></h2>
+						<form method="post" id="add_title" action="/fg/{{ fg.id }}/edittitle/" class="flowgram" onsubmit="return false;">
+							<input type="text" id="fg_title_input_{{ fg.id }}" name="title" class="editable_data_input" value="{{ fg.title|escape }}"/><br/>
+							<div class="editable_data_buttons">
+								<input class="editable_data_submit" type="image" src="/media/images/btn_submit.gif" /><a href="javascript:void(0);"><img class="editable_data_cancel" src="/media/images/btn_cancel.gif" /></a><img class="editable_data_loading" src="/media/images/loading.gif" /><div class="clearer"></div>
+							</div>
+						</form>
+					</div>
+				
+				{% else %}
+					<h2 id="fg_title_{{ fg.id }}" class="editable_data_display"><a href="{{ fg.flex_url }}" target="_blank">{{ fg.title|escape }}</a></h2>
+				{% endifequal %}
+				
+				
+				<div class="description">
+
+					{% ifequal fg.owner user %}
+						<div class="wrapper_editable_data" id="wrapper_fg_description_{{ fg.id }}">
+							<div id="fg_description_{{ fg.id }}" class="editable_data_display in_place">
+								
+								{% ifequal fg.description '' %}
+									(<a href="javascript:void(0);">add description</a>)
+
+								{% else %}	
+									{{ fg.description|escape }} <span class="note">(<span class="click_to_edit">click to edit</span>)</span>
+
+								{% endifequal %}
+								
+							</div>
+							<form method="post" id="add_description" action="/fg/{{ fg.id }}/editdescription/" onsubmit="return false;">
+								<textarea id="fg_description_input_{{ fg.id }}" name="description" class="editable_data_textarea" maxlength="1000">{{ fg.description|escape }}</textarea><br/>
+								<div class="editable_data_buttons">
+									<input class="editable_data_submit" type="image" src="/media/images/btn_submit.gif" /><a href="javascript:void(0);"><img class="editable_data_cancel" src="/media/images/btn_cancel.gif" /></a><img class="editable_data_loading" src="/media/images/loading.gif" /><div class="clearer"></div>
+									<p class="note">Please note there is a maximum length of 1000 characters for descriptions.</p>
+								</div>
+							</form>
+						</div>
+					
+					{% else %}
+						{{ fg.description|escape }}
+					
+					{% endifequal %}
+
+				</div>
+		
+				<div class="clearer"></div>
+		
+				<div class="tags">
+					<ul id="tags_list">
+						{% if fg.tags %}
+				            {% for tag in fg.tags %}
+				                {% ifchanged %}
+				                	<li>
+										<a href="/tags/{{ tag.name|urlencode }}/">{{ tag.name|escape }}</a>
+										{% ifequal fg.owner user %}
+			                				<a href="/fg/{{fg.id}}/deletetag/{{tag.name|urlencode}}/" class="delete_tag" onclick="return false;">[x]</a>
+			                			{% endifequal %}
+									</li>
+				                {% endifchanged %}
+				            {% endfor %}
+							
+			        	{% endif %}
+					</ul>
+					
+					<div class="clearer"></div>
+					
+					{% if request.user.is_authenticated %}
+						<div class="wrapper_editable_data" id="wrapper_tags_form">
+							<div id="fg_comment_{{ forloop.counter }}" class="editable_data_display">
+								(<a href="javascript:void(0);">add tag</a>)
+							</div>
+							<form method="post" id="add_tag" action="/addtag/" onsubmit="return false;">
+								<input type="text" name="tag_name" class="editable_data_input" /><br/>
+								<input type="hidden" class="editable_data_hidden" name="flowgram_id" value="{{ fg.id }}" />
+								<div class="editable_data_buttons">
+									<input class="editable_data_submit" type="image" src="/media/images/btn_submit.gif" /><a href="javascript:void(0);"><img class="editable_data_cancel" src="/media/images/btn_cancel.gif" /></a><img class="editable_data_loading" src="/media/images/loading.gif" /><div class="clearer"></div>
+								</div>
+							</form>
+						</div>
+					{% endif %}
+					
+
+				</div>
+				
+				<div class="share_code">
+					<div><label for="share_link">URL</label><input type="text" name="share_link" id="details_share_link" value="{{ fg.full_url }}" onclick="autoCopyToClipboard($('details_share_link'), $('share_code_copy_status'));" readonly /><div class="clearer"></div></div>
+					<div><label for="embed_code">Embed</label><input type="text" name="embed_code" id="details_embed_code" value="{{ fg.widget_code }}" onclick="autoCopyToClipboard($('details_embed_code'), $('share_code_copy_status'));" readonly /><div class="clearer"></div></div>
+				</div>
+				
+				<div id="share_code_copy_status"></div>
+				
+				{% ifequal fg.owner user  %}
+					<div class="stats">
+						<h3>Stats for this Flowgram</h3>
+						<table id="userStats" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="statData">{{ views }}</td>
+								<td class="statLabel">Flowgram Views (<a href="javascript:void(0);" onclick="var dc = new DialogController('/media/dialogs/how_to_increase_your_views.html');">Increase your views</a>)</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ widget_views }}</td>
+								<td class="statLabel">Widget Views <img src="/media/images/icons/new_blue_bg.gif" alt="new" border="0" /></td>
+							</tr>
+							<tr>
+								<td class="statData">{{ faved }}</td>
+								<td class="statLabel">Times Favorited</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ share_emails }}</td>
+								<td class="statLabel">Share E-Mails Sent <img src="/media/images/icons/new_blue_bg.gif" alt="new" border="0" /></td>
+							</tr>
+						</table>
+					</div>
+				{% endifequal %}
+			</div>
+			
+			<div class="clearer"></div>
+			
+			<div class="divider_horiz"></div>
+			
+			<div id="wrapper_comments" class="comments">
+				<h3>Comments</h3>
+				{% with fg.comment_set.all as comments %}
+			        {% if comments %}
+			            {% for comment in comments %}
+			                <div class="row">
+			                	<img src="{{ comment.owner.get_profile.avatar_32 }}" class="avatar" />
+								<div class="info">
+                                    <strong>{% ifequal comment.owner.username 'Anonymous' %}Anonymous{% else %}
+                                        <a href="{{ comment.owner.get_profile.url|safe }}">{{ comment.owner.username }}</a>{% endifequal %} says:</strong><br/> 
+									{{ comment.text|escape }}<br/>
+									<span class="date">Posted {{ comment.created_at|date }}</span> {% ifequal fg.owner user %}(<a href="/delcomment/{{comment.id}}/">delete</a>){% endifequal %}
+								</div>
+								<div class="clearer"></div>
+			                </div>
+			            {% endfor %}
+			        {% else %}
+			            <p id="comments_empty">No comments have been posted yet.</p>
+			        {% endif %}
+			    {% endwith %}
+				
+			</div>	
+			
+			<h3>Add your comment</h3>
+			
+            {% if not user.is_authenticated %}
+            	<p><strong><a href="/login/?next=/fg/{{ fg.id }}/">Sign in</a> to add your comments.  Don't have an account yet?  <a href="/register">Register</a> for an account here</strong>.</p>
+			
+            {% else %}
+				<div class="wrapper_editable_data" id="wrapper_fg_comment">
+					<span id="fg_comment" class="editable_data_display"></span>
+					<form method="post" id="add_comment" action="/addcomment/" onsubmit="return false;" class="force_display">
+						<textarea name="text" class="editable_data_textarea" maxlength="1000"></textarea><br/>
+						<input type="hidden" class="editable_data_hidden" name="flowgram_id" value="{{ fg.id }}" />
+						<div class="editable_data_buttons">
+							<input class="editable_data_submit" type="image" src="/media/images/btn_submit.gif" /><a href="javascript:void(0);"><span class="editable_data_cancel" /></a><img class="editable_data_loading" src="/media/images/loading_blue.gif" /><div class="clearer"></div>
+						</div>
+					</form>
+				</div>
+			
+            {% endif %}
+					
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+<div id="content_right">
+	{% include "includes/promos/make_a_flowgram.incl" %}
+	{% include "includes/modules/other_content/invite_module.incl" %}
+    {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+    
+</div>
+
+
+{% endblock %}
+
+{% block js_init %}
+
+	var flowgram_id = '{{ fg.id }}';
+	
+	{% ifequal fg.owner user %}
+		var owns_page = true;
+	
+	{% else %}
+		var owns_page = false;
+		
+	{% endifequal %}
+
+	var cec = new ContextEditController();
+	
+	{% ifequal fg.owner user %}
+		cec.handlePrivacyForm();
+	{% endifequal %}
+	
+	{% star-rating fg user True %}
+	{% favorite-heart fg user True %}
+	{% widget fg 320 282 "opaque" "" "noLogo" "noComments" %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

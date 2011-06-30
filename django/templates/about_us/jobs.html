@@ -1,0 +1,151 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| About Us - Jobs
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/about_us.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	Jobs
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_about_us.incl" %}
+{% endblock %}
+
+{% block content %}
+	
+<div id="content_main">
+
+	<div class="hero">
+		<div class="module">
+
+			{% ifequal position '' %}
+				<div>
+					<h2 class="first">Openings</h2>
+			
+					<p>Flowgram is seeking talented individuals with a range of front and back end expertise. We are on the hunt for full-time developers that view development as a craft as much as it is a science. If you enjoy constant exploring and learning, and think that working with other great people is paramount to building a great product and company, we should talk.</p>
+
+					<p>If you've got an entrepreneurial spirit, are excited by the prospect of being able to work on any and all aspects of the product, and would be psyched to work on something even your mom would use, we should talk.</p>
+
+					<p>As an early member of the Flowgram team, you will be responsible for building the product from the ground up, and playing a hands-on role in taking the Flowgram product to market.</p>
+
+					<p>Preference will be given to generalists with a track record of delivering great products. However, we need a blend of promising junior talent and seasoned veterans. We value motivated and smart technologists that are 'hands-on' and can get things done.</p>
+				
+				</div>
+			{% endifequal %}
+			
+			{% ifequal position 'producer' %}
+				<div>
+					<h2 class="first">Web Producer</h2>
+
+					<h3>Position Details</h3>
+
+					<p>The Flowgram Producer is responsible for a wide range of duties that span customer service, testing, customer acquisition, PR and community management. The producer needs to combine a passion for Flowgram's success with great communication skills, a genuine concern for customer satisfaction and tech savviness.</p>
+
+					<h4>Responsibilities</h4>
+
+					    <ul><li>Work with the rest of the Flowgram team to test new features and functionality</li>
+					    			    <li>Provide customer support to Flowgram users and work with team to prioritize and resolve any issues</li>
+					    			    <li>Participate and help manage the Flowgram community</li>
+					    			    <li>Provide VIP support to select Flowgram partners</li>
+					    			    <li>Track and report on Blog/Press Flowgram mentions</li>
+					    			    <li>Participate in outward bound marketing targetting bloggers and potential Flowgrammers</li>
+					    			    <li>Make demo Flowgrams</li></ul>
+
+
+					<h4>Experience &amp; Skills</h4>
+
+					    <ul><li>Very strong written and verbal communication skills</li>
+					    			    <li>Deep Windows/Mac skills for trouble shooting users' technical issues</li>
+					    			    <li>History of participating in a number of online communities and social networks</li>
+					    			    <li>Experience creating user generated content</li></ul>
+				</div>
+			{% endifequal %}
+			
+			{% ifequal position 'appdev' %}
+				<div {% ifnotequal position 'appdev' %}style="display: none"{% endifnotequal %}>
+					<h2 class="first">Application Developers</h2>
+
+					<h3>Position Details</h3>
+
+					<p>Flowgram is seeking passionate, versatile jr and sr level developers with a focus on back-end technologies. If you enjoy constant exploration, learning, a fast-paced environment, and believe that working with other great people is paramount to building a great product and company, we should talk.</p>
+
+
+
+					<h4>Responsibilities:</h4>
+
+					    <ul>
+							<li>Optimize and continue to develop current product offerings based on user feedback and analysis.</li>
+					    	<li>Collaborate with the team to plan and design new functionality</li>
+					    	<li>Do whatever it takes to translate product designs and requirements into launch ready web offerings.</li>
+						</ul>
+
+
+
+					<h4>Command of at least several of the following...</h4>
+
+					    <ul><li>HTML, XHTML, CSS, DOM, AJAX</li>
+					    			    <li>Object oriented JavaScript development</li>
+					    			    <li>Cross-browser compatibility issues and degradation strategies</li>
+					    			    <li>Django</li>
+					    			    <li>Flex/Flash</li>
+					    			    <li>Object oriented programming</li>
+					    			    <li>LAMP and competing technologies</li>
+					    			    <li>Automated build and test systems, functional, unit, and integration testing</li>
+					    			    <li>Linux/FreeBSD</li></ul>
+
+
+
+					<h4>Bonus points</h4>
+
+					    <ul><li>Toolbar/browser add-on development experience</li>
+					    			    <li>Experience building widgets for MySpace and/or Facebook platform</li>
+					    			    <li>Consumer product expertise</li>
+					    			    <li>Webkit development experience or deep knowledge of other browser technologies</li>
+					    			    <li>Previous experience scaling consumer facing applications</li></ul>
+				</div>
+			{% endifequal %}
+			
+			
+			<p> Contact us at <a href="mailto:careers@flowgram.com">careers@flowgram.com</a>.</p>
+			
+			<h2>About Us</h2>
+			
+			<p>Flowgram is building a new multimedia-empowered way to communicate. The Flowgram product has captured the imagination of a prestigious group of individuals with exceptional track records including Abhay Parekh (founder), who co-founded Fast Forward Networks which sold for over $1b. Abhay is also venture partner at Accel Capital and an Adjunct Professor of EECS at UC Berkeley. Flowgram investors include Reid Hoffman (Paypal, Linkedin), the founders of Flickr and Half.com, the founding CEO of Macromedia, and members of the founding team of WebEx and Tibco Software.</p>
+
+			<p>Blending industry veterans with promising talent, Flowgram prides itself on the quality of our team. We believe that a small group of passionate, smart, fun people can achieve amazing things when given the right focus and environment.</p>
+
+		</div>
+	</div>
+
+</div>
+
+<div id="content_right">
+	<div class="module">
+		<h2>Open Positions</h2>
+		<ul>
+			<li>
+				{% ifequal position 'appdev' %}
+					Application Developers (Jr. and Sr. level)
+				{% else %}
+					<a href="/about_us/jobs/appdev">Application Developers (Jr. and Sr. level)</a>
+				{% endifequal %}
+			</li>
+			<li class="last">
+				{% ifequal position 'producer' %}
+					Web Producer
+				{% else %}
+					<a href="/about_us/jobs/producer">Web Producer</a>
+				{% endifequal %}
+			</li>
+		</ul>
+	</div>
+</div>
+		
+	
+{% endblock content %}
+

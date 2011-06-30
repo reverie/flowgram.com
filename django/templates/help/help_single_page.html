@@ -1,0 +1,95 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Help
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/help.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	Help
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_help.incl" %}
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+		<div class="hero help">
+			<div class="module" id="main_help_index">
+
+				<h2>Categories</h2>
+				<div class="category_list">
+					{% for category in category_list  %}
+						<a href="#{{ category.id }}">{{ category }}</a>{% if not forloop.last %}&nbsp;&nbsp;|&nbsp;&nbsp;{% endif %}
+					{% endfor %}
+				</div>
+				
+				<div class="divider"></div>
+
+				{% for category in category_list  %}
+					<a name="{{ category.id }}"></a><h2 class="category">{{ category }}</h2>
+					<ul class="help">
+					{% for question in category.question_set.all %}
+						<li><a href="#top" onclick="hc.displayAnswer('answer_{{ question.id }}');">{{ question }}</a></li>
+					{% endfor %}
+					</ul>
+				{% endfor %}
+
+			</div>	
+			
+			{% for category in category_list %}
+				{% for question in category.question_set.all %}
+					<div class="module answer" id="answer_{{ question.id }}" style="display: none;">
+						<a href="javascript:void(0);" class="back_link" onclick="hc.hideAnswer('answer_{{ question.id }}');">&laquo; Back to main help index</a>
+						<div class="answer_text">
+							<h2 class="question">{{ question }}</h2>
+							{{ question.answer|safe }}
+						</div>
+					</div>
+				{% endfor %}
+			{% endfor %}
+		</div>
+		
+		<div class="clearer" style="background:url('/media/images/spacer.gif'); width: 700px; height: 1px;"></div>
+		
+		
+	</div>
+
+	<div id="content_right">
+        <!--<a href="/f/r.html#0,0,1935,0"><img src="/media/images/promo_tutorial.png" border="0" class="fg_promo" alt="Take the Flowgram Tutorial" /></a>-->
+		<div class="module">
+			<h2>Flowgram Forum Topics</h2>
+			<ul>
+				<li>Get help from other Flowgram users and the Flowgram team in the forums.</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+		<div class="module">
+			<h2>Tutorials</h2>
+			<ul>
+				<li>Interactive tutorials designed to hel you take full advantage of Flowgram</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+	</div>
+	
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/js/HelpController.js"></script>
+{% endblock %}
+
+{% block js_init %}
+	var hc = new HelpController();
+{% endblock %}

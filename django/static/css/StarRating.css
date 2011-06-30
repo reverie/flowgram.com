@@ -1,0 +1,138 @@
+div.fg_rating {
+	float: left;
+	margin-top: 2px;
+}
+
+div.list div.fg_rating {
+	margin-left: -10px;
+}
+
+.fg_StarRating {
+    margin: 0 -30px;
+    width: 65px;
+    height: 12px;
+	position: relative;
+	left: 65px;
+}
+
+.fg_StarRating img {
+    width: 5px;
+    height: 12px;
+}
+
+.fg_StarRating-star img {
+    width: 12px;
+    height: 12px;
+}
+ 
+.fg_StarRating-star {
+    width: 12px;
+    height: 12px;
+	position: absolute;
+	top: 0px;
+}
+
+.fg_StarRating-none {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.fg_StarRating-1 {
+	left: 5px;
+}
+
+.fg_StarRating-2 {
+	left: 17px;
+}
+
+.fg_StarRating-3 {
+	left: 29px;
+}
+
+.fg_StarRating-4 {
+	left: 41px;
+}
+
+.fg_StarRating-5 {
+	left: 53px;
+}
+
+.fg_StarRating-full {
+	position: absolute;
+	top: 0px;
+	left: 65px;
+}
+
+
+
+
+.fg_StarRating-empty {
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/empty.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-empty[class] {
+    background: url(/media/images/starRating/empty.png);
+}
+
+.fg_StarRating-avg {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/avg.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-avg[class] {
+    background: url(/media/images/starRating/avg.png);
+}
+
+.fg_StarRating-avgHalf {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/avgHalf.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-avgHalf[class] {
+    background: url(/media/images/starRating/avgHalf.png);
+}
+
+.fg_StarRating-current {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/current.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-current[class] {
+    background: url(/media/images/starRating/current.png);
+}
+
+.fg_StarRating-currentHalf {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/currentHalf.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-currentHalf[class] {
+    background: url(/media/images/starRating/currentHalf.png);
+}
+
+.fg_StarRating-user {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/user.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-user[class] {
+    background: url(/media/images/starRating/user.png);
+}
+
+.fg_StarRating-userHalf {
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/media/images/starRating/userHalf.png');
+	background-repeat: none;
+	behavior: url(iepngfix.htc);
+}
+
+.fg_StarRating-userHalf[class] {
+    background: url(/media/images/starRating/userHalf.png);
+}

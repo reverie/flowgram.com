@@ -1,0 +1,30 @@
+{% extends "client/client_base.html" %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/client/client_panels.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block title %}
+	| Login
+{% endblock %}
+
+{% block content %}
+
+<div id="wrapper_page_header">
+	<h2 class="sifr_dark">Login</h2>
+</div>
+<div class="generic_text">
+	<form method="post" id="client_login" action="/client/client_login_submit/" onsubmit="return false;">
+	{{ form.as_p }}
+	
+	<div class="clearer"></div>
+	<input type="image" src="/media/images/btn_submit.gif" id="client_login_submit" class="submit" />
+	</form>
+</div>
+
+{% endblock content %}
+
+{% block js_init %}
+	var client_login_submit = new ClientSubmitController();
+{% endblock %}
+

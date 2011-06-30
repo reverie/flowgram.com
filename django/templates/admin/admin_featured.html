@@ -1,0 +1,71 @@
+{% extends "base/base.html" %}
+
+{% block content %}
+<h2>Choose Featured Flowgrams</h2>
+<div>
+    <ul>
+        {% for number,name in areas %}
+        {% ifequal area number %}
+            <b><li><a href="?area={{number}}">{{name}}</a></li></b>
+        {% else %}
+            <li><a href="?area={{number}}">{{name}}</a></li>
+        {% endifequal %}
+        {% endfor %}
+    </ul>
+</div>
+<b>Featured Flowgrams:</b><br>
+{% if featured %}
+<form method="post" action="">
+    <input type="hidden" name="form" value="modify">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Rank</th>
+        </tr>
+        {% for feat in featured %}
+        <tr>
+            <td>
+                <input type="text" name="{{feat.id}}__id" value="{{feat.flowgram.id}}">
+            </td>
+            <td><a href="{{feat.flowgram.flex_url}}">{{ feat.flowgram.title }}</a></td>
+            <td>
+                <input type="text" name="{{feat.id}}__pri" value="{{feat.rank}}">
+            </td>
+            {% if forloop.first %}
+            <td style="padding-left:70px"><i>This FlowGram will be the hero</i></td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+</table>
+<br>
+    <input type="submit" value="Submit Changes">
+</form>
+{% else %}
+None yet
+{% endif %}
+<br><br>
+<b>Create a new Featured FlowGram:</b>
+<form method="post" action="">
+    <input type="hidden" name="form" value="create_new">
+
+    <label for="create_id">ID:</label>
+    <input id="create_id" type="text" name="id">
+
+    <label for="create_rank">Rank:</label>
+    <input id="create_rank" type="text" name="rank">
+
+    <label for="create_area">Area:</label>
+    <select name="area" id="create_area">
+        {% for number,name in areas %}
+        {% ifequal area number %}
+            <option value="{{number}}" selected>{{name}}</option>
+        {% else %}
+            <option value="{{number}}">{{name}}</option>
+        {% endifequal %}
+        {% endfor %}
+    </select>
+
+    <input type="submit" value="Submit New Featured">
+</form>
+{% endblock content %}

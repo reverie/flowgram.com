@@ -1,0 +1,80 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| About Us - Contact Us/Feedback
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/feedback.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	Feedback
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_about_us.incl" %}
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero">
+		<div class="module">
+			
+			<h2>Want to report a bug, need help, or have a suggestion?  Choose the feedback method that works best for you.</h2>
+			
+			<div id="contact_methods">
+				<!--
+				<div class="method">
+					<a href="/forum/">Forum</a><br/>
+					Get help from the Flowgram community and team Flowgram.
+				</div>
+				-->
+				<div class="method">
+					<a href="/about_us/contact_us/email/">Email</a><br/>
+					Send us a quick note.
+				</div>
+				<div class="method">
+					<a href="mailto:press@flowgram.com">Press</a><br/>
+					Direct Press enquiries here.
+				</div>
+				<div class="clearer"></div>
+				
+				<div class="method">
+					<span class="chat_title">Chat</span><br/>
+					<div id="chat_text">Need help right away?  You can chat with us if we're online.  Click on the talk bubble.</div>
+					<!--<iframe src="http://www.google.com/talk/service/badge/Show?tk=z01q6amlqn177ol86ge4j6vovstlg9igkomp5n5hkbt0pa0g9afrvhdpt1l1hledc0l0rav1vvoudv72bfeljdr6cskdr5ld3c3fdupnu3j186t3ml1sl18mumki8lmh0bqe0j24nvcr0jtaha49l3hl93596ua4q4ldfnl3iue38fnpj9v8g3j197grqv43mug&amp;w=146&amp;h=60" frameborder="0" allowtransparency="true" width="146" height="60"></iframe>-->
+					<iframe src="http://www.google.com/talk/service/badge/Show?tk=z01q6amlqqncvacjvq3sbuljsermta1v68lfet47te1vos9p9d67afmcpo9gn9bp6jhur1valtpu50g19mblup57khvnhn3ig50rr5pl69jqaa89aef6oegcvgr9pk8okuumbk65picopoh240c2c5kn1e9dd4atl5t4d8kpc&amp;w=146&amp;h=60" allowtransparency="true" frameborder="0" height="60" width="146"></iframe>
+					<div class="clearer"></div>
+				</div>
+				<div class="method">
+					<a href="/help/">FAQ</a><br/>
+					A collection of helpful frequently asked questions.
+				</div>
+				<div class="clearer"></div>
+			</div>
+			
+			
+		</div>
+	</div>
+	
+</div>
+
+<div id="content_right">
+	<!--
+	<div class="module">
+		<h2>Help</h2>
+		<ul>
+			<li><a href="#">I can't see my bookmark's toolbar.</a></li>
+			<li><a href="#">How do I drag and drop the links to my bookmarks toolbar?</a></li>
+			<li class="last"><a href="#">I have added the links to my bookmarks toolbar, now what?</a></li>
+		</ul>
+	</div>
+-->
+	{% include "includes/modules/other_content/invite_module.incl" %}
+</div>
+
+	
+{% endblock content %}

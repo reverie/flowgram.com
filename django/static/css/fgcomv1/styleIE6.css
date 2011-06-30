@@ -1,0 +1,27 @@
+/* GLOBAL */
+
+
+
+
+
+/* PAGE SPECIFIC */
+/* Login Pane */
+div#wrapper_login div.middle {
+	margin-top: -8px;
+}
+
+/* Bookmarklet/Toolbar instal page */
+div#download_info {
+	margin-left: 10px;
+}
+
+div#more_details div#more_details_img img {
+	width: 200px;
+	height: 136px;
+}
+
+div#product_benefits div.middle {
+	margin-top: -10px;
+}
+
+

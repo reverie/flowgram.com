@@ -1,0 +1,16 @@
+Hi {{recipient}},
+
+Your Flowgram is now available at:
+{{flowgram_url}}
+
+Copy and paste the following code to embed a custom widget with your Flowgram
+into your social network profile pages, blogs, or any other web pages:
+
+{{embed_code|safe}}
+
+You can still edit your Flowgram, change the description and add tags by
+visiting this link:
+{{edit_link}}
+
+
+Please contact us here: {{contact_us}} if you need any help.

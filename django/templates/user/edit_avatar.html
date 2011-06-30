@@ -1,0 +1,106 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Manage - Edit Avatar
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="/media/css/avatar_block.css" type="text/css">
+{% endblock %}
+
+{% block pageheader %}
+	You
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_you.incl" %}
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+	
+	<div class="hero">
+		<div class="module change_avatar">
+			
+				
+			
+			<div id="current_avatar">
+				<img src="{{ user.get_profile.avatar_200 }}" id="user_info_avatar" width="200" />
+		    </div>
+		    
+			<div id="divider_vert" class="divider_vert"></div>
+		
+			<div id="new_avatar">
+				
+				
+				<div id="wrapper_avatar_selector">
+					
+					<form enctype="multipart/form-data" method="post" action="/edit_avatar/">
+					<input type="hidden" name="upload_form" value="upload_form">
+                    <!--<p><strong>Upload a new avatar:</strong> -->
+                    {{form.as_p}}
+                    <!--<input type="file" name="avatar" id="id_avatar" /></p>-->
+					<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+	                <div class="clearer"></div>
+					</form>
+	
+					<form enctype="multipart/form-data" method="post" action="/edit_avatar/">
+					<input type="hidden" name="builtin_form" value="builtin_form" />
+				    <input id="builtin_avatar_name" type="hidden" name="name" value="XXX" />
+					<p id="or">Or</p>
+					<label>Choose one of these avatars:</label>
+	                <div id="avatar_selector">
+	                    {% for avatar_name in builtin_avatars %}
+	                        <div class="avatar_imgbox" id="{{avatar_name}}_avatar">
+	                            <img src="/media/images/avatars/{{avatar_name}}-32.jpg" />
+	                        </div>
+	                    {% endfor %}
+	                    <div class="clearer"></div>
+	                </div></p>
+					<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+					</form>
+				</div>
+				
+		
+			</div>
+			
+			<div class="clearer"></div>
+
+		</div>
+	</div>
+	
+</div>
+
+<div id="content_right">
+    {% include "includes/promos/make_a_flowgram.incl" %}
+	{% include "includes/modules/other_content/invite_module.incl" %}
+</div>
+{% endblock %}
+
+{% block js_init %}
+    var avatars = Element.select($('avatar_selector'), '[class="avatar_imgbox"]');    
+
+	function choose_avatar(e) {
+        // Get the target
+        var target = Event.element(e);
+        if (target.nodeName == 'IMG') {
+            target = target.parentNode;
+        }
+
+        // Remove style from old one
+        avatars.each(function (elem) { Element.removeClassName(elem, 'avatar_selected')});
+
+        // Add style to new one
+        target.addClassName('avatar_selected');
+
+        // Get it's avatar name
+        var id = target.id;
+        id = target.id.slice(0, target.id.indexOf('_'));
+
+        // Set the current one
+        $('builtin_avatar_name').value = id;
+    }
+    avatars.each(function (elem) { Event.observe(elem, 'click', choose_avatar)});
+
+	$('divider_vert').style.height = $('new_avatar').offsetHeight + 'px';
+{% endblock %}

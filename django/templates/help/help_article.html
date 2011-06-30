@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Help | {{ question }}
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/help.css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="/media/css/third_party/lightbox.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block pageheader %}
+	Help
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_help.incl" %}
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+		<div class="hero help">
+			<div class="module">
+				<a href="/help/" class="back_link">&laquo; Back to main help index</a>
+				<h2 class="question">{{ question }}</h2>
+				{{ question.answer|safe }}
+			</div>
+		</div>
+		
+		<div class="clearer" style="background:url('/media/images/spacer.gif'); width: 700px; height: 1px;"></div>
+		
+		
+	</div>
+
+	<div id="content_right">
+        <!--
+		<a href="/f/r.html#0,0,1935,0"><img src="/media/images/promo_tutorial.png" border="0" class="fg_promo" alt="Take the Flowgram Tutorial" /></a>
+		<div class="module">
+			<h2>Flowgram Forum Topics</h2>
+			<ul>
+				<li>Get help from other Flowgram users and the Flowgram team in the forums.</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+		<div class="module">
+			<h2>Tutorials</h2>
+			<ul>
+				<li>Interactive tutorials designed to help you take full advantage of Flowgram</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+		-->
+	</div>
+	
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/js/third_party/lightbox.js"></script>
+{% endblock %}

@@ -1,0 +1,5 @@
+Dear {{recipient}},
+
+{{sender}} gave you access to view "{{title}}". Check it out at {{url}}
+
+-Flowgram.com

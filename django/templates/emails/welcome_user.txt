@@ -1,0 +1,18 @@
+Hi {{recipient}},
+
+Thanks for signing up for Flowgram. We're glad to have you!  You can visit your Flowgram home page by visiting {{homepage_url}} and logging in.
+
+How do I get started?
+1.    Make a Flowgram
+Making a Flowgram is easy, fast and gives you a new means of communicating on the web. Flowgrams do not have to be public. You can make one just for yourself or share it like email with a friend. Go to {{make_url}} add the Flowgrams links and start making Flowgrams today.
+2.    Watch some Flowgrams
+We've created a Flowgram that covers, "What is a Flowgram (http://www.flowgram.com/go/what_is_a_flowgram)". It's a great place to start.  You can also browse for more Flowgrams at {{browse_url}}
+3.    Finish your profile
+Tell the Flowgram community about yourself. You can add little bio, a link to your home page, update your avatar and more at {{profile_url}}
+
+You can always contact us if you have any feedback or run into any problems.
+
+See you there and we look forward to hearing from you.
+
+Team Flowgram
+http://www.flowgram.com/about_us/contact_us/

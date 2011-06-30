@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Annotations>
+    {% for fg in fgs %}
+    <Annotation about="{{ host }}/p/{{ fg.id }}" score="1.0">
+		<Label name="_cse_vwsqcpoatxw"/>
+        <AdditionalData attribute="original_url" value="{{ host }}/p/{{ fg.id }}" />
+		<Comment>Absurdity Roundup</Comment>
+	</Annotation>
+    {% endfor %}
+    <Annotation about="{{ host }}/*">
+		<Label name="_cse_vwsqcpoatxw"/>
+        <AdditionalData attribute="original_url" value="{{ host }}" />
+	</Annotation>
+ </Annotations>
+

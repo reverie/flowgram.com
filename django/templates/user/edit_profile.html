@@ -1,0 +1,56 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Manage Your Profile
+{% endblock %}
+
+{% block pageheader %}
+	Manage Your Profile
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/editProfileForm_styles.css" type="text/css">
+	<style type="text/css" media="screen">
+		input#id_subscribe_fg_on_comment, 
+		input#subscribed_to_own_fgs
+		{
+			margin-right: 200px;
+			margin-bottom: 40px;
+		}
+	</style>
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_you.incl" %}
+{% endblock %}
+
+{% block content %}
+	<div class="generic_text">
+		<form method="post" id="edit-profile" action="/editprofile/">
+			{% for field in form %}
+				{% ifnotequal "newsletter_optin" field.name %}
+					<div class="form-field">
+						{{ field.label_tag }}{{ field }}
+						{% if field.errors %}
+							<span class="errorlist">{{ field.errors|join:", " }}</span>
+						{% else %}
+							{% if field.field.required %}
+								<span class="required-field">Required</span>
+							{% endif %}
+						{% endif %}							
+					</div>
+				{% else %}
+					<div id="edit-profile-newsletter">{{ form.newsletter_optin }} {{ form.newsletter_optin.label_tag }}</div>
+				{% endifnotequal %}
+			{% endfor %}
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+		</form>
+		<div class="generic_form_links">		
+			<p>
+				<a href="/password/">Click here to change your password</a><br>
+				<a href="/edit_avatar/">Click here to change your avatar</a>
+			</p>
+		</div>
+	</div>
+{% endblock %}

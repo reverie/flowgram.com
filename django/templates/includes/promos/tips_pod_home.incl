@@ -1,0 +1,9 @@
+{% if tip %}
+<div class="module" id="tips_module">
+	<h2>Flowgram Tips</h2>
+	<div class="module_body">
+		<h3 class="first">{% firstof sidebar_fgs_title tip.title %}</h3>
+		<p>{{ tip.embeddedHTML|safe }}</p>
+	</div>
+</div>
+{% endif %}

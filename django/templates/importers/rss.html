@@ -1,0 +1,40 @@
+{% extends "base/base_simple.html" %}
+
+{% block title %}
+	{{title}}
+{% endblock %}
+
+{% block styles %}
+	<style type="text/css" media="screen">
+        div.description {
+            font-size: 16px;
+			margin-bottom: 10px;
+        }
+	</style>
+{% endblock %}
+
+{% block content %}
+    <div id="content_main">
+		<div class="hero wide">
+			<div class="module">
+				<h2 class="first">{{title}}</h2>
+		        <div class="description">{{description|safe}}</div>
+				<div class="link"><a href="{{url}}" target="_blank"><strong>More &raquo;</strong></a></div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+/* You */
+
+div.suggestions_title,
+div.suggestions_links
+{
+	float: left;
+}
+
+div.suggestions_title {
+	color: #999999;
+	width: 130px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+

@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /api/
+Disallow: /f/
+Disallow: /share/
+Disallow: /login/

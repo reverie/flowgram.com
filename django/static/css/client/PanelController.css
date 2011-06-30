@@ -1,0 +1,36 @@
+.fg_PanelController {
+	background: #F5F5F5 url(../../images/client/bg_settings_shadow.gif) repeat-x;
+	border-bottom: 1px solid #CCC;
+	position: absolute;
+	width: 100%;
+}
+
+.fg_PanelController .fg_closeButton {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+	background: url(../../images/closebutton.png) top left no-repeat;
+    behavior: url(/media/css/iepngfix.htc);
+	width: 49px;
+	height: 15px;
+}
+
+.fg_PanelController-contents {
+    padding: 25px 10px 10px 10px;
+}
+
+.fg_PanelController .fg_disabled {
+    color: #CCC;
+}
+
+.fg_PanelController .fg_panelTitle {
+    background-color: #E9E9E9;
+    padding: 2px 8px;
+    margin-bottom: 5px;
+}
+
+.fg_PanelController .fg_sendButton {
+	background: url(../../images/client/btn_send.gif) no-repeat;
+	width: 85px;
+	height: 23px;
+}

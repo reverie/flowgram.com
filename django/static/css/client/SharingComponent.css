@@ -1,0 +1,330 @@
+.fg_SharingComponent {
+	width: 990px;
+    height: 378px;
+}
+
+.fg_SharingComponent .fg_SharingComponent-addressBookLinkArea {
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.fg_SharingComponent .fg_panelTitle {
+    background-color: #E9E9E9;
+    padding: 2px 8px;
+    margin-bottom: 5px;
+}
+
+.fg_SharingComponent-altPrivacyControlsArea {
+    float: left;
+    margin: -20px 0 0 20px;
+    width: 245px;
+}
+
+.fg_SharingComponent-widgetAndPrivacyControls {
+    float: left;
+    margin-right: 20px;
+    width: 260px;
+	height: 355px;
+}
+
+.fg_SharingComponent-widget {
+    width: 260px;
+    height: 160px;
+}
+
+.fg_SharingComponent-title {
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.fg_SharingComponent-titleEditor {
+    display: none;
+    margin-top: 2px;
+    width: 100%;
+}
+
+.fg_SharingComponent-description {
+    font-size: 90%;
+    padding: 0px 10px;
+    text-align: center;
+}
+
+.fg_SharingComponent-descriptionEditor {
+    display: none;
+    margin: 2px 0px;
+    width: 100%;
+}
+
+.fg_SharingComponent-editButton {
+    background-image: url(/media/images/editDetailsButton.gif);
+    width: 64px;
+    height: 14px;
+    margin: 0px 0px 0px auto;
+}
+
+.fg_SharingComponent-saveButton {
+    background-image: url(/media/images/saveDetailsButton.gif);
+    display: none;
+    width: 64px;
+    height: 14px;
+    margin: 0px 0px 0px auto;
+}
+
+.fg_SharingComponent-permaLinkArea {
+    margin-top: 20px;
+}
+
+.fg_SharingComponent-permaLink {
+    background-color: #C3E4EC;
+    font-size: 10px;
+    margin-top: 4px;
+    padding: 4px;
+}
+
+.fg_SharingComponent-privacyControlsArea {
+    margin-top: 20px;
+}
+
+.fg_SharingComponent-privacyDescription {
+    font-size: 90%;
+}
+
+.fg_SharingComponent-ownerInfoArea {
+    margin-top: 20px;
+}
+
+.fg_SharingComponent-ownerNameLabel {
+    float: left;
+    padding-right: 8px;
+}
+
+.fg_SharingComponent-ownerName {
+    float: left;
+}
+
+.fg_SharingComponent-sharingControls {
+    float: left;
+    width: 425px;
+}
+
+.fg_SharingComponent-sharingControlsBox {
+
+}
+
+.fg_SharingComponent-sharingTabs,
+.fg_SharingComponent-sharingTabs tr,
+.fg_SharingComponent-sharingTabs td {
+    border-collapse: collapse;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.fg_SharingComponent-sharingTabs {
+    margin: 0px auto;
+}
+
+.fg_SharingComponent-emailTab,
+.fg_SharingComponent-facebookTab,
+.fg_SharingComponent-imTab,
+.fg_SharingComponent-linkTab {
+    margin: 4px;
+    padding: 8px 8px 6px 8px;
+    float: left;
+}
+
+div.over {
+	background-color: #e8e8e8;
+}
+
+.fg_SharingComponent-sharingTabs .fg_contents {
+    color: #196F8C;
+    cursor: pointer;
+    padding: 4px 0 0 8px;
+    text-decoration: underline !important;
+}
+
+.fg_SharingComponent-sharingTabs .fg_contents td {
+    padding: 2px;
+}
+
+.fg_SharingComponent-sharingTabs td {
+    white-space: nowrap;
+}
+
+.fg_SharingComponent-emailTab {
+    padding-right: 16px !important;
+}
+
+.fg_SharingComponent-socialNetworkTab {
+    padding-right: 16px !important;
+}
+
+.fg_SharingComponent-socialNetworkTab .fg_contents .fg_firstColumn {
+    padding-right: 8px;
+}
+
+.fg_SharingComponent-imTab {
+}
+
+.fg_SharingComponent-selectedTab .fg_contents {
+    color: #FFFFFF;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg1 {
+    float: left;
+    background: url(/media/images/shareTab_tl.gif) top left no-repeat;
+    margin: -4px 0 0 -4px;
+    padding: 4px 0 0 4px;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg2 {
+    background: url(/media/images/shareTab_tr.gif) top right no-repeat;
+    margin: -4px -4px 0 0;
+    padding: 4px 4px 0 0;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg3 {
+    background: url(/media/images/shareTab_bl.gif) bottom left no-repeat;
+    margin: 0 0 -4px -4px;
+    padding: 0 0 4px 4px;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg4 {
+    background: url(/media/images/shareTab_br.gif) bottom right no-repeat;
+    margin: 0 -4px -4px 0;
+    padding: 0 4px 4px 0;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg5 {
+    background-color: #B1B1B1;
+    margin: -4px 0;
+    padding: 4px 0;
+}
+
+.fg_SharingComponent-selectedTab .fg_highlightBg6 {
+    background-color: #B1B1B1;
+    margin: 0 -4px;
+    padding: 0 4px;
+}
+
+div.curved {
+	width: 425px;
+	margin-top: 10px;
+	background: url(/media/images/bg_gradient_make.jpg) top repeat-x;
+	background-color: #f5f5f5;
+	border: 1px solid #cccccc;
+	min-height:	150px;
+	_height: auto !important;
+}
+
+.fg_SharingComponent-sharingContents {
+    padding: 20px;
+}
+
+.fg_SharingComponent-emailForm {
+
+}
+
+.fg_SharingComponent-emailFormLoading {
+    background: #FFF url(/media/images/loading.gif) no-repeat center center;
+    display: none;
+    filter: alpha(opacity=75);
+    -moz-opacity: 0.75;
+    opacity: 0.75;
+    position: absolute;
+}
+
+.fg_SharingComponent-emailFormTable {
+    
+}
+
+.fg_SharingComponent-emailSentMessage {
+    color: #F00;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.fg_SharingComponent-notLoggedInMessage {
+    text-align: center;
+}
+
+.fg_SharingComponent-emailFromNameLabel {
+    white-space: nowrap;
+}
+
+.fg_SharingComponent-emailFromEmailLabel {
+    white-space: nowrap;
+    padding-bottom: 12px;
+}
+
+.fg_SharingComponent-emailFromEmailInputArea {
+    padding-bottom: 12px;
+}
+
+.fg_SharingComponent-emailToLabel {
+    padding-right: 8px;
+    text-align: right;
+}
+
+.fg_SharingComponent-emailTo {
+    width: 100%;
+}
+
+.fg_SharingComponent-emailMessageLabel {
+    padding-right: 8px;
+    text-align: right;
+    vertical-align: top;
+}
+
+.fg_SharingComponent-emailMessage {
+    width: 100%;
+}
+
+.fg_SharingComponent-emailCcArea {
+    padding-top: 12px;
+}
+
+.fg_SharingComponent-emailSendButtonArea {
+    padding-top: 12px;
+    text-align: center;
+}
+
+.fg_SharingComponent-emailSendButton {
+	width: 85px;
+	height: 23px;
+	margin: 0px auto;
+	background: url(/media/images/btn_send.gif) no-repeat;
+}
+
+.fg_SharingComponent-instructionsMakePublicArea {
+    margin: 12px 0px;
+}
+
+.fg_SharingComponent-continueButton {
+	width: 85px;
+	height: 23px;
+	margin: 0px auto;
+	margin-top: 10px;
+	background: url(/media/images/btn_continue.gif) no-repeat;
+}
+
+.fg_SharingComponent-urlPage,
+.fg_SharingComponent-linkPage {
+    display: none;
+}
+
+.fg_SharingComponent-urlInstructions,
+.fg_SharingComponent-linkInstructions {
+    margin-bottom: 12px;
+}
+
+.fg_SharingComponent-urlLabel,
+.fg_SharingComponent-linkLabel {
+    display: inline;
+}
+
+.fg_SharingComponent-url,
+.fg_SharingComponent-link {
+    width: 100%;
+}

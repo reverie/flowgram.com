@@ -1,0 +1,31 @@
+{% load filters %}
+<div id="poll_module_already_voted" class="blue">
+	<h3>Thanks for voting!</h3>
+	<strong>Here are the current standings:</strong>
+	<ul>
+		<li class="last">
+	        <div class="info"><a href="{{ current_poll_fg1.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg1.title|escape|truncate:21 }}</span></a><br/>
+	            By {{ current_poll_fg1.owner.get_profile.link|safe }}
+				<div id="vote_meter_1" class="vote_meter" style="width: {{ current_poll.percentage_1 }}%;"></div>
+				<strong>{{ current_poll.percentage_1 }}% of votes</strong>
+			</div>
+			<div class="clearer"></div>
+		</li>
+		<li class="last">
+	        <div class="info"><a href="{{ current_poll_fg2.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg2.title|escape|truncate:21 }}</span></a><br/>
+	            By {{ current_poll_fg2.owner.get_profile.link|safe }}
+				<div id="vote_meter_2" class="vote_meter" style="width: {{ current_poll.percentage_2 }}%;"></div>
+				<strong>{{ current_poll.percentage_2 }}% of votes</strong>
+			</div>
+			<div class="clearer"></div>
+		</li>
+		<li class="last">
+	        <div class="info"><a href="{{ current_poll_fg3.flex_url }}" target="_blank"><span class="title">{{ current_poll_fg3.title|escape|truncate:21 }}</span></a><br/>
+	            By {{ current_poll_fg3.owner.get_profile.link|safe }}
+				<div id="vote_meter_3" class="vote_meter" style="width: {{ current_poll.percentage_3 }}%;"></div>
+				<strong>{{ current_poll.percentage_3 }}% of votes</strong>
+			</div>
+			<div class="clearer"></div>
+		</li>
+	</ul>
+</div>

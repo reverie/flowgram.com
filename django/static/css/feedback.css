@@ -1,0 +1,36 @@
+div#contact_methods {
+	width: 660px;
+	_width: 650px;
+	margin: 20px 0px 20px 20px;
+}
+
+div#contact_methods div.method {
+	float: left;
+	margin: 0px 20px 20px 0px;
+	width: 310px;
+	_width: 280px;
+	height: 50px;
+}
+
+div#contact_methods div.method a,
+div#contact_methods div.method .chat_title
+{
+	font-size: 22px;
+	color: #196F8C;
+}
+
+div#contact_methods div.method iframe,
+div#contact_methods div.method div#chat_text
+{
+	float: left;
+}
+
+div#contact_methods div.method iframe {
+	width: 146px;
+	height: 60px;
+}
+
+div#contact_methods div.method div#chat_text {
+	width: 164px;
+	_width: 124px;
+}

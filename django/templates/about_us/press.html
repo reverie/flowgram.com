@@ -1,0 +1,103 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| About | Press {% ifequal press_display 'pr' %}| {{ pr.link_text }}{% endifequal %}
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_about_us.incl" %}
+{% endblock %}
+
+{% block pageheader %}
+	{% ifequal press_display 'pr' %}
+		Press Release
+	{% else %}
+		Press
+	{% endifequal %}
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero">
+		<div class="module">
+			
+			{% ifequal press_display 'pr' %}<!-- press release -->
+				<p><a href="/about_us/press">&laquo; Back to press index</a></p>
+				
+				<h3>{{ pr.link_text }}</h3>
+				<p><strong>{{ pr.link_date|date }}</strong></p>
+				
+				{{ pr.full_text|safe }}
+			
+			{% else %}<!-- press index -->
+				<div class="pull_quotes">
+					<a href="http://www.techcrunch.com/2008/07/03/flowgram-reinvents-the-screencast-1000-beta-invites/" target="_blank"><img src="/media/images/logos/techcrunch.gif" alt="Tech Crunch" border="0" /></a>
+					<p><a href="http://www.techcrunch.com/2008/07/03/flowgram-reinvents-the-screencast-1000-beta-invites/" target="_blank">"It's an interactive screencast, a way to synthesize the Web by pulling different pieces together and the voiceover acts as the glue."<br/><br/><strong>Read more &raquo;</strong></a></p>
+				</div>
+
+				<div class="pull_quotes">
+					<a href="http://webworkerdaily.com/2008/09/19/flowgram-could-beat-traditional-screencasts/" target="_blank"><img src="/media/images/logos/web_worker_daily.jpg" alt="Web Worker Daily" border="0" /></a>
+					<p><a href="http://webworkerdaily.com/2008/09/19/flowgram-could-beat-traditional-screencasts/" target="_blank">"My reaction? Absolutely Brilliant!"<br/><br/><strong>Read more &raquo;</strong></a></p>
+				</div>
+			
+				<div class="pull_quotes">
+					<a href="http://news.cnet.com/8301-17939_109-10050057-2.html" target="_blank"><img src="/media/images/logos/webware.jpg" alt="Webware @ CNET" border="0" /></a>
+					<p><a href="http://news.cnet.com/8301-17939_109-10050057-2.html" target="_blank">"Flowgram is a cool tool for anyone trying to lead others through a thicket of web pages and ideas."<br/><br/><strong>Read more &raquo;</strong></a></p>
+				</div>
+			
+				<div class="clearer"></div>
+			
+				{% if fgpr_press_list %}
+					<p>&nbsp;</p>
+					<h3 class="first">Press Releases</h3>
+					<ul class="press_list">
+						{% for press_item in fgpr_press_list %}
+							<li>
+								<a href="/about_us/press/{{ press_item.id }}"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+							</li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+			
+				{% if featured_press_list %}
+					<p>&nbsp;</p>
+					<h3 class="first">Featured Articles</h3>
+					<ul class="press_list">
+						{% for press_item in featured_press_list %}
+							<li>
+								<a href="{{ press_item.link_url }}" target="_blank"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+							</li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+			
+				{% if more_press_list %}
+					<p>&nbsp;</p>
+					<h3 class="first">More Press</h3>
+					<ul class="press_list">
+						{% for press_item in more_press_list %}
+							<li>
+								<a href="{{ press_item.link_url }}" target="_blank"><strong>{{ press_item.link_text }}</strong></a>{% if press_item.link_date %} | <span class="date">{{ press_item.link_date|date }}</span>{% endif %}
+								{% if press_item.lede_text %}
+									<br/>{{ press_item.lede_text }}
+								{% endif %}
+							</li>	
+						{% endfor %}
+					</ul>
+				{% endif %}
+			
+			{% endifequal %}
+		
+		</div>
+	</div>
+</div>
+	
+{% endblock content %}

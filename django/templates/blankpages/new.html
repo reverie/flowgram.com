@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>Flowgram | Custom Page</title>
+<script type="text/javascript" src="/media/js/tiny_mce/tiny_mce.js"></script>
+<link rel="stylesheet" type="text/css" href="/media/css/client/blankpage.css">
+</head>
+<body>
+	
+	<div id="header_wrapper">
+		<h1>Add Custom Page</h1>
+	</div>
+	<div id="main_wrapper" style="visibility: hidden;">	
+	    <h2>Make a custom page for your flowgram. Click the "Done" button when you are finished and the page will be added to your Flowgram.</h2>
+		<div class="module">
+            <div id="blank_page_editor">
+                <textarea id="editor">Type your custom Flowgram page in here.</textarea>
+                <div id="displayer"></div>
+            </div>
+		</div>
+	    <div id="buttons">
+			<input type="image" src="/media/images/btn_preview.png" value="Preview" id="saveButton" onclick="save()">
+		    <input type="image" src="/media/images/btn_edit.png" value="Edit Again" id="editButton" onclick="edit()">
+		    <input type="image" src="/media/images/btn_done.png" value="Done" id="doneButton" onclick="done()">
+	    </div>
+	</div>
+    <script type="text/javascript">
+        var mode="new";
+        var fgid="{{fgid}}";
+        var csrfmiddlewaretoken="{{csrf_token}}";
+    </script>
+    <script type="text/javascript" src="/media/js/third_party/prototype1602.js"></script>
+    <script type="text/javascript" src="/media/js/client/blankpage.js"></script>
+    <script type="text/javascript">
+		
+		initTinyMCE();
+
+        window.setTimeout(
+            function() {
+                $('main_wrapper').style.visibility = 'visible';
+            },
+            1000);
+    </script>
+</body>
+</html>

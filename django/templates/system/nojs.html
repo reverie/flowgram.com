@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Flowgram | Please enable Javascript to experience Flowgram</title>
+	<link rel="stylesheet" href="/media/css/{% include "includes/style_css.incl" %}" type="text/css" media="screen" />
+	{% include "includes/includesIE.incl" %}
+</head>
+
+<body><a name="top"></a>
+	<div id="wrapper_site">
+		<div id="wrapper_shadow">
+			<div id="wrapper_main">
+				<div id="wrapper_header_main"></div>
+				
+				<div id="wrapper_header_sub"></div>
+				
+				<div id="wrapper_content">
+					
+					<div id="content_main">
+
+						
+						<div class="hero wide">
+							
+							<div class="module">					
+								<!-- CONTENT -->
+								<h2>Flowgram Requires Javascript.</h2>
+
+								<p>It appears that you've got Javascript disabled.  Please enable Javascript in order to experience Flowgram.</p>
+								
+								{% ifequal browser 'MSIE' %}
+									<ol>
+										<li>Pull down the "Tools" menu, and select "Internet Options".</li>
+										<li>Select the "Security" tab.</li>
+										<li>Click the "Custom Level" button.</li>
+										<li>Make sure "Active Scripting" is set to "Enable".</li>
+										<li>Click "OK".</li>
+									</ol>
+								{% endifequal %}
+								
+								{% ifequal browser 'Gecko' %}
+								<strong>Firefox</strong>
+								<ol>
+									<li>Bring up your Options/Preferences pane.  On Windows, look under the "Tools" pull-down menu.  On Mac, look under the "Firefox" menu next to the Apple menu.</li>
+									<li>Select the "Content" tab.</li>
+									<li>Make sure "Enable Javascript" is checked.</li>
+									<li>Click "OK".</li>
+								</ol>
+								
+								<strong>Safari</strong>
+								<ol>
+									<li>Bring up your Preferences pane.  On Windows, look under the "Edit" pull-down menu.  On Mac, look under the "Safari" menu next to the Apple menu.</li>
+									<li>Select the "Security" tab.</li>
+									<li>Make sure "Enable Javascript" is checked.</li>
+									<li>Close the Preferences pane.</li>
+								</ol>
+								{% endifequal %}
+								
+								<p>If you have a no-javascript plugin protecting your browser, add Flowgram to your list of allowed sites.</p>
+
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="clearer"></div>
+
+					
+				</div>
+			
+			</div>
+			<div id="wrapper_footer">
+				<div id="wrapper_nav_footer"></div>
+<div id="wrapper_logo_copyright_footer">
+	<img src="/media/images/logo_footer.png" alt="FlowGram" />
+	<div id="copyright">Copyright &copy; 2008 FlowGram</div>
+</div>
+
+				<div class="clearer"></div>
+			</div>
+		</div>
+		<div id="wrapper_bottom"></div>
+	</div>	
+
+</body>
+</html>

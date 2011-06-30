@@ -1,0 +1,26 @@
+/* CSS Document */
+body {
+	padding: 0;
+	margin: 0;
+}
+
+#cs_flashBody
+{
+	background-color: #f5f5f5;
+	font: .8em/1.3em verdana,arial,helvetica,sans-serif;
+	text-align: center;
+}
+
+#cs_noexpressUpdate
+{
+	margin: 0 auto;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	color: #003300;
+	text-align: left;
+	background-image: url(firefoxnoaudio_nofp_bg.gif);
+	background-repeat: no-repeat;
+	width: 210px; 
+	height: 200px;	
+	padding: 40px;
+}

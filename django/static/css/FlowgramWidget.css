@@ -1,0 +1,60 @@
+/**
+ * Copyright Flowgram Inc. 2007, all rights reserved.
+ */
+
+.fg_FlowgramWidget {
+    background-color: #F8F8F8;
+    border: 1px solid black;
+    overflow: hidden;
+    padding: 4px;
+    position: relative;
+}
+
+.fg_FlowgramWidget-contents {
+    background-color: white;
+    border: 1px solid gray;
+    overflow: hidden;
+    position: absolute;
+}
+
+.fg_FlowgramWidget-large {
+    height: 185px;
+    width: 250px;
+}
+
+.fg_FlowgramWidget-large .fg_FlowgramWidget-contents {
+    width: 248px;
+}
+
+.fg_FlowgramWidget-play {
+    bottom: 0px;
+    left: 0px;
+    padding: 4px;
+    position: absolute;
+}
+
+.fg_FlowgramWidget-small {
+    height: 118px;
+    width: 190px;
+}
+
+.fg_FlowgramWidget-small .fg_FlowgramWidget-contents {
+    width: 188px;
+}
+
+.fg_FlowgramWidget-summary {
+    bottom: 0px;
+    padding: 4px;
+    position: absolute;
+    right: 0px;
+}
+
+.fg_FlowgramWidget-title {
+    position: absolute;
+}
+
+.fg_FlowgramWidget-titleContainer {
+    left: 0;
+    position: absolute;
+    overflow: hidden;
+}

@@ -1,0 +1,17 @@
+/* GLOBAL */
+div#wrapper_nav_sub[id] {
+	background: url(/media/images/nav/bg_nav_global_bottom.gif) bottom repeat-x;
+}
+
+
+/* PAGE SPECIFIC */
+
+/* Bookmarklet/Toolbar install page */
+div#download_info {
+	padding: 0px;
+}
+
+div#more_details div#more_details_img img {
+	width: 200px;
+	height: 106px;
+}

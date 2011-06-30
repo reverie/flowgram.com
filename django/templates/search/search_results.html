@@ -1,0 +1,65 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Search Results
+{% endblock %}
+
+{% block pageheader %}
+	Search Results
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+		<div id="search_description" class="system_message">
+    		<p>
+				{% if q %}
+			        You searched for <strong>"{{q}}"</strong>
+			    {% else %}
+			        Showing Newest Flowgrams
+			    {% endif %}
+			</p>
+		</div>	
+
+		{% if by_username %}
+			<p class="system_message"><strong>Users found</strong></p>
+			<p><a href="{% url core.views.show_user_by_name q %}">Click here to view <strong>{{q}}</strong>'s profile</a></p>
+		{% endif %}
+		
+		{% if object_list %}
+	        {% with object_list as flowgram_list %}
+	            {% include "includes/modules/flowgram/fg_modules.html" %}
+	        {% endwith %}
+
+		{% else %}
+			<p class="system_message"><strong>No Flowgrams found.</strong></p>
+			
+		{% endif %}
+		
+		{% load digg_paginator %}
+		{% digg_paginator %}
+
+	</div>
+
+	<div id="content_right">
+        {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+	</div>
+	
+{% endblock content %}
+
+{% block js_init %}
+	{% if object_list %}
+	{% for fg in object_list %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+	{% endfor %}
+	{% endif %}
+	
+	dfc = new DisplayFiltersController();
+{% endblock %}
+
+

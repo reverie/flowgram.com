@@ -1,0 +1,12 @@
+body.cms {
+	font-size: 16px;
+}
+
+div#wrapper_header_main {
+	height: 10px;
+	margin-bottom: 5px;
+}
+
+div#wrapper_header_sub {
+	height: 10px;
+}

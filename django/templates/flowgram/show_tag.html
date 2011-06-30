@@ -1,0 +1,61 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Browse - Tags - "{{name|escape}}
+{% endblock %}
+
+{% block pageheader %}
+	Tags
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_browse.incl" %}
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+
+	<div id="search_description">
+   		<p>Flowgrams tagged with "<strong>{{ name|escape }}</strong>"</p>
+	</div>	
+
+
+	{% if fgs %}
+			
+		{% with fgs as flowgram_list %}
+            {% include "includes/modules/flowgram/fg_modules.html" %}
+        {% endwith %}
+
+    {% else %}
+
+        	<p><strong>No results found.</strong></p>	
+
+    {% endif %}
+
+</div>
+
+<div id="content_right">
+	{% include "includes/modules/other_content/invite_module.incl" %}
+    {% with "Most Discussed Flowgrams" as sidebar_fgs_title %}
+        {% with discussed as mostviewed %}
+            {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+        {% endwith %}
+    {% endwith %}
+	{% include "includes/modules/flowgram/sidebar_categories_best_of.incl" %}
+    
+</div>
+{% endblock %}
+
+{% block js_init %}
+	{% if fgs %}
+	{% for fg in fgs %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+	{% endfor %}
+	{% endif %}
+	
+	dfc = new DisplayFiltersController();
+{% endblock %}

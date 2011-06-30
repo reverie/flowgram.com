@@ -1,0 +1,33 @@
+<div id="newsfeed_container">
+	<h2 class="hdr_bar">
+		<div id="newsfeed_title">{% if owner %}Your{% else %}{{ user }}'s{% endif %} Newsfeed</div>
+        {% if owner %}
+			{% if news_list %}<a href="/rss/pri/{{ user.get_profile.rss_key }}" title="Your Newsfeed RSS" target="blank"><img src="{{ URL_BASE }}media/images/feedIcon14by14.png" title="Your Newsfeed RSS"></a>{% endif %}
+		{% else %}
+			{% if news_list %}<a href="/rss/{{ user }}" title="{{ user }}'s Newsfeed RSS" target="blank"><img src="{{ URL_BASE }}media/images/feedIcon14by14.png" title="{{ user }}'s Newsfeed RSS"></a>{% endif %}
+		{% endif %}
+        <div class="clearer"></div>
+	</h2>
+	<ul>
+		{% if news_list %}
+			{{ news_list|safe }}
+		{% else %}
+		    <li>There is nothing in {% if owner %}your{% else %}{{ user }}'s{% endif %} newsfeed yet.<br/><br/>As {% if owner %}you{% else %}{{ user }}{% endif %} start to do things around Flowgram, activity notifications will appear here, to keep you up to date with the latest.  You can read more about newsfeeds and subscriptions here:
+				<ul>
+					<li><a href="/help/36">About the newsfeed</a></li>
+					<li><a href="/help/37">About the subscribe button</a></li>
+				</ul>
+			</li>
+		{% endif %}		
+	</ul>
+	{% if news_list %}
+		{% if not fullFeed %}
+			<div class="seemore">
+				<a href="{{ URL_BASE }}{{ user }}/newsfeed/">See {% if owner %}your{% else %}{{ user }}'s{% endif %} full newsfeed &raquo;</a>
+				{% if owner %}
+					<br/><br/><a href="/subscriptions/">Modify your subscriptions and notifications settings &raquo;</a>
+				{% endif %}
+			</div>
+		{% endif %}
+	{% endif %}
+</div>

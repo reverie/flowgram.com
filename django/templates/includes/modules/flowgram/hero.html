@@ -1,0 +1,60 @@
+{% load filters %}
+{% load tags %}
+
+<div class="hero">
+    <div class="module">
+        
+        <div class="fg_player">
+            <div class="wrapper_widget">
+            	<div id="alt_{{ hero.id }}"></div>
+            </div>
+        </div>
+        
+        <div class="fg_info">
+            
+            <div class="fg_owner_info">
+                <img src="{{ hero.owner.get_profile.avatar_32 }}" class="avatar" />
+                <div class="info">
+                    By {{ hero.owner.get_profile.link|safe }}<br/>
+                    {{ hero.views }} views<br/>
+					{% if fg_timestamp %}
+						{{ hero.date_for_display|date }}<br/>
+					{% endif %}
+                    <div class="fg_rating fg_rating-{{ hero.id }}"></div>
+                  <!--  <div id="heart" class="fg_heart fg_heart-{{ fg.id }}"></div> -->
+                </div>
+                <div class="clearer"></div>
+            </div>
+            
+            {% if send_to_details %}
+            	<h2 class="title"><a href="{{ hero.url }}">{{ hero.title|escape|truncate:44 }}</a></h2>	
+			{% else %}
+				<h2 class="title"><a href="{% ifequal hero.owner user %}{{ hero.edit_url }}{% else %}{{ hero.flex_url }}{% endifequal %}" target="_blank">{{ hero.title|escape|truncate:44 }}</a></h2>	
+            {% endif %}
+            <div class="description">
+                {% ifnotequal hero.description ''  %}
+                    {{ hero.description|escape }}<br/>
+                {% endifnotequal %}
+                {% if not send_to_details %}
+                	<a href="{{ hero.url }}">Details &raquo;</a>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="clearer"></div>
+        
+        <div class="tags">
+                <ul>
+                    {% if hero.tags %}
+                        {% for tag in hero.tags|slice:"5" %}
+                            {% ifchanged %}
+                                <li><a href="/tags/{{ tag.name|urlencode }}/">{{ tag.name|escape }}</a></li>
+                            {% endifchanged %}
+                        {% endfor %}
+                    {% endif %}
+                    <div class="clearer"></div>
+                </ul>
+        </div>
+        
+    </div>
+</div>

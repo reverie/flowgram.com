@@ -1,0 +1,53 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Make a Flowgram
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/make_a_flowgram.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav_sub_make.incl" %}
+{% endblock %}
+
+{% block content %}
+	<div id="wrapper_page_header">
+		<h2 class="sifr_dark">Manual Install</h2>
+	</div>
+
+	<div id="make_a_flowgram">
+		<div id="download_info">
+			<h3 id="short_instructions">Drag buttons 1 and 2 to your Bookmarks Toolbar.</h3>
+			
+			<div id="make_buttons">
+				<div id="wrapper_make_button_1">
+					<a href="javascript:var w=window;function ls(su){var se=document.createElement('SCRIPT');se.type='text/javascript';se.src=su;se.id='fg_bookmarklet';document.getElementsByTagName('body')[0].appendChild(se);}w.FGB=1;w.FG_SERVER='{{ domain_name }}';var f=function(){if(w.FGL){alert('FlowGram loading - please wait');}ls('http://'+w.FG_SERVER+'/media/js/bookmarklet/Bookmarklet.js?v='+Math.floor(Math.random()*65535));w.FGL=1;};f();" onclick="var dialog = new DialogController('/media/dialogs/clicked_install.html', '', 'Need help?'); return false;"><img src="/media/images/makebutton1.png" id="make_button_1" alt="FG Authoring Tool" /></a>
+					<h4>Flowgram Authoring Tool</h4>
+					<p>Use the Flowgram Authoring Tool to load the authoring toolbar.  You can then add pages, audio, highlights, share and more.</p>
+				</div>
+				<div><br/><br/>then</div>
+				<div id="wrapper_make_button_2">
+					<a href="javascript:var w=window;function ls(su){var se=document.createElement('SCRIPT');se.type='text/javascript';se.src=su;se.id='fg_bookmarklet';document.getElementsByTagName('body')[0].appendChild(se);}w.FGB=1;w.FG_SERVER='{{ domain_name }}';var f=function(){if(w.FGLQA){alert('Page already added');}else{ls('http://'+w.FG_SERVER+'/media/js/bookmarklet/BookmarkletAdd.js?v='+Math.floor(Math.random()*65535));w.FGLQA=1;}};f();" onclick="var dialog = new DialogController('/media/dialogs/clicked_install.html', '', 'Need help?'); return false;"><img src="/media/images/makebutton2.png" id="make_button_2" alt="FG Quick Add" /></a>
+					<h4>Flowgram Quick Add Tool</h4>
+					<p>Use the Flowgram Quick Add Tool when you are on a page that you would like to add to your Flowgram without loading the Authoring Tool.</p>
+				</div>
+				<div class="clearer"></div>
+			</div>
+		</div>
+		
+		<div id="more_details">
+			<div id="more_details_img"></div>
+			<div id="more_details_instructions"></div>
+			<div class="clearer"></div>
+		</div>
+		
+		<div class="clearer"></div>
+	</div>
+	
+{% endblock content %}
+
+{% block js_init %}
+	var ic = new InstallController('manual_install');
+{% endblock %}

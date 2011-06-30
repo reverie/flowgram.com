@@ -1,0 +1,203 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Browse - People - {{ u }}
+
+{% endblock %}
+
+{% block pageheader %}
+	People
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_browse_people.incl" %}
+{% endblock %}
+
+{% block content %}
+<div id="content_profile_wide">
+	<div class="hero profile wide">
+		<div class="module">
+			<div class="avatar">
+                <img src="{{ profile.avatar_200 }}" height="200" width="200" id="profile_avatar" />
+				{% if subs_active %}
+					{% if request.user.is_authenticated %}
+						{% if is_subscribed %}
+							<div class="subscribe_button"><a href="/unsubscribe/{{ u }}" title="Unsubscribe from {{ u|capfirst }}" class="btn_subs"><img src="/media/images/btn_unsubscribe.png" alt="Unsubscribe" border="0" /></a></div>
+						{% else %}
+							<div class="subscribe_button"><a href="/subscribe/{{ u }}" title="Subscribe to {{ u|capfirst }}" class="btn_subs"><img src="/media/images/btn_subscribe.png" alt="Subscribe" border="0" /></a></div>
+						{% endif %}
+					{% else %}
+						<div class="subscribe_button"><a href="/subscribe/{{ u }}" title="Subscribe to {{ u|capfirst }}" class="btn_subs"><img src="/media/images/btn_subscribe.png" alt="Subscribe" border="0" /></a></div>
+					{% endif %}
+				{% endif %}
+			</div>
+			
+			<div class="user_info">
+				<div class="badges">
+					{% ifnotequal badgeTeamFG '' %}
+						<a title="Member of Flowgram Product Team"><img src="/media/images/badges/badgeTeamFG.gif" alt="" border="0" /></a>
+					{% endifnotequal %}
+					{% ifnotequal badgeViews '' %}
+						{% ifequal badgeViews '100'  %}
+							<a title="My Flowgrams have 100+ views!"><img src="/media/images/badges/badgeViews100.gif" alt="My Flowgrams have 100+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '500'  %}
+							<a title="My Flowgrams have 500+ views!"><img src="/media/images/badges/badgeViews500.gif" alt="My Flowgrams have 500+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '1000'  %}
+							<a title="My Flowgrams have 1000+ views!"><img src="/media/images/badges/badgeViews1k.gif" alt="My Flowgrams have 1000+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '5000'  %}
+							<a title="My Flowgrams have 5000+ views!"><img src="/media/images/badges/badgeViews5k.gif" alt="My Flowgrams have 5000+ views!" border="0" /></a>
+						{% endifequal %}
+						{% ifequal badgeViews '10000'  %}
+							<a title="My Flowgrams have 10000+ views!"><img src="/media/images/badges/badgeViews10k.gif" alt="My Flowgrams have 10000+ views!" border="0" /></a>
+						{% endifequal %}
+					{% endifnotequal %}
+				</div>
+				
+				<div id="wrapper_info_stats">
+					<div id="wrapper_info">
+						<h2>{{ u }}</h2>
+						<div class="info">
+							<p>Member since {{ u.date_joined|date }} 
+							{% if profile.gender %}
+								 &nbsp;|&nbsp;{{ profile.get_gender_display }}
+							{% endif %}
+							</p>
+						</div>
+						<div class="description">
+							{% if profile.description %}
+								{{ profile.description|escape }}
+							{% else %}
+								{{ u }} is a person of few words.  So stoic.  {{ u }} requires no personal description, for {{ u }}'s Flowgrams speak for themselves.
+							{% endif %}
+						</div>
+						<div class="info">
+							{% if profile.homepage %}
+								<p><a href="{{ profile.homepage }}" target="_blank">{{ profile.homepage|slice:"7:" }}</a></p>
+							{% endif %}
+						</div>
+					</div>
+				
+					<div class="stats">
+						<table id="userStats" border="0" cellspacing="0" cellpadding="0">
+							<tr>
+								<td class="statData">{{ public_fgs_count }}</td>
+								<td class="statLabel">Public Flowgrams</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ private_fgs_count }}</td>
+								<td class="statLabel">Private Flowgrams</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ total_views }}</td>
+								<td class="statLabel">Flowgram Views</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ profile_views }}</td>
+								<td class="statLabel">Profile Views</td>
+							</tr>
+							<tr>
+								<td class="statData">{{ total_favs }}</td>
+								<td class="statLabel">{{ u }} Flowgrams Favorited</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="clearer"></div>
+				</div>
+				
+				
+			</div>
+			
+			<div class="clearer"></div>
+		</div>
+	</div>
+	
+</div>
+
+<div id="content_main">
+	
+	{% if fgs %}
+		<div class="grid ajax">
+			<h2 class="hdr_bar">Browse {{ u }}'s Flowgrams</h2>
+			<div id="wrapper_nav_ajax_browse">
+				<ul id="nav_ajax_browse">
+					<li id="nav_ajax_browse_user_most_viewed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('user_most_viewed');">Most Popular</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_user_title"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('user_title');">Title</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_user_newest" class="selected"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('user_newest');">Newest</a></li>
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_user_most_discussed"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('user_most_discussed');">Most Discussed</a></li>		
+					<li class="seperator">|</li>
+					<li id="nav_ajax_browse_user_top_rated"><a href="javascript:void(0);" onclick="abc.handleViewSwitch('user_top_rated');">Top Rated</a></li>
+				</ul>
+				<div class="clearer"></div>
+			</div>
+			<div id="wrapper_fg_browse_content">
+				<div id="fg_browse_content_loading" style="display: none;"><img src="/media/images/loading_ajax_browse.gif" border="0" alt="Loading..."/></div>
+				<div id="fg_browse_content">
+				    {% with fgs as fg_data_set %}
+				        {% include "includes/modules/flowgram/fg_modules_ajax.incl" %}
+				    {% endwith %}
+				</div>
+			</div>
+		</div>
+		<p><a class="browse_more_link" id="fg_browse_content_more_link" href="/{{ u }}/viewyourflowgramsthumb/"><strong>More Flowgrams by {{ u }} &raquo;</strong></a></p>
+		
+	{% else %}
+		<h2 class="hdr_bar">Browse {{ u }}'s Flowgrams</h2>
+		<div class="no_flowgrams_text">
+			{{ u }} hasn't created any Flowgrams yet.<br/>Probably too busy watching other people's Flowgrams.
+		</div>
+		
+	{% endif %}
+	
+	{% if fav_fgs %}
+		<div id="wrapper_favorites_ajax" class="grid ajax">
+			<h2 class="hdr_bar">{{ u }}'s Favorites</h2>
+			
+		    {% with fav_fgs as fg_data_set %}
+		        {% include "includes/modules/flowgram/fg_modules_ajax.incl" %}
+		    {% endwith %}
+		</div>
+		<p><a class="browse_more_link" href="/{{ u }}/favorites/"><strong>See all of {{ u }}'s favorites &raquo;</strong></a></p>
+		
+	{% endif %}
+	
+	{% if subs_active %}
+		{% if news_list %}
+			{{ newsfeed_display }}
+		{% endif %}
+	{% endif %}
+	
+</div>
+
+<div id="content_right">
+	{# include "includes/promos/make_a_flowgram.incl" #}
+	{% include "includes/modules/other_content/invite_module.incl" %}
+    {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+	{% include "includes/promos/tutorials.incl" %}
+    {% include "includes/modules/other_content/blog_module.incl" %}
+</div>
+
+{% endblock %}
+
+{% block js_init %}
+	{% if fgs %}
+		var abc = new AjaxBrowseController('{{ u }}');
+	{% endif %}
+	
+	{% comment %}
+	{% for fg in fgs %}
+		{% star-rating fg user False %}
+		{% favorite-heart fg user True %}
+	{% endfor %}
+	{% endcomment %}
+{% endblock %}
+

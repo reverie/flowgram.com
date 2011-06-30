@@ -1,0 +1,112 @@
+{% load filters %}
+{% load tags %}
+
+
+{% if not display_filters_suppress %}
+	{% include "includes/modules/flowgram/display_filters.html" %}
+{% endif %}
+
+	
+{% ifequal display_mode 'list' %}
+    <div class="list results">
+{% else %}
+    <div class="grid results">
+{% endifequal %}
+
+{% for fg in flowgram_list %}
+
+	<div class="module {% cycle odd,even %}{% if forloop.last %} last{% endif %}{% if not fg.public %} unpublished{% endif %}">
+		
+		<div class="fg_player">
+			<div id="alt_{{ fg.id }}">
+				{% if send_to_details %}
+					<a href="{{ fg.url }}"><img src="{{ fg.thumb_url }}" width="140" height="100" border="0" /></a>
+				{% else %}
+					<a href="{% ifequal fg.owner user %}{{ fg.edit_url }}{% else %}{{ fg.flex_url }}{% endifequal %}" target="_blank"><img src="{{ fg.thumb_url }}" width="140" height="100" border="0" /></a>
+				{% endif %}
+			</div>
+			
+			{% ifequal fg.owner user %}
+				<div class="wrapper_privacy">
+					{% if not fg.public %}
+						Private
+					{% endif %}
+				</div>
+			{% endifequal %}
+			{% if user.is_staff %}
+				{% if displayAdminTools %}
+					<div id="adminTools">
+						<form id="formDisplayInNewest_fgid_{{ fg.id }}" action="" method="post" accept-charset="utf-8" onsumbit="return false;">
+							<input {% ifequal fg.display_in_newest 1 %}checked{% endifequal %} type="checkbox" name="displayInNewest_fgid_{{ fg.id }}" id="displayInNewest_fgid_{{ fg.id }}" onchange="atc.handleAdminNewestAjaxSubmit('{{ fg.id }}');"> Display in Newest
+						</form>
+					</div>
+				{% endif %}
+			{% endif %}
+			
+			<div class="clearer"></div>
+		</div>
+		
+		<div class="fg_info">
+			
+			<div class="fg_owner_info">
+				<img src="{{ fg.owner.get_profile.avatar_32 }}" class="avatar" />
+				<div class="info">
+					{% ifnotequal pageowner 'True' %}
+						By {{ fg.owner.get_profile.link|safe }}<br/>
+					{% endifnotequal %}
+					{{ fg.views }} views<br/>
+					{% ifequal pageowner 'True' %}
+						{{ fg.date_for_display|date }}
+					{% endifequal %}
+					{% if fg_timestamp %}
+						{{ fg.date_for_display|date }}
+					{% endif %}
+					<div class="wrapper_heart_rating">
+						<div id="heart" class="fg_heart fg_heart-{{ fg.id }}"></div>
+						<div class="fg_rating fg_rating-{{ fg.id }}"></div>
+						<div class="clearer"></div>
+					</div>
+				</div>
+				<div class="clearer"></div>
+			</div>
+			
+			{% if send_to_details %}
+				<h2 class="title"><a href="{{ fg.url }}" title="{{ fg.title|escape }}">{{ fg.title|escape|truncate:27 }}</a></h2>	
+			{% else %}
+				<h2 class="title"><a href="{% ifequal fg.owner user %}{{ fg.edit_url }}{% else %}{{ fg.flex_url }}{% endifequal %}" target="_blank" title="{{ fg.title|escape }}">{{ fg.title|escape|truncate:27 }}</a></h2>	
+			{% endif %}
+			
+			<div class="description">
+				{% ifnotequal fg.description ''  %}
+					<span title="{{ fg.description|escape }}">
+					{{ fg.description|escape|truncate:48 }}</span><br/>
+				{% endifnotequal %}
+				{% if not send_to_details %}
+					<a href="{{ fg.url }}" class="details_link">Details &raquo;</a>
+				{% endif %}
+			</div>
+			<div class="clearer"></div>
+		</div>
+		
+		<div class="clearer"></div>
+		
+		<div class="tags">
+				<ul>
+					{% if fg.tags %}
+						{% for tag in fg.tags|slice:"5" %}
+							{% ifchanged %}
+								<li><a href="/tags/{{ tag.name|urlencode }}/">{{ tag.name|escape }}</a></li>
+							{% endifchanged %}
+						{% endfor %}
+					{% endif %}
+					<div class="clearer"></div>
+				</ul>
+		</div>
+		
+	</div>
+	
+	{% if forloop.last %}
+		<div class="clearer"></div>
+	{% endif %}
+{% endfor %}
+</div>

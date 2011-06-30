@@ -1,0 +1,33 @@
+<!-- Start Google Analytics tag -->
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+<script type="text/javascript">
+    var pageTracker = _gat._getTracker("${google_analytic_account_number}");
+    pageTracker._initData();
+    pageTracker._addIgnoredRef("forums.flowgram.com");
+    pageTracker._addIgnoredRef("blog.flowgram.com");
+    pageTracker._addIgnoredRef("static.flowgram.com");
+    pageTracker._addIgnoredRef("svn.flowgram.com");
+    pageTracker._addIgnoredRef("dev.flowgram.com");
+    pageTracker._setAllowAnchor(true);
+    pageTracker._trackPageview();
+</script>
+
+<!-- End Google Analytics tag -->
+
+<!-- Start Quantcast tag -->
+<script type="text/javascript">
+_qoptions={
+qacct:"p-47QAawiSHwOIQ"
+};
+</script>
+
+<script type="text/javascript" src="http://edge.quantserve.com/quant.js"></script>
+<noscript>
+<a href="http://www.quantcast.com/p-47QAawiSHwOIQ" target="_blank"><img src="http://pixel.quantserve.com/pixel/p-47QAawiSHwOIQ.gif" style="display: none;" border="0" height="1" width="1" alt="Quantcast"/></a>
+</noscript>
+<!-- End Quantcast tag -->

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0"><object pk="1" model="faq.category"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">Making Flowgrams</field><field type="DateTimeField" name="created_at">2008-02-14 10:46:38</field></object><object pk="2" model="faq.category"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">Playing Flowgrams</field><field type="DateTimeField" name="created_at">2008-02-14 10:46:52</field></object><object pk="3" model="faq.category"><field type="FloatField" name="position">2.0</field><field type="CharField" name="title">Sharing</field><field type="DateTimeField" name="created_at">2008-02-14 10:47:04</field></object><object pk="4" model="faq.category"><field type="FloatField" name="position">3.0</field><field type="CharField" name="title">Managing My Flowgrams</field><field type="DateTimeField" name="created_at">2008-02-14 10:47:17</field></object><object pk="5" model="faq.category"><field type="FloatField" name="position">4.0</field><field type="CharField" name="title">Miscellaneous</field><field type="DateTimeField" name="created_at">2008-02-14 10:47:35</field></object><object pk="1" model="faq.question"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">How do I make a Flowgram?</field><field type="TextField" name="answer">&lt;p&gt;The easiest way to make a Flowgram is to go to the Create page (&lt;a href="http://beta.flowgram.com/create"&gt;beta.flowgram.com/create&lt;/a&gt;). Add the URLs of the pages you want to include in the Flowgram and watch them appear as pages in the Flowgram Maker at the top of the page. Click on one of the pages and follow the tips that appear. &lt;/p&gt;
+
+&lt;p&gt; Another great way to make a Flowgram is to install the two Flowgram Bookmarklets. This integrates the Flowgram making process with your browsing! To activate the Flowgram maker on any webpage just click the Flowgram Maker bookmarklet. To add a page to a Flowgram just click the Quick Add Page Bookmarklet. 
+
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:51:04</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object><object pk="4" model="faq.question"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">A page is garbled or not functioning properly when I play it back.</field><field type="TextField" name="answer">&lt;P&gt;The Flowgram team has been working hard to create compatibility with as many websites as possible.  Unfortunately, there are still some pages that still may not work with Flowgram.&lt;/P&gt;
+
+&lt;P&gt;Please send us the webpage URL on our &lt;a href="/about_us/contact_us/email/"&gt;feedback form&lt;/A&gt; and we'll do our best to get your page to work.&lt;/P&gt;
+
+&lt;P&gt;&lt;B&gt;Please Note:&lt;/B&gt; Many pages that require login for access will not work!&lt;/P&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:52:24</field><field to="faq.category" name="category" rel="ManyToOneRel">2</field></object><object pk="6" model="faq.question"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">How do I share my Flowgram with other people?</field><field type="TextField" name="answer">&lt;P&gt;Sharing a Flowgram is a snap!&lt;/P&gt;
+
+&lt;P&gt; &lt;B&gt;Option 1: From Flowgram.com&lt;/B&gt; &lt;BR&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Go to the &lt;a href="/you/"&gt;Your Flowgrams Page&lt;/a&gt;.  Make sure you are logged in! &lt;/LI&gt;
+&lt;LI&gt; Click on "Details" for the Flowgram you would like to share. &lt;/LI&gt;
+&lt;LI&gt; Click on the "Share" link right above the title of the Flowgam. &lt;/LI&gt;
+&lt;/UL&gt;
+
+&lt;P&gt; &lt;B&gt;Option 2: From the Flowgram Maker&lt;/B&gt; &lt;BR&gt;
+&lt;UL&gt;
+&lt;LI&gt; Activate teh Flowgram Maker by either going to the Create page or by clicking on the Flowgram Maker Bookmarklet  &lt;/LI&gt;
+&lt;LI&gt; Click on "My Flowgrams" button, and choose the Flowgram you would like to share.  &lt;/LI&gt;
+&lt;LI&gt; Click on the "Share" link for the chosen Flowgram.
+&lt;/UL&gt;
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:53:08</field><field to="faq.category" name="category" rel="ManyToOneRel">3</field></object><object pk="9" model="faq.question"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">How do I delete one of my Flowgrams?</field><field type="TextField" name="answer">&lt;P&gt;Deleting a Flowgram can be done in 2 ways.&lt;/P&gt;
+
+&lt;P&gt; &lt;B&gt;Option 1: From Flowgram.com&lt;/B&gt; &lt;BR&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Go to the &lt;a href="/you/"&gt;Your Flowgrams Page&lt;/a&gt;.  Make sure you are logged in! 
+
+&lt;/LI&gt;
+&lt;LI&gt; Click on "Details" for the Flowgram you would like to share. &lt;/LI&gt;
+&lt;LI&gt; Click on the "Delete" link right above the title of the Flowgam. &lt;/LI&gt;
+&lt;/UL&gt;
+
+&lt;P&gt; &lt;B&gt;Option 2: From the Flowgram Maker&lt;/B&gt; &lt;BR&gt;
+&lt;UL&gt;
+&lt;LI&gt; Activate the Flowgram Maker by either going to the Create page or by clicking on the Flowgram Maker link in your browser toolbar.  &lt;/LI&gt;
+&lt;LI&gt; Click on "My Flowgrams" button, and choose the Flowgram you would like to delete. 
+&lt;LI&gt; Click on the "Delete" link for the chosen Flowgram.
+
+&lt;/LI&gt;
+&lt;/UL&gt;
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:54:38</field><field to="faq.category" name="category" rel="ManyToOneRel">4</field></object><object pk="11" model="faq.question"><field type="FloatField" name="position">0.0</field><field type="CharField" name="title">What is a Flowgram?</field><field type="TextField" name="answer">&lt;P&gt;FlowGrams are a kind of Show-and-Tell.&lt;/P&gt;
+
+&lt;P&gt;FlowGrams allow you to combine information from multiple webpages and to share this information with anyone by literally taking them through it!&lt;/P&gt;
+
+&lt;P&gt;FlowGrams Pages are recorded with Voice, Highlights and Text Notes.  Once a FlowGram is made anyone can play it by just clicking on a link! &lt;/P&gt;
+
+&lt;P&gt;&lt;b&gt;To see more about Flowgrams, &lt;/B&gt; click &lt;a href="http://beta.flowgram.com/fg/130/play/"&gt;here&lt;/a&gt;.&lt;/P&gt;
+
+
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+&lt;p&gt; &amp;nbsp; &lt;/P&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:55:09</field><field to="faq.category" name="category" rel="ManyToOneRel">5</field></object><object pk="2" model="faq.question"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">How do I add pages to my Flowgram?</field><field type="TextField" name="answer">&lt;p&gt;There are two easy ways to add pages to your Flowgram.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt; From the Create Page: Select the Flowgram you want to add to by clicking the My Flowgrams button, and then paste the URL of the page in the box
+&lt;li&gt; While browsing: Install the Flowgram Boomkarlets, and click the Quick Add Page Bookmarklet when browser is pointing to the page you want to add. 
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:51:31</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object><object pk="5" model="faq.question"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">There are items in a page that aren't working.</field><field type="TextField" name="answer">&lt;P&gt;The Flowgram team has been working hard to create compatibility with as many websites as possible.  Unfortunately, there are still some pages that still may not work with Flowgram.&lt;/P&gt;
+
+&lt;P&gt;Please send us the webpage URL on our &lt;a href="/about_us/contact_us/email/"&gt;feedback form&lt;/A&gt; and we'll do our best to get your page to work.&lt;/P&gt;
+
+&lt;P&gt;&lt;B&gt;Please Note:&lt;/B&gt; Many pages that require login for access will not work!&lt;/P&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:52:47</field><field to="faq.category" name="category" rel="ManyToOneRel">2</field></object><object pk="7" model="faq.question"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">I'm having trouble sharing my Flowgram into Facebook?</field><field type="TextField" name="answer">&lt;P&gt;&lt;B&gt;Try posting the Flowgram link directly into Facebook:  &lt;/B&gt;&lt;/P&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Go to &lt;a href="http://www.facebook.com/posted.php"&gt;http://www.facebook.com/posted.php&lt;/a&gt;
+&lt;LI&gt; Login if needed
+&lt;LI&gt; In the right hand column, paste the Flowgram URL directly into Facebook.
+&lt;LI&gt; Viola!  (See below if you don't know how to find the Flowgram URL)
+
+&lt;/UL&gt;
+
+&lt;P&gt; &lt;B&gt;To find the Flowgram URL: &lt;/B&gt; &lt;/P&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Play the Flowgram that you would like to share
+&lt;LI&gt; Click on the "Share" Button at the top
+&lt;LI&gt; In the left column of the new frame, a link for the Flowgram will be displayed
+
+&lt;/UL&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:53:51</field><field to="faq.category" name="category" rel="ManyToOneRel">3</field></object><object pk="10" model="faq.question"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">How do I control who can see my Flowgrams?</field><field type="TextField" name="answer">&lt;P&gt; You can set your Flowgram to Public or Unlisted (Private): &lt;/P&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Go to the &lt;a href="/you/"&gt;Your Flowgrams Page&lt;/a&gt;.  Make sure you are logged in! 
+
+&lt;/LI&gt;
+&lt;LI&gt; Click on "Details" for the Flowgram you would like to share. &lt;/LI&gt;
+&lt;LI&gt; Under the slideshow of you Flowgram, choose Public or Unlisted. &lt;/LI&gt;
+
+&lt;UL&gt;
+
+&lt;LI&gt;&lt;B&gt;Public setting&lt;/B&gt; shares your Flowgram with the community and is listed publicly on Flowgram.com.  &lt;/LI&gt;
+
+&lt;LI&gt;&lt;B&gt;Unlisted setting &lt;/B&gt; keeps the Flowgram from being listed on Flowgram.com, and is accessible to only those people you share it with.  &lt;/LI&gt;
+&lt;/UL&gt;
+
+&lt;/UL&gt;
+
+&lt;P&gt;To share your Flowgram, click on the "Share" link on the same page.  If you chose "Unlisted" for your Flowgram, only the people you share with will be able to see it.   
+
+&lt;P&gt;If you are having problems sharing the Flowgram, see &lt;a href="/help/6/"&gt;Sharing Your Flowgram&lt;/a&gt; in Help.&lt;/P&gt;
+
+
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:54:55</field><field to="faq.category" name="category" rel="ManyToOneRel">4</field></object><object pk="12" model="faq.question"><field type="FloatField" name="position">1.0</field><field type="CharField" name="title">What does Flowgram cost?</field><field type="TextField" name="answer">&lt;P&gt; Flowgram is completely FREE to use! &lt;/P&gt;
+
+&lt;P&gt; The Flowgram Maker tools are free, we host all your Flowgrams for free, and it's free to join the Flowgram community. &lt;/P&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:55:31</field><field to="faq.category" name="category" rel="ManyToOneRel">5</field></object><object pk="3" model="faq.question"><field type="FloatField" name="position">2.0</field><field type="CharField" name="title">How do I add the Flowgram bookmarklets to my browser?</field><field type="TextField" name="answer">&lt;P&gt;To add the flowgram links to your browser, go to the &lt;a href="/create/bookmarklets"&gt;bookmarklets page.&lt;/A&gt; &lt;/P&gt;
+
+&lt;P&gt; &lt;B&gt;Option 1: Express Installer&lt;/B&gt; &lt;BR&gt;
+ Simply click on the Express button and the links will be installed.  (Firefox users 
+
+should look for express install on the right hand column of the page.)&lt;/P&gt;
+
+&lt;P&gt; &lt;B&gt;Option 2: Drag and Drop Links&lt;/B&gt; &lt;BR&gt; 
+Firefox users can simply click and drag the links to the top toolbar of their browser. 
+
+ IE users should click on the "Add the bookmarks yourself" link for instructions.&lt;/P&gt;
+
+&lt;P&gt;When finished installing, 2 bookmarks should be displayed on your browser's 
+
+toolbar, "Flowgram Maker" and "Quick Add Button."&lt;/P&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:51:49</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object><object pk="8" model="faq.question"><field type="FloatField" name="position">2.0</field><field type="CharField" name="title">I'm having trouble sharing my Flowgram into MySpace.</field><field type="TextField" name="answer">&lt;P&gt;&lt;B&gt;Try posting the Flowgram link directly into Myspace:  &lt;/B&gt;&lt;/P&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Login to your Myspace account.  Click on "Edit my Profile."
+&lt;LI&gt; Paste the embed code for the Flowgram in the section of your choice
+&lt;LI&gt; Viola!  (See below if you don't know how to find the Flowgram embed code)
+
+&lt;/UL&gt;
+
+&lt;P&gt; &lt;B&gt;To find the Flowgram embed code: &lt;/B&gt; &lt;/P&gt;
+&lt;UL&gt;
+
+&lt;LI&gt; Play the Flowgram that you would like to share
+&lt;LI&gt; Click on the "Share" Button at the top
+&lt;LI&gt; Click on the Myspace icon for sharing
+&lt;LI&gt; Copy the embed code appearing in the window below
+&lt;/UL&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:54:15</field><field to="faq.category" name="category" rel="ManyToOneRel">3</field></object><object pk="13" model="faq.question"><field type="FloatField" name="position">2.0</field><field type="CharField" name="title">Where can I report bugs?</field><field type="TextField" name="answer">&lt;P&gt;We greatly appreciate any feedback!  &lt;/P&gt;
+
+&lt;P&gt;You can contact us through &lt;a href="http://dev.flowgram.com/about_us/contact_us/"&gt;email or by chat&lt;/a&gt;.  &lt;/P&gt;
+
+&lt;P&gt; If you are already busy making or playing a Flowgram, just click on the Feedback button in the upper right corner.&lt;/P&gt;
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+
+
+
+</field><field type="DateTimeField" name="created_at">2008-02-14 10:55:44</field><field to="faq.category" name="category" rel="ManyToOneRel">5</field></object><object pk="14" model="faq.question"><field type="FloatField" name="position">3.0</field><field type="CharField" name="title">Where can I send suggestions for new features and improvements?</field><field type="TextField" name="answer">&lt;P&gt;We greatly appreciate any suggestions to improve Flowgram!  &lt;/P&gt;
+
+&lt;P&gt;You can contact us through &lt;a href="http://dev.flowgram.com/about_us/contact_us/"&gt;email or by chat&lt;/a&gt;.  When you're on the Flowgram website, just click on the Feedback link in the upper right corner. &lt;/P&gt;
+
+&lt;P&gt; If you are already busy making or playing a Flowgram, just click on the Feedback button in the upper right corner.&lt;/P&gt;
+
+
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;
+&lt;P&gt; &amp;nbsp; &lt;/P&gt;</field><field type="DateTimeField" name="created_at">2008-02-14 10:56:05</field><field to="faq.category" name="category" rel="ManyToOneRel">5</field></object><object pk="16" model="faq.question"><field type="FloatField" name="position">3.0</field><field type="CharField" name="title">How do I get the bookmarks toolbar to display on my browser?</field><field type="TextField" name="answer">&lt;P&gt;It's easy!  &lt;/P&gt;
+
+&lt;P&gt; &lt;B&gt;For Internet Explorer &lt;/B&gt;&lt;/P&gt;
+
+&lt;UL&gt;
+&lt;LI&gt;Choose from the browser menu:  View -&gt; Toolbars -&gt; Links 
+
+&lt;LI&gt;When "Links" is checked, your bookmarks should show up on the toolbar. 
+&lt;/UL&gt;
+
+&lt;!-- insert screenshot here --&gt;
+
+
+&lt;P&gt; &lt;B&gt;For Firefox&lt;/B&gt;&lt;/P&gt;
+
+&lt;UL&gt;
+&lt;LI&gt;Choose from the browser menu:  View -&gt; Toolbars -&gt; Bookmarks Toolbar
+
+&lt;LI&gt;When "Bookmarks Toolbar" is checked, your bookmarks should show up. 
+&lt;/UL&gt;
+
+&lt;!-- insert screenshot here --&gt;
+
+
+&lt;P&gt; &lt;B&gt;For Safari&lt;/B&gt;&lt;/P&gt;
+
+&lt;UL&gt;
+&lt;LI&gt;Choose from the browser menu:  View -&gt; Show Bookmarks Bar
+
+&lt;LI&gt;When "Show Bookmarks Bar" is checked, your bookmarks be right there on top of the browser. 
+&lt;/UL&gt;
+
+&lt;!-- insert screenshot here --&gt;
+
+</field><field type="DateTimeField" name="created_at">2008-03-31 17:25:13</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object><object pk="17" model="faq.question"><field type="FloatField" name="position">5.0</field><field type="CharField" name="title">I'm having trouble with my microphone.</field><field type="TextField" name="answer">&lt;strong&gt;First, make that sure your microphone works.&lt;/strong&gt; 
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;For PC users&lt;/strong&gt;, start up Sounder Recorder (Start--&gt; Accessories--&gt; Entertainment--&gt; Sound Recorder) and see if you can record your voice.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;For Mac users&lt;/strong&gt;, go to the Sound preference pane (System Preferences--&gt; Sound), select "Input", select your microphone from the dropdown, and make some sound.  You should see activity in the input level meter if your mic is working.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;strong&gt;Second make sure that you have Flash Player version 9 (or higher).&lt;/strong&gt;
+&lt;br/&gt;
+Going to &lt;a href="http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_15507" target="_blank"&gt;http://kb.adobe.com/selfservice/viewContent.do?externalId=tn_15507&lt;/a&gt; will tell you what version you have and how to upgrade (if necessary). 
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;strong&gt;Third, make sure that your Flash browser plugin settings are correct.&lt;/strong&gt;
+&lt;br/&gt;
+Follow these steps to check this:
+
+&lt;ol&gt;
+&lt;li&gt;Go to the "Create" page and wait for the Flowgram Maker to fully load. &lt;/li&gt;
+&lt;li&gt;Right-click anywhere inside the green Flowgram Maker toolbar and choose "Settings".&lt;/li&gt;
+&lt;li&gt;Once you're in the flash settings panel, there are four icon tabs that you can select at the bottom of it.  Click on the "microphone" tab which is the 2nd one from the right.  
+&lt;ul&gt;
+&lt;li&gt;There's a pulldown that allows you to select your microphone source.  Use this pulldown to make sure your microphone is selected.&lt;/li&gt;
+&lt;li&gt;There is also a slider you can use to set recording volume. You'll also notice there's also a level meter at the left to check what's going in, and you should see that bouncing up and down if everything is well.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;The image below shows what the Flash settings panel looks like.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="/media/images/help/micSettingsScreen.png" width="675" /&gt;&lt;/p&gt;
+</field><field type="DateTimeField" name="created_at">2008-04-11 13:30:05</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object><object pk="18" model="faq.question"><field type="FloatField" name="position">6.0</field><field type="CharField" name="title">I'm having trouble adding certain pages.</field><field type="TextField" name="answer">We are working on improving our basic Flowgram tools.
+&lt;br/&gt;&lt;br/&gt;
+We recommend using our &lt;a href="/create/bookmarklets/"&gt;&lt;strong&gt;enhanced bookmarklet tools&lt;/strong&gt;&lt;/a&gt;.  These tools give you an improved Flowgram authoring experience and can handle a wider variety of pages, including password-protected pages.
+&lt;br/&gt;&lt;br/&gt;
+Also, if you encounter a page which you are having trouble adding, please send us a message including the URL using the "Feedback" button in upper-right corner of the Flowgram Maker so we can work on it.
+&lt;br/&gt;&lt;br/&gt;
+&lt;img src="/media/images/help/feedbackButton.png" /&gt;</field><field type="DateTimeField" name="created_at">2008-04-25 11:04:25</field><field to="faq.category" name="category" rel="ManyToOneRel">1</field></object></django-objects>

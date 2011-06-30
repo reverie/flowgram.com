@@ -1,0 +1,3 @@
+<form method="get" id="search_form" action="/search/">
+	<input type="text" name="q" id="global_search_box_input" /><a href="javascript:void(0);" onclick="$('search_form').submit();" id="global_search_box_submit"></a><div class="clearer"></div>
+</form>

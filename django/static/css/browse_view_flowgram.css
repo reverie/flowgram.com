@@ -1,0 +1,24 @@
+/* Browse - Show Flowgram */
+
+div.wrapper_change_privacy {
+	width: 320px;
+	margin-bottom: 20px;
+}
+
+div.wrapper_change_privacy label {
+	font-weight: normal;
+	color: #333333;
+}
+
+div#wrapper_tags_form {
+	margin-top: 5px;
+}
+
+div#wrapper_fg_comment textarea {
+	width: 340px;
+	height: 120px;
+}
+
+div#wrapper_tags_form {
+	margin-top: 15px;
+}

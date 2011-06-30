@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+
+{% block pageheader %}
+Share on YouTube
+{% endblock %}
+
+{% block content %}
+
+
+<div class="generic_form">
+	<p>&nbsp;</p>
+	<form action="/export/youtube/{{ export_to_video_request_id }}/3/" id="youtube_form" method="post">
+	    <input type="hidden" name="token" value="{{ token }}" />
+	    
+		<p><label for="title">Title</label>
+	    <input type="text" name="title" value="{{ title }}" /></p>
+	    
+	    <p><label for="description">Description</label>
+	    <textarea name="description">{{ description }}</textarea></p>
+	    
+	    <p><label for="kyewords">Keywords</label>
+	    <textarea name="keywords">{{ keywords }}</textarea></p>
+	    
+	    <p><label for="category">Category</label>
+	    <select name="category">
+	        <option value="Film">Film &amp; Animation</option>
+	        <option value="Autos">Autos &amp; Vehicles</option>
+	        <option value="Music">Music</option>
+	        <option value="Animals">Pets &amp; Animals</option>
+	        <option value="Sports">Sports</option>
+	        <option value="Travel">Travel &amp; Events</option>
+	        <option value="Shortmov">Short Movies</option>
+	        <option value="Videoblog">Videoblogging</option>
+	        <option value="Games">Gaming</option>
+	        <option value="Comedy">Comedy</option>
+	        <option value="People">People &amp; Blogs</option>
+	        <option value="News">News &amp; Politics</option>
+	        <option value="Entertainment">Entertainment</option>
+	        <option value="Education">Education</option>
+	        <option value="Howto">Howto &amp; Style</option>
+	        <option value="Nonprofit">Nonprofits &amp; Activism</option>
+	        <option value="Tech">Science &amp; Technology</option>
+	    </select></p>
+	    
+	    <p><label for="private">Make this YouTube video private</label> <input type="checkbox" name="private" value="true" /></p>
+	    
+		<p>&nbsp;</p>
+	
+	    <p style="padding: 20px 0px 0px 30px;"><a href="javascript:void(0);" onclick="$('youtube_form').submit();" onclick="javascript"><img class="submit" src="/media/images/btn_finish_upload_youtube.png" border="0" /></a></p>
+	</form>
+</div>
+
+
+{% endblock %}

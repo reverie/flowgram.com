@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <style type="text/css">
+            body {
+                font-family: sans-serif;
+                font-size: 12px;
+            }
+
+            a {
+                color: #007B9A;
+                text-decoration: none;
+            }
+
+            h1 {
+                color: #007B9A;
+                font-size: 18px;
+				font-weight: bold;
+				padding: 0;
+				margin: 0;
+            }
+            
+            h2 {
+                color: #007B9A;
+                font-size: 16px;
+				padding: 0;
+                margin: 0;
+				font-weight: bold;
+            }
+
+            h3 {
+                color: #007B9A;
+                font-size: 12px;
+				padding: 0;
+                margin: 0;
+				font-weight: bold;
+            }
+
+			h4 {
+				margin: 0;
+				padding: 0;
+				font-weight: bold;
+			}
+            
+            img.avatar {
+                float: left;
+                margin-right: 4px;
+                vertical-align: middle;
+            }
+
+            .body {
+                width: 620px;
+            }
+
+            .flowgram {
+                padding: 0 0 20px 0;
+				margin: 0;
+            }
+            
+            .flowgram-contents {
+            }
+            
+            .thumbnail {
+                margin: 4px;
+				border: 0px;
+            }
+
+			.message {
+				padding: 0 0 20px 0;
+				margin: 0;
+			}
+			
+			.title {
+				padding: 0 0 10px 0;
+				margin: 0;
+			}
+
+			.description {
+				padding: 0 0 30px 0;
+			}
+			
+			.about {
+				padding: 0 0 20px 0;
+			}
+        </style>
+    </head>
+    <body>
+        <center><div class="body" align="left">
+			<p>
+				<b>Personal Message from {{ senderName }}</b>
+				<br/>
+					{% ifnotequal message '' %}
+						{{ message }}
+				
+					{% else %}
+						Hey,
+						<br/> 
+						Check this out.
+						<br/>
+						-{{ senderName }}
+					{% endifnotequal %}
+			</p>	
+			
+			<p>		
+				<font size="5"><b><a href="{{ url }}">{{ title }}, by {{ owner }}</a></b></font><br/>
+				<b><a href="{{ url }}">Click here to view this Flowgram.</a></b>
+            </p>
+            <div class="flowgram">
+                <div class="flowgram-contents">
+
+                    {% for thumbs in thumbs_list %}
+                    	<a href="{{ url }}"><img class="thumbnail" src="{{ thumbs.thumb_url }}" /></a>
+                    {% endfor %}
+
+                </div>
+            </div>
+            {% ifnotequal w.description '' %}
+			<p>		
+				<font size="2"><b>Description</b></font><br/>
+				{{ w.description }}
+			</p>
+            {% endifnotequal %}
+			<hr>
+            <p>		
+				<font size="2"><b>More About Flowgram</b></font><br/>
+				Flowgram gives you a powerful new way of enjoying web pages.  You won't need to install anything to watch a Flowgram, and of course it doesn't include any spyware. Just sit back and enjoy!
+			</p>
+			
+			<!--
+			<p>		
+				<font size="4"><b><a href="http://www.flowgram.com">Make your own Flowgram</a></b></font><br/>
+				It's free, quick and easy.
+			</p>
+			-->
+        </div></center>
+    </body>
+</html>

@@ -1,0 +1,119 @@
+{% extends "base/base.html" %}
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		input.submit {
+			width: 65px !important;
+			height: 19px;
+			margin-left: 130px !important;
+		}
+		
+		input#id_active {
+			margin-right: 200px;
+		}
+		
+		div#existing_tutorial {
+			padding: 10px;
+			background-color: #ffff99;
+			border: 1px solid #cccccc;
+			margin-top: 10px;
+		}
+		
+		table {
+			border-bottom: 1px solid #999999;
+			border-right: 1px solid #999999;
+			width: 100%;
+		}
+
+		table td,
+		table th
+		{
+			padding: 5px;
+			border-top: 1px solid #999999;
+			border-left: 1px solid #999999;
+			vertical-align: top;
+		}
+
+		table th {
+			background-color: #cccccc;
+			text-transform: uppercase;
+		}
+
+		table td {
+			background-color: #f5f5f5;
+		}
+	</style>
+{% endblock %}
+
+{% block pageheader %}
+	{% if not tutorial_id %}
+		Tutorials
+	{% else %}
+		Edit Tutorial
+	{% endif %}
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+
+	{% if not tutorial_id %}
+		<h2>Create New Tutorial</h2>
+
+		<div class="generic_form">
+			<form enctype="multipart/form-data" action="/admintutorials/" method="POST">
+				<input type="hidden" name="form_type" value="create">
+				{{ form.as_p }}
+				<p><input type="image" class="submit" src="/media/images/btn_submit.gif" /></p>
+			</form>
+			<div class="clearer"></div>
+		</div>
+		
+		<div class="divider_horiz"></div>
+		
+		<h2>Existing Tutorials</h2>
+		
+		{% if tutorials %}
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<th>Title</th>
+					<th>Position</th>
+					<th>Status</th>
+					<th>Video</th>
+					<th>Actions</th>
+				</tr>
+				{% for tutorial in tutorials %}
+					<tr>
+						<td><strong>{{ tutorial.title }}</strong></td>
+						<td>{{ tutorial.position }}</td>
+						<td>{% if tutorial.active %}Active{% else %}Inactive{% endif %}</td>
+						<td>{% if tutorial.video_path %}Has Video{% else %}No Video{% endif %}</td>
+						<td><a href="/admintutorials/edit/{{ tutorial.id }}/"><strong>Edit</strong></a> | <a href="javascript:void(0);" onclick="var dialog = new DialogController('/admintutorials/delete/{{ tutorial.id }}/');"><strong>Delete</strong></a></td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			<p><strong>No tutorials yet.</strong></p>
+		{% endif %}
+		
+	
+	{% else %}
+		<p><a href="/admintutorials/">&laquo; Back to Tutorials index</a>
+	
+		<h2>{{ tutorial.title }}</h2>
+		
+		<div class="generic_form">
+			<form enctype="multipart/form-data" method="POST" onsubmit="" action="/admintutorials/edit/{{ tutorial.id }}/">
+				<input type="hidden" name="form_type" value="edit">
+				{{form.as_p}}
+				<div class="clearer"></div>
+				<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</form>
+			{% ifnotequal video_path ''  %}
+				<div id="existing_tutorial"><strong>*</strong> This tutorial already has a video associated with it at:<br/><br/><strong>{{ video_path }}</strong><br/><br/>If you upload a new video, it will replace this one.</div>
+			{% endifnotequal %}
+		</div>
+		
+	{% endif %}
+	
+</div>
+{% endblock content %}

@@ -1,0 +1,32 @@
+<div id="dialog" style="display: none; width: 600px;">
+	<div id="dialog_body">
+		<div id="talkingEmail_addressImport">
+			<h2 class="first">Choose contacts from your Gmail address book:</h2>
+			<form>
+				<div>
+					<div class="float" style="margin-right: 5px;">
+						<label>Gmail Email Address:</label><br/>
+						<input type="text" id="txtGmailUserName" />
+					</div>
+					<div class="float" style="margin-right: 5px;">
+						<label>Gmail Password:</label><br/>
+						<input type="password" id="txtGmailPassword" />
+					</div>
+					<div class="float" style="margin-top: 13px;">
+						<a href="javascript:void(0);" onmouseout="fgImgSwap('btnLoadGmailAddresses', 'off');" onmouseover="fgImgSwap('btnLoadGmailAddresses', 'over');" onclick="LoadGmailAddressBook();" /><img src="/media/images/btn_load_gmail_addresses_off.png" id="btnLoadGmailAddresses" border="0" /></a>
+					</div>
+					<div class="float"><img src="/media/images/loading.gif" id="gmail_loading" border="0" /></div>
+					<div class="clearer"></div>
+				</div>
+				
+				<span id="gmail_errors" class="error"></span>
+				
+				<div id="divGmailAddresses" style="display: none;"></div>
+
+			</form>
+			<p><strong>The addresses you select will be added your talking email recipient list.  Click "Done" when you're finished.</strong></p>
+			<a href="javascript:void(0);" onclick="onGmailDone();" class="dialog_close"><img src="/media/images/btn_done.png" border="0" /></a>&nbsp;<a href="javascript:void(0);" class="dialog_close"><img src="/media/images/btn_cancel.gif" border="0" /></a>
+		</div>
+	</div>
+</div>
+

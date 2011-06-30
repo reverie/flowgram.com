@@ -1,0 +1,422 @@
+{% extends "base/base_simple.html" %}
+
+{% block title %}
+	Make a Flowgram
+{% endblock %}
+
+{% block js_head_init %}
+	var photoUploadInitiated = false;
+	var pptUploadInitiated = false;
+	var pptImportRequestID = 0;
+
+    function fileUploaderCallback() {
+		if (photoUploadInitiated == true) {
+			auc.onFileUploadComplete();
+		}
+	}
+	
+	function pptUploaderCallback() {
+		if(!pptUploadInitiated) {
+			return;
+		}
+		
+		var uploaderResponse = $('pptUploaderIFrame').contentDocument;
+		if (sniff_br_id == 'msie') { // Internet Explorer
+			uploaderResponse = $('pptUploaderIFrame').contentWindow.document;
+		}
+		
+		pptImportRequestID = uploaderResponse.getElementById('content').innerHTML;
+
+		setTimeout("checkPPTImportDone();", 1000);
+	}
+	
+	function checkPPTImportDone() {
+		var params = new Object();
+		params.ppt_import_request_id = pptImportRequestID;
+	
+		var url = "/powerpoint/check/";
+		
+		new Ajax.Request(url, {
+				asynchronous: false,
+				method: 'post',
+				evalJSON: true,
+				parameters: params,
+				
+				onSuccess: function(transport) {
+					var status_code = transport.responseJSON.body.status_code;
+					if(status_code == "0") {
+						setTimeout("checkPPTImportDone();", 1000);
+					} else if(status_code == "-1") {
+						$('loading_stripes_ppt').style.visibility = 'hidden';
+						Element.removeClassName($('status_ppt'), 'error'); 
+						Element.removeClassName($('status_ppt'), 'success');
+						Element.addClassName($('status_ppt'), 'error');
+						$('status_ppt').innerHTML = "PPT import failed.";
+						$('ppt_submit').disabled = false;
+					} else if(status_code == "1") {
+						window.parent.g_FlashConnection.flex.reloadCurrentFlowgram();
+						$('loading_stripes_ppt').style.visibility = 'hidden';
+						Element.removeClassName($('status_ppt'), 'error'); 
+						Element.removeClassName($('status_ppt'), 'success');
+						Element.addClassName($('status_ppt'), 'success');
+						$('status_ppt').innerHTML = "Successfully imported PPT.";
+						$('ppt_submit').disabled = false;
+					} else {
+						alert("Powerpoint import error - please email us @ feedback@flowgram.com");
+					}
+				}
+			}
+		); 
+	}
+	
+	function handlePPTSubmit() {
+		Element.removeClassName($('status_ppt'), 'error'); 
+		Element.removeClassName($('status_ppt'), 'success');
+		Element.addClassName($('status_ppt'), 'error');
+		$('status_ppt').innerHTML = "Your file is uploading.  Please wait.";
+		$('ppt_submit').disabled = true;
+		$('loading_stripes_ppt').style.visibility = 'visible'; 
+	}
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/create.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block bars %}
+	
+{% endblock %}
+
+{% block content %}
+    <div id="content_main">
+		<div id="add_urls_sidenav">
+			Add:
+			<ul>
+				<li id="sidenav_webpages">Web pages</li>
+				<li id="sidenav_photos">Photos</li>
+				<li id="sidenav_ppt">Powerpoint</li>
+				<li id="sidenav_rss">RSS/Atom</li>
+			</ul>
+		</div>
+		<div class="hero add_urls">
+			<div class="module">
+				
+				<div id="content_webpages" style="display: none;">
+					<h2 class="first">Make a Flowgram in 3 Easy Steps</h2>
+
+					<h3 id="step1" class="step">Add your pages and watch them appear in the <strong>Flowgram Maker!</strong></h3>
+					<img src="/media/images/flowgramMakerArrow.gif" id="fgMakerArrow" />
+
+					<p class="first"><strong>You may want to open a new browser window to find your pages.</strong></p>
+
+					<p><strong>To add a page, enter its URL below and click "Add Page":</strong></p>
+
+
+					<form method="post" onsubmit="addUrl(); return false;" accept-charset="utf-8">
+						<span id="add_url_error" class="error"></span>
+	                    <input type="text" id="url_to_add" name="url" value=""/><img src="/media/images/loading_stripes_blue.gif" id="loading_stripes" /><input type="image" src="/media/images/btn_add_page.gif" id="add_url_submit" class="submit" />
+	                    <div class="clearer"></div>
+
+					</form>
+
+					<div id="messageArea" class="messageArea"></div>
+
+					<p><strong>Don't use password protected pages here.</strong></p>
+
+					<p><strong>You can keep adding pages until you are done.</strong></p>
+
+					<div class="divider_horiz"></div>
+
+					<h3 id="step2" class="step">Click on a page in the Flowgram Maker to personalize it.</h3>
+
+					<p class="first"><strong>You can add audio, highlights and notes.</strong></p>
+
+					<div class="divider_horiz"></div>
+
+					<h3 id="step3" class="step">Share!</h3>
+
+					<p class="first"><strong>Click on the share button in the Flowgram Maker.  You can make your Flowgram private or public.</strong></p>
+					
+				</div>
+				
+                <div id="content_photos" style="display: none;">
+					<h2 class="first">Sharing and talking about your photos is easy with Flowgram!</h2>
+					<p><strong>Flowgram can import your existing photo albums and automatically set up a Flowgram that is ready for your voice.</strong></p>
+					<p><strong>Select your service below to get started.</strong></p>
+					<div id="photo_services">
+						<div id="facebook">
+							<a href="/facebook/albums_import/"><img src="/media/images/logo_facebook.png" width="200" height="75" border="0" /></a>
+						</div>
+						<div id="flickr">
+                            <a href="/flickr/photosets_import/" target="_top" id="linkFlickr" name="linkFlickr"><img src="/media/images/logo_flickr.png" width="200" height="75" border="0" /></a>
+						</div>
+						<div class="clearer"></div>
+					</div>
+					<h2>OR</h2>
+					<p><strong>Upload photos from your computer.</strong></p>
+					<p class="note">JPG, GIF, or PNG formats accepted. 10MB file-size limit.</p>
+					<div class="generic_form">
+						<form action="/api/upload/" id="fileUploaderForm" onsubmit="auc.handleFileUpload(); return false;" target="fileUploaderIFrame" method="post" enctype="multipart/form-data">
+							<img src="/media/images/loading_stripes_blue.gif" id="loading_stripes_file_uploader" />
+							<p>
+								<label for="file">Upload file:</label>
+								<input type="file" name="file" id="fileUploader" />
+							</p>
+							<div class="clearer"></div>
+							<div id="fileUploaderMessageArea" class="messageArea"></div>
+							<p><input type="image" class="submit" src="/media/images/btn_submit.gif" /></p>
+							<div class="clearer"></div>
+						</form>
+						<iframe id="fileUploaderIFrame" name="fileUploaderIFrame" onload="fileUploaderCallback();"></iframe>
+					</div>
+				</div>
+				
+                <div id="content_ppt" style="display: none;">
+					<h2 class="first">Powerpoint</h2>
+					<form action="/powerpoint/upload/" id="pptForm" onsubmit="pptUploadInitiated = true; handlePPTSubmit();" id="frmPPTUpload" target="pptUploaderIFrame" method="post" enctype="multipart/form-data">
+						<label for="file">Upload file:</label>
+						<div>
+							<input type="file" name="file" id="file" />
+							<img src="/media/images/loading_stripes_blue.gif" id="loading_stripes_ppt" />
+						</div>
+						<div class="clearer"></div>
+						<p>
+							<span id="status_ppt"></span><br/>
+							<input type="image" class="submit" id="ppt_submit" src="/media/images/btn_submit.gif" />
+						</p>
+					</form>
+					<iframe id="pptUploaderIFrame" name="pptUploaderIFrame" onload="pptUploaderCallback();"></iframe>
+				</div>
+				
+				<div id="content_rss" style="display: none;">
+					<h2 class="first">Turn any RSS or Atom feed into a Flowgram.</h2>
+					<p><strong>There are two different <strong>IMPORT MODES</strong>.</strong></p>
+					<ul>
+						<li><strong>Add Linked Pages:</strong> Each item in the feed is made into its own FlowPage</li>
+						<li><strong>Add Summaries:</strong> All of the items in the feed are summarized on a single FlowPage</li> 
+					</ul>
+					<p><strong>Add the feed then click on the thumbnails to add voice, notes, highlights and more.</strong></p>
+					<div class="generic_form">
+						<form accept-charset="utf-8" onsubmit="addRssUrl(); return false;">
+							<img src="/media/images/loading_stripes_blue.gif" id="loading_stripes_rss" />
+							<p><label>URL of feed</label><input type="text" name="url" id="rss_url" /></p>
+							<p>
+								<label>Import Mode</label>
+								<select id="add_links_as_pages" name="add_links_as_pages">
+									<option value="full">Add Linked Pages (will add original pages)</option>
+									<option value="summary">Add Summaries (will add summaries)</option>
+								</select>
+							</p>
+							<p>
+								<label>Limit To</label>
+								<select id="max_results" name="max_results">
+									<option value="10">10 results</option>
+									<option value="20">20 results</option>
+									<option value="30">30 results</option>
+									<option value="40">40 results</option>
+									<option value="50">50 results</option>
+									<option value="60">60 results</option>
+									<option value="70">70 results</option>
+									<option value="80">80 results</option>
+									<option value="90">90 results</option>
+									<option value="100">100 results</option>
+									<option value="0">No limit</option>
+								</select>
+							</p>
+							<div class="clearer"></div>
+							<div id="rssMessageArea" class="messageArea"></div>
+							<input type="image" class="submit" src="/media/images/btn_submit.gif" />
+						</form>
+						<div class="clearer"></div>
+					</div>	
+					<div class="clearer"></div>
+				</div>
+				
+			</div>
+		</div>	
+	
+		<div class="clearer"></div>
+	</div>
+
+	<div id="content_right">
+		<div class="promo simple" style="font-size: 12px;">
+			<h3 class="first">Advanced Users</h3>
+			<p>Don't want to copy and paste URLs?
+			<br/><br/>
+			Want to add password protected pages to your Flowgrams?
+			<br/><br/>
+			After you've made a few Flowgrams, you may want to use our super convenient bookmarklets.
+			<p><a href="/create/bookmarklets/" target="_top">Click here to get the bookmarklets.</a></p>
+		</div>
+		<div class="module">
+			<h2>Help</h2>
+			<ul>
+				<li><a href="/help/17/" target="_top">I'm having trouble with my microphone.</a></li>
+				<li><a href="/help/18/" target="_top">I'm having trouble adding certain pages.</a></li>
+				<li><a href="/help/6/" target="_top">How do I share my Flowgram with other people?</a></li>
+				<li><a href="/help/11/" target="_top">What is a Flowgram?</a></li>
+				<li><a href="/help/1/" target="_top">How do I make a Flowgram?</a></li>
+				<li class="last"><a href="/help/" target="_top">More help topics &raquo;</a></li>
+			</ul>
+		</div>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+	</div>
+
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/js/AddUrlsController.js"></script>
+{% endblock %}
+
+{% block js_init %}
+	var auc = new AddUrlsController();
+
+	if(Cookie.get("have_flickr_auth_token")) {
+        $('linkFlickr').target = "";
+    }
+
+	var lastAddUrlPageMessage_ = null;
+
+    function checkFlexStatus() {
+        var clearUrls = window.parent.g_FlashConnection.flex.getClearUrlsOnAddUrlPage();
+        if (clearUrls) {
+            addUrlPage_clearUrls();
+        }
+
+        var message = window.parent.g_FlashConnection.flex.getMessageForAddUrlPage();
+        if (message) {
+            addUrlPage_showMessage(
+                message,
+                window.parent.g_FlashConnection.flex.getMessageForAddUrlPageIsError(),
+                window.parent.g_FlashConnection.flex.getMessageForAddUrlPageIsIntermediate());
+        } else {
+            var messageArea = $('messageArea');
+            messageArea.removeClassName('messageArea-normal');
+            messageArea.removeClassName('messageArea-error');
+        }
+
+        window.setTimeout(checkFlexStatus, 500);
+    }
+
+    function addUrlPage_clearUrls() {
+        $('url_to_add').value = '';
+		
+        window.parent.g_FlashConnection.flex.setClearUrlsOnAddUrlPage(false);
+    }
+
+    function addUrlPage_showMessage(message, error, intermediate) {
+        if (message == lastAddUrlPageMessage_) {
+            return;
+        }
+        lastAddUrlPageMessage_ = message;
+        
+        var messageArea = $('messageArea');
+		if (message.startsWith('Adding')) {
+	        messageArea.innerHTML = message.truncate(90);
+		}
+		else {
+			messageArea.innerHTML = message;
+		}
+        messageArea.removeClassName('messageArea-' + (error ? 'normal' : 'error'));
+        messageArea.addClassName('messageArea-' + (error ? 'error' : 'normal'));
+        messageArea.removeClassName('messageArea-' + (intermediate ? 'normal' : 'intermediate'));
+        messageArea.addClassName('messageArea-' + (intermediate ? 'intermediate' : 'normal'));
+		if (error || intermediate || message.startsWith('Successfully')) {
+			$('url_to_add').style.visibility = 'visible';
+			$('loading_stripes').style.visibility = 'hidden';
+			$('add_url_submit').disabled = false;
+			$('url_to_add').focus();
+		}
+		if (message.startsWith('Sorry')) {
+			pageTracker._trackPageview('/create/url_add_failed_password_protected_url');
+		}
+		else if (error) {
+			pageTracker._trackPageview('/create/url_add_failed');
+		}
+		else if (message.startsWith('Successfully')) {
+			pageTracker._trackPageview('/create/url_add_success');
+		}
+    }
+
+	function addUrl() {
+		var urlCompare = $('url_to_add').value.toLowerCase();
+		
+		if(urlCompare == "") {
+			alert("Please enter a URL");
+			return false;
+		}
+		
+		var protectedSites = ['facebook.com', 'mail.google.com', 'scrabulous.com'];
+		for (var i=0; i < protectedSites.length; i++) {
+			if (urlCompare.indexOf(protectedSites[i]) >= 0) {
+				$('messageArea').innerHTML = 'Sorry, but most pages from this website are password protected and your page will not be properly added. Try using the <a href="/create/bookmarklets/">Flowgram bookmarklets</a> to add password protected pages.';
+				Element.addClassName($('messageArea'), 'error');
+				$('messageArea').style.display = 'block';
+				return false;
+			}
+		}
+		
+		var url = $('url_to_add').value;
+		
+		$('url_to_add').style.visibility = 'hidden';
+		$('loading_stripes').style.visibility = 'visible';
+		$('add_url_submit').disabled = true;
+		window.parent.g_FlashConnection.flex.addUrlToCurrentFlowgram(url);
+	}
+
+    function onAddRssUrlComplete_(transport) {
+		$('loading_stripes_rss').style.visibility = 'hidden';
+        $('rssMessageArea').innerHTML = 'Successfully loaded ' + $('rss_url').value + '<br><br>It takes some time to process each page.  You will see thumbnails load for each page as processing completes.';
+        Element.removeClassName($('rssMessageArea'), 'rssMessageArea-error');
+		Element.addClassName($('rssMessageArea'), 'rssMessageArea-normal');
+        window.parent.g_FlashConnection.flex.reloadCurrentFlowgram();
+        $('rss_url').value = '';
+    }
+
+    function onAddRssUrlFailure_(transport) {
+		$('loading_stripes_rss').style.visibility = 'hidden';
+        $('rssMessageArea').innerHTML = 'Unable to load ' + $('rss_url').value;
+        Element.addClassName($('rssMessageArea'), 'rssMessageArea-error');
+		Element.removeClassName($('rssMessageArea'), 'rssMessageArea-normal');
+        $('rss_url').value = '';
+    }
+
+    function addRssUrl() {
+        if (!$('rss_url').value) {
+            return;
+        }
+		
+		if (($('rss_url').value.indexOf('http://') < 0) && ($('rss_url').value.indexOf('feed://') < 0)) {
+			$('rss_url').value = 'http://' + $('rss_url').value;
+		}
+			
+		$('loading_stripes_rss').style.visibility = 'visible';
+        $('rssMessageArea').innerHTML = 'Adding ' + $('rss_url').value + '...';
+        Element.addClassName($('rssMessageArea'), 'rssMessageArea-normal');
+
+        var addLinksAsPages = $('add_links_as_pages').options[0].selected;
+        var maxResults = $('max_results').options[$('max_results').selectedIndex].value;
+		var params = $H({
+                             'csrfmiddlewaretoken': window.parent.g_FlashConnection.flex.getToken(),
+                             'flowgram_id': window.parent.g_FlashConnection.flex.getCurrentFlowgramId(),
+                             'url': $('rss_url').value,
+                             'add_links_as_pages': addLinksAsPages ? 'true' : '',
+                             'maxresults': maxResults
+                        }).toQueryString();
+		
+		new Ajax.Request('/api/import/rss/', 
+                         {
+                              asynchronous: true,
+                              method: 'POST', 
+                              parameters: params,
+                              onSuccess: onAddRssUrlComplete_,
+                              onFailure: onAddRssUrlFailure_
+                         });
+    }
+
+    window.setTimeout(checkFlexStatus, 500);
+
+	if ($('content_webpages').style.display == 'block') {
+		$('url_to_add').focus();
+	}
+{% endblock %}

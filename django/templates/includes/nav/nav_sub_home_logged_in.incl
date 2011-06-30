@@ -1,0 +1,6 @@
+<li{% ifequal activesecondary 'profile' %} class="on"{% endifequal %}><a class="nav_item" href="/{{ user }}/">Your Profile</a></li>
+<li{% ifequal activesecondary 'viewall' %} class="on"{% endifequal %}><a class="nav_item" href="/{{ user }}/viewyourflowgramsthumb/">Your Flowgrams</a></li>
+<li{% ifequal activesecondary 'favorites' %} class="on"{% endifequal %}><a class="nav_item" href="/{{ user }}/favorites/">Your Favorites</a></li>
+{% if subs_active %}
+<li{% ifequal activesecondary 'subscriptions' %} class="on"{% endifequal %}><a class="nav_item" href="/subscriptions/">Your Subscriptions &amp; Notifications</a></li>
+{% endif %}

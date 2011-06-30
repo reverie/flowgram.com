@@ -1,0 +1,19 @@
+
+<div id="dialog" style="display: none; width: 400px;">
+	<div id="dialog_body">
+		<h3 id="dialog_title">{{ fg.title }}</h3>
+		<p>Are you sure you want to delete this Flowgram?</p>
+		<form method="post" id="delete_form" action="/fg/{{fg.id}}/delete/">
+			<div style="_height:1px;">
+				<div class="float">
+					<input type="image" class="submit" border="0" src="/media/images/btn_delete.gif" />
+				</div>
+				<div class="float" style="margin-top: 3px;">
+					<a href="javascript:void(0);"><img src="/media/images/btn_cancel.gif" class="dialog_close" border="0" /></a>
+				</div>
+				<div class="clearer"></div>
+			</div>
+			
+		</form>
+	</div>
+</div>

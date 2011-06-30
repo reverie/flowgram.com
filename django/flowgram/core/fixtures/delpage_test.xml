@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<django-objects version="1.0">
+    <object pk="1" model="auth.user">
+        <field type="CharField" name="username">testadmin</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">christian@flowgram.com</field>
+        <field type="CharField" name="password">sha1$05c9c$50a71b8bdcff67f1021b90b8c613adbf3579b6e9</field>
+        <field type="BooleanField" name="is_staff">1</field>
+        <field type="BooleanField" name="is_active">1</field>
+        <field type="BooleanField" name="is_superuser">1</field>
+        <field type="DateTimeField" name="last_login">2008-02-22 16:58:33</field>
+        <field type="DateTimeField" name="date_joined">2008-02-22 16:58:07</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="2" model="auth.user">
+        <field type="CharField" name="username">testuser</field>
+        <field type="CharField" name="first_name"></field>
+        <field type="CharField" name="last_name"></field>
+        <field type="CharField" name="email">testuser@flowgram.com</field>
+        <field type="CharField" name="password">sha1$805d2$a4b8b515f76d1ad7c73fc18e100568e7d4368d49</field>
+        <field type="BooleanField" name="is_staff">0</field>
+        <field type="BooleanField" name="is_active">1</field>
+        <field type="BooleanField" name="is_superuser">0</field>
+        <field type="DateTimeField" name="last_login">2008-02-22 17:02:54</field>
+        <field type="DateTimeField" name="date_joined">2008-02-22 16:59:27</field>
+        <field to="auth.group" name="groups" rel="ManyToManyRel"></field>
+        <field to="auth.permission" name="user_permissions" rel="ManyToManyRel"></field>
+    </object>
+    <object pk="QO3RAD7JWRIA6M" model="core.flowgram">
+        <field to="auth.user" name="owner" rel="ManyToOneRel">2</field>
+        <field type="CharField" name="title">MSN.com</field>
+        <field type="TextField" name="description"></field>
+        <field type="PositiveIntegerField" name="views">0</field>
+        <field type="PositiveIntegerField" name="duration">0</field>
+        <field type="BooleanField" name="public">0</field>
+        <field type="BooleanField" name="published">0</field>
+        <field type="DateTimeField" name="created_at">2008-02-22 17:03:08</field>
+        <field type="DateTimeField" name="modified_at">2008-02-22 17:03:08</field>
+        <field type="DateTimeField" name="published_at"><None></None></field>
+        <field type="IntegerField" name="num_ratings">0</field>
+        <field type="IntegerField" name="total_rating">0</field>
+        <field type="FloatField" name="avg_rating">0.0</field>
+        <field type="IntegerField" name="num_comments">0</field>
+    </object>
+    <object pk="AGZSNZV3XGPMAX" model="core.page">
+        <field to="core.flowgram" name="flowgram" rel="ManyToOneRel">QO3RAD7JWRIA6M</field>
+        <field to="auth.user" name="owner" rel="ManyToOneRel"><None></None></field>
+        <field type="CharField" name="title">MSN.com</field>
+        <field type="TextField" name="description"></field>
+        <field type="CharField" name="source_url">http://www.msn.com/</field>
+        <field type="PositiveIntegerField" name="duration">0</field>
+        <field type="PositiveSmallIntegerField" name="position">1</field>
+        <field type="CharField" name="audio_path"></field>
+        <field type="CharField" name="thumb_path"></field>
+        <field type="IntegerField" name="max_highlight_id_used">-1</field>
+    </object>
+    <object pk="B56B96JBC64Q4M" model="core.page">
+        <field to="core.flowgram" name="flowgram" rel="ManyToOneRel">QO3RAD7JWRIA6M</field>
+        <field to="auth.user" name="owner" rel="ManyToOneRel"><None></None></field>
+        <field type="CharField" name="title">MSN.com</field>
+        <field type="TextField" name="description"></field>
+        <field type="CharField" name="source_url">http://www.msn.com/</field>
+        <field type="PositiveIntegerField" name="duration">0</field>
+        <field type="PositiveSmallIntegerField" name="position">2</field>
+        <field type="CharField" name="audio_path"></field>
+        <field type="CharField" name="thumb_path"></field>
+        <field type="IntegerField" name="max_highlight_id_used">-1</field>
+    </object>
+    <object pk="15U1NULOQZ3GZJ" model="core.highlight">
+        <field type="IntegerField" name="name">-1</field>
+        <field to="core.page" name="page" rel="ManyToOneRel">B56B96JBC64Q4M</field>
+        <field type="IntegerField" name="time">10000</field>
+    </object>
+    <object pk="BPOIFKBNCYUMNT" model="core.highlight">
+        <field type="IntegerField" name="name">-1</field>
+        <field to="core.page" name="page" rel="ManyToOneRel">AGZSNZV3XGPMAX</field>
+        <field type="IntegerField" name="time">10000</field>
+    </object>
+    <object pk="1" model="core.regcode">
+        <field type="CharField" name="code">REGCODE1</field>
+        <field type="BooleanField" name="used">1</field>
+        <field to="auth.user" name="user" rel="ManyToOneRel">2</field>
+    </object>
+    <object pk="5K45Z054FL28UU" model="core.thumbqueue">
+        <field to="core.page" name="page" rel="ManyToOneRel">B56B96JBC64Q4M</field>
+        <field type="CharField" name="path">C:\flowgram\webserver\trunk\django\fgrams/2/QO3RAD7JWRIA6M/B56B96JBC64Q4M.html</field>
+        <field type="DateTimeField" name="started_at"><None></None></field>
+        <field type="IntegerField" name="attempts">0</field>
+    </object>
+    <object pk="Q3OQVKSM096MSL" model="core.thumbqueue">
+        <field to="core.page" name="page" rel="ManyToOneRel">AGZSNZV3XGPMAX</field>
+        <field type="CharField" name="path">C:\flowgram\webserver\trunk\django\fgrams/2/QO3RAD7JWRIA6M/AGZSNZV3XGPMAX.html</field>
+        <field type="DateTimeField" name="started_at"><None></None></field>
+        <field type="IntegerField" name="attempts">0</field>
+    </object>
+    <object pk="3D47QCEAH8MWM7" model="core.userprofile">
+        <field to="auth.user" name="user" rel="ManyToOneRel">2</field>
+        <field type="CharField" name="gender"></field>
+        <field type="DateField" name="birthdate"><None></None></field>
+        <field type="CharField" name="homepage"></field>
+        <field type="ImageField" name="avatar"></field>
+        <field type="CharField" name="avatar_filetype"></field>
+        <field type="IntegerField" name="tutorial_state">0</field>
+        <field type="TextField" name="description"></field>
+        <field to="core.flowgram" name="working_flowgram" rel="ManyToOneRel"><None></None></field>
+        <field type="BooleanField" name="just_published">0</field>
+    </object>
+</django-objects>

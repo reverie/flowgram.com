@@ -1,0 +1,15 @@
+
+Items trimmed from scriptaculous181.js 5/8/08 cyap
+=======
+Sound
+Control.Slider
+Form.Element.DelayedObserver
+Ajax.InPlaceEditor (and associated classes)
+Autocompleter.Local
+Ajax.Autocompleter (and associated classes)
+Autocompleter
+Sortable
+Sortableobserver
+Draggable
+Draggables
+Droppables

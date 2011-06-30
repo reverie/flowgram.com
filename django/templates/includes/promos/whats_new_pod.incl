@@ -1,0 +1,6 @@
+{% if whats_new %}
+<div class="module">
+    <h2>{% firstof sidebar_fgs_title whats_new.title %}</h2>
+	{{ whats_new.embeddedHTML|safe }}
+</div>
+{% endif %}

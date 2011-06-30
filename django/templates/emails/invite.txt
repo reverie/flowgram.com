@@ -1,0 +1,20 @@
+Hi {{ to }},
+You've been invited by {{ user.email }} to try out Flowgram, a free, new way to show and tell on the web. 
+
+A MESSAGE FROM {{ user.email }}
+{{ personal_message }}
+
+TRY IT OUT
+-Sign up at {{ URL_BASE }}register/{% if use_regcode %} (use registration code: {{ regcode }}){% endif %}. Don't forget- it's free.
+
+-Make a Flowgram
+Making a Flowgram is easy, fast and is a powerful new way to communicate on the web. Go to {{ URL_BASE }}create/ add links to the Flowgram and then add your own personal message with audio, notes, highlights and more.
+
+-Watch some Flowgrams
+We've created a Flowgram that covers, "What is a Flowgram ({{ URL_BASE }}go/what_is_a_flowgram/)". It's a great place to start. You can also go to our Browse section for more featured content {{ URL_BASE }}browse/featured/. 
+
+ABOUT FLOWGRAM
+Flowgram is a new communication tool that allows you to combine content from any website and add your take- with voice, notes, annotations, custom pages and more. Flowgrams are great for everything from sharing a funny link with a friend, to adding audio to your photos, to online research, to adding a new dimension to your blog.
+
+Welcome to Flowgram!
+-Team Flowgram

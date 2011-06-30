@@ -1,0 +1,25 @@
+body {
+
+}
+
+div#wrapper_header_main {
+	height: 10px;
+	margin-bottom: 5px;
+}
+
+div#wrapper_header_sub {
+	height: 10px;
+}
+
+div#edit_button {
+	position: absolute;
+	right: 10px;
+}
+
+div#custom_page_content {
+
+}
+
+div#wrapper_footer {
+	
+}

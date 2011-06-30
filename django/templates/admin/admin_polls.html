@@ -1,0 +1,152 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Admin Polls
+{% endblock %}
+
+{% block pageheader %}
+	Admin Polls
+{% endblock %}
+
+{% block content %}
+	<div class="generic_text">
+		
+		{% if current_poll %}
+			<h2>Poll Details</h2>
+			<ul>
+				<li>ID: <strong>{{ current_poll.id }}</strong></li>
+				<li>Short Name: <strong>{{ current_poll.poll_short_name }}</strong></li>
+				<li>Title: <strong>{{ current_poll.poll_title }}</strong></li>
+				<li>Total Votes: <strong>{{ current_poll.total_votes }}</strong>
+				<li>Candidate 1:
+					<ul>
+						<li>Title: <strong>{{ fg1.title }}</strong></li>
+						<li>FGID: <strong>{{ fg1.id }}</strong></li>
+						<li>Total Votes: <strong>{{ current_poll.votes_1 }}</strong></li>
+						<li>Percentage of Total Votes: <strong>{{ current_poll.percentage_1 }}%</strong></li>
+					</ul>
+				</li>
+				<li>Candidate 2:
+					<ul>
+						<li>Title: <strong>{{ fg2.title }}</strong></li>
+						<li>FGID: <strong>{{ fg2.id }}</strong></li>
+						<li>Total Votes: <strong>{{ current_poll.votes_2 }}</strong></li>
+						<li>Percentage of Total Votes: <strong>{{ current_poll.percentage_2 }}%</strong></li>
+					</ul>
+				</li>
+				<li>Candidate 3: 
+					<ul>
+						<li>Title: <strong>{{ fg3.title }}</strong></li>
+						<li>FGID: <strong>{{ fg3.id }}</strong><br/></li>
+						<li>Total Votes: <strong>{{ current_poll.votes_3 }}</strong></li>
+						<li>Percentage of Total Votes: <strong>{{ current_poll.percentage_3 }}%</strong></li>
+					</ul>
+				</li>
+			</ul>
+			
+			<h2>Modify Poll</h2>
+			<span id="pollStatus" class="error"></span>
+			<form method="post" action="/adminpolls/" id="pollForm" onsubmit="return handlePollSubmit();">
+			<input type="hidden" name="form" value="modify" />
+			<input type="hidden" name="poll_active_hidden" id="poll_active_hidden" />
+			<input type="hidden" name="current_poll_id" value="{{ current_poll_id }}" id="current_poll_id">
+			<input type="hidden" name="poll_id" value="{{ current_poll.id }}" id="poll_id">
+			<p>
+				<label for="poll_short_name">Poll Short Name</label>
+				<input type="text" name="poll_short_name" id="poll_short_name" value="{{ current_poll.poll_short_name }}" maxlength="30" />
+			</p>
+			<p>
+				<label for="poll_title">Poll Title</label>
+				<input type="text" name="poll_title" id="poll_title" value="{{ current_poll.poll_title }}" />
+			</p>
+			<p>
+				<label for="candidate_id_1">Candidate ID 1</label>
+				<input type="text" name="candidate_id_1" id="candidate_id_1" value="{{ current_poll.candidate_id_1 }}" />
+			</p>
+			<p>
+				<label for="candidate_id_2">Candidate ID 2</label>
+				<input type="text" name="candidate_id_2" id="candidate_id_2" value="{{ current_poll.candidate_id_2 }}" />
+			</p>
+			<p>
+				<label for="candidate_id_3">Candidate ID 3</label>
+				<input type="text" name="candidate_id_3" id="candidate_id_3" value="{{ current_poll.candidate_id_3 }}" />
+			</p>
+			<p>
+				<label for="active">Active</label>
+				<input type="checkbox" name="poll_active" id="poll_active" {% ifequal current_poll.poll_active 1 %}checked{% endifequal %} />
+			</p>
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</form>
+		
+		{% else %}
+			
+			<h2>Create New Poll</h2>
+			<span id="pollStatus" class="error"></span>
+			<form method="post" action="/adminpolls/" id="pollForm" onsubmit="return handlePollSubmit();">
+			<input type="hidden" name="form" value="create_new" />
+			<input type="hidden" name="poll_active_hidden" id="poll_active_hidden" />
+			<p>
+				<label for="poll_short_name">Poll Short Name</label>
+				<input type="text" name="poll_short_name" id="poll_short_name" value="{{ poll_short_name }}" maxlength="30" />
+			</p>
+			<p>
+				<label for="poll_title">Poll Title</label>
+				<input type="text" name="poll_title" id="poll_title" value="{{ poll_title }}" />
+			</p>
+			<p>
+				<label for="candidate_id_1">Candidate ID 1</label>
+				<input type="text" name="candidate_id_1" id="candidate_id_1" value="{{ candidate_id_1 }}" />
+			</p>
+			<p>
+				<label for="candidate_id_2">Candidate ID 2</label>
+				<input type="text" name="candidate_id_2" id="candidate_id_2" value="{{ candidate_id_2 }}" />
+			</p>
+			<p>
+				<label for="candidate_id_3">Candidate ID 3</label>
+				<input type="text" name="candidate_id_3" id="candidate_id_3" value="{{ candidate_id_3 }}" />
+			</p>
+			<p>
+				<label for="active">Active</label>
+				<input type="checkbox" name="poll_active" id="poll_active" />
+			</p>
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</form>
+						
+			{% if polls %}
+				<h2>View/Modify Existing Polls</h2>
+				<ul>
+					{% for poll in polls %}
+						<li><a href="/adminpolls/{{ poll.id }}">{{ poll.poll_title }}</a> (Created {{ poll.date_created|date }})</li>	
+					{% endfor %}
+				</ul>
+			{% endif %}
+			
+		{% endif %}
+		
+		
+	</div>
+{% endblock %}
+
+{% block js_init %}
+
+	function handlePollSubmit() {
+		if ($('poll_short_name').value == '' || $('poll_title').value == '' || $('candidate_id_1').value == '' || $('candidate_id_2').value == '' || $('candidate_id_3').value == '') {
+			$('pollStatus').innerHTML = 'All fields are required, cheeto-breath.';
+			return false;
+		}
+		
+		else {
+			if ($('poll_active').checked) {
+				$('poll_active_hidden').value = 'True';
+			}
+			
+			else {
+				$('poll_active_hidden').value = 'False';
+			}
+			return true;
+		}
+	}
+
+{% endblock %}

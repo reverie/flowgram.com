@@ -1,0 +1,7 @@
+form#feed_settings input {
+	width: auto;
+}
+
+form#feed_settings input.submit {
+	margin-top: 5px;
+}

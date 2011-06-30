@@ -1,0 +1,338 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	{% ifequal fg.owner user %}
+		| Manage - Share Flowgram - {{ fg.title|escape }}
+		
+	{% else %}
+		| Browse - Share Flowgram - {{ fg.title|escape }} 
+	
+	{% endifequal %}
+{% endblock %}
+
+{% block js_head %}
+	<script src="http://cdn.gigya.com/wildfire/js/wfapiv2.js"></script>
+{% endblock %}
+
+
+{% block styles %}
+	<style type="text/css" media="screen">
+		div#fgShareDetails h4 {
+			margin-bottom: 0px;
+		}
+		
+		input#fgShareLink {
+			width: 660px;
+			height: 30px;
+			padding: 5px;
+			font-size: 24px;
+			font-weight: bold;
+			color: #666666;
+			margin-bottom: 5px;
+		}
+		
+		div#fgShareEmail textarea {
+			width: 310px;
+			height: 80px;
+			margin-bottom: 10px;
+		}
+		
+		div#fgShareEmail img#fgShareEmailSend,
+		div#fgShareEmail img#fgShareEmailLoading,
+		div#fgShareEmail #fgShareEmailStatus
+		{
+			float: left;
+		}
+		
+		div#fgShareEmail img#fgShareEmailLoading
+		{
+			padding: 3px 0px 0px 5px;
+			visibility: hidden;
+		}
+		
+		div#fgShareEmail #fgShareEmailStatus {
+			padding: 5px 0px 0px 5px;
+			width: 195px;
+		}
+		
+		div#fgShareEmail div#fgShareEmailLoggedOut input {
+			width: 310px;
+			margin-bottom: 10px;
+		}
+		
+		div#fgShareEmbedWrapper textarea {
+			width: 310px;
+			height: 60px;
+			margin-bottom: 5px;
+		}
+		
+		div#fgShareEmbedWrapper h3 {
+			margin-bottom: 5px;
+		}
+		
+		div#fgShareVideoExport div#fgShareVideoExportIconDiv {
+			width: 215px;
+		}
+		
+		div#fgShareVideoExport div#fgShareVideoExportIconDiv img#fgShareVideoExportIcon {
+			width: 215px;
+			height: 141px;
+		}
+		
+		div#fgShareVideoExportContent {
+			width: 440px;
+		}
+		
+		div#fgShareVideoExport input#fgShareVideoExportEmail {
+			width: 195px;
+		}
+		
+		div#fgShareVideoExport input#fgShareVideoExportOptionsPopups,
+		div#fgShareVideoExport label#fgShareVideoExportOptionsPopupsLabel
+		{
+			float: left;
+		}
+		
+		div#fgShareVideoExport label#fgShareVideoExportOptionsPopupsLabel {
+			font-weight: normal !important;
+			padding-top: 5px;
+		}
+		
+		div#fgShareVideoExport img#fgShareVideoExportYTIcon {
+			margin-right: 10px;
+			width: 50px;
+			height: 30px;
+		}
+
+		div.grid div.module {
+			height: 410px !important;
+		}
+		
+		div#fgShareVideoExport div#fgShareVideoExportLoading,
+		div#fgShareVideoExport img#fgShareVideoExportSubmit,
+		div#fgShareVideoExport div#fgShareVideoExportEmailLoading,
+		div#fgShareVideoExport img#fgShareVideoExportEmailSubmit
+		{
+			float: left;
+		}
+		
+		div#fgShareVideoExport img#fgShareVideoExportSubmit,
+		div#fgShareVideoExport img#fgShareVideoExportEmailSubmit
+		{
+			margin-bottom: 10px;
+		}
+		
+		div#fgShareVideoExport div#fgShareVideoExportLoading,
+		div#fgShareVideoExport div#fgShareVideoExportEmailLoading
+		{
+			padding: 3px 0px 0px 10px;
+			visibility: hidden;
+		}
+	</style>
+	<!--[if IE]>
+	<style type="text/css" media="screen">
+		div.grid div.module {
+			height: 440px !important;
+		}
+	</style>
+	<![endif]-->
+{% endblock %}
+
+{% block pageheader %}
+	Share
+{% endblock %}
+
+{% block subnav %}
+	{% ifequal fg.owner user %}
+		{% include "includes/nav/nav_sub_you.incl" %}
+	{% else %}
+		{% include "includes/nav/nav_sub_browse.incl" %}
+	{% endifequal %}
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero">
+		<h2 class="hdr_bar">URL / Permalink</h2>
+		<div class="module">
+			<input type="text" name="fgShareLink" value="" id="fgShareLink" onclick="autoCopyToClipboard($('fgShareLink'), $('fgShareLinkCopyStatus'));" readonly />
+			<div><a href="javascript:void(0);" onclick="autoCopyToClipboard($('fgShareLink'), $('fgShareLinkCopyStatus'));">Copy this to your clipboard</a>&nbsp;&nbsp;&nbsp;<span id="fgShareLinkCopyStatus"></span></div>
+		</div>
+	</div>
+	
+	<div class="grid_headers">
+		<h2 class="hdr_bar odd">Email</h2>
+		<h2 class="hdr_bar even">Embed This Widget</h2>
+		<div class="clearer"></div>
+	</div>
+	<div class="clearer"></div>
+	
+	<div class="grid">
+			<div class="module odd" id="fgShareEmail">
+				
+				<div id="fgShareEmailLoggedOut"{% if request.user.is_authenticated %} style="display: none;"{% endif %}>
+					<p class="first"><strong>You are currently logged out.  You can <a href="/login/?next=/share/{{ fg.id }}">login</a>, if you wish, and you won't have to fill out name and email.</strong></p>
+				
+					<div>
+						<label for="fgShareEmailFrom">Your Name</label><br/>
+						<input type="text" name="fgShareEmailFromName" id="fgShareEmailFromName" />
+					</div>
+					<div>
+						<label for="fgShareEmailEmail">Your Email</label><br/>
+						<input type="text" name="fgShareEmailFromEmail" id="fgShareEmailFromEmail" />	
+					</div>
+				</div>
+			
+				<div id="fgShareEmailMain">
+					<div>
+						<label for="fgShareEmailTo">To</label>&nbsp;&nbsp;(<a href="javascript:void(0);" onclick="showPlaxoABChooser('fgShareEmailTo', '/media/plaxo_cb.html'); return false;" class="note">Load your address books from Gmail, Yahoo and more</a>)<br/>
+						<textarea name="fgShareEmailTo" id="fgShareEmailTo" rows="10" cols="46"></textarea>
+					</div>
+					<div>
+						<label for="fgShareEmailMessage">Message</label><br/>
+						<textarea name="fgShareEmailMessage" id="fgShareEmailMessage" rows="10" cols="46"></textarea>
+						<div>
+							<a href="javascript:void(0);" onclick="sc.sendShareEmail();"><img src="/media/images/btn_send.gif" id="fgShareEmailSend" alt="Send" border="0" /></a>
+							<img src="/media/images/loading_blue.gif" id="fgShareEmailLoading" alt="Loading" border="0" />
+							<span id="fgShareEmailStatus"></span>
+							<div class="clearer"></div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="clearer"></div>
+			</div>
+
+			<div class="module even">
+				<div>
+					<div id="alt_{{ fg.id }}"></div>
+					<div id="fgShareEmbedWrapper">
+						<h3>Paste this embed code into your website:</h3>
+						<textarea name="fgShareEmbed" id="fgShareEmbed" rows="10" cols="46" onclick="autoCopyToClipboard($('fgShareEmbed'), $('fgShareEmbedCopyStatus'));" readonly></textarea>
+						<a href="javascript:void(0);" onclick="autoCopyToClipboard($('fgShareEmbed'), $('fgShareEmbedCopyStatus'));">Copy this to your clipboard</a>&nbsp;&nbsp;&nbsp;<span id="fgShareEmbedCopyStatus"></span>
+					</div>
+				</div>
+				<div class="clearer"></div>
+				
+			</div>
+			<div class="clearer"></div>
+
+	</div>
+	<div class="clearer"></div>
+	
+	<div class="hero"><a name="social"></a>
+		<h2 class="hdr_bar">Post to Social Web</h2>
+		<div class="module">
+			<div id="divWildfirePost"></div>
+		</div>
+		<div class="clearer"></div>
+	</div>
+	
+	<div class="hero">
+		<h2 class="hdr_bar">Export to Video / Upload to YouTube</h2>
+		<div id="fgShareVideoExport" class="module">
+			<div class="float" id="fgShareVideoExportIconDiv">
+				<img src="/media/images/icons/share/exportVideo.png" id="fgShareVideoExportIcon" alt="Export Video" width="215" border="0" />
+			</div>
+			<div class="float" id="fgShareVideoExportContent">
+				<div id="fgShareVideoExportStep1"{% if request.user.is_authenticated %} style="display: none;"{% endif %}>
+					{% if not request.user.is_authenticated %}
+						<p class="first">
+							 Enter your email or <a href="/login/?next=/share/{{ fg.id }}">login</a> so that we can notify you when we are done converting the Flowgram.
+						</p>
+						<p>
+							<label for="fgShareVideoExportEmail">Email</label>&nbsp;&nbsp;<input type="text" name="fgShareVideoExportEmail" id="fgShareVideoExportEmail" />
+						</p>
+						<p>
+							<a href="javascript:void(0);" onclick="sc.sendYouTubeRequest(true);"><img src="/media/images/btn_continue.gif" alt="Continue" id="fgShareVideoExportEmailSubmit" border="0" /></a><div id="fgShareVideoExportEmailLoading"><img src="/media/images/loading_blue.gif" alt="Loading" border="0" /></div><div class="clearer"></div>
+						</p>
+						<span class="error" id="fgShareVideoExportError"></span>
+					{% else %}
+						<input type="hidden" name="fgShareVideoExportEmail" value="" id="fgShareVideoExportEmail" />
+					{% endif %}
+				</div>
+				<div id="fgShareVideoExportStep2"{% if not request.user.is_authenticated %} style="display: none;"{% endif %}>
+					<p class="first">
+						<strong>Download "{{ fg.title }}" as a video and/or export it to YouTube.</strong>
+					</p>
+					<p>
+						<input type="checkbox" name="fgShareVideoExportOptionsPopups" id="fgShareVideoExportOptionsPopups" checked /> <label for="fgShareVideoExportOptionsPopups" id="fgShareVideoExportOptionsPopupsLabel">Turn any highlights in this Flowgram into overlays in the video</label>
+						<div class="clearer"></div>
+					</p>
+					<p>
+						<a href="javascript:void(0);" onclick="sc.sendYouTubeRequest(false);"><img src="/media/images/btn_start_processing.gif" id="fgShareVideoExportSubmit" alt="Start Processing" border="0" /></a><div id="fgShareVideoExportLoading"><img src="/media/images/loading_blue.gif" alt="Loading" border="0" /></div><div class="clearer"></div>
+					</p>
+				</div>
+				<div id="fgShareVideoExportStatus" style="display: none;">
+					<p class="first">
+						<strong>We're on it</strong><br/>
+						Processing videos can take several minutes.  Don't fret.  We'll send you an email as soon as the video is ready.
+					</p>
+					<p>
+						You can also check the status by visiting the following page:
+						<br/>
+						<a href="" id="fgShareVideoExportStatusCheck" target="_blank"></a>
+					</p>
+					<p>
+						<img src="/media/images/icons/share/youtube.png" id="fgShareVideoExportYTIcon" alt="YouTube" align="left" border="0" />You will also have the option of uploading your video directly to YouTube once it's finished processing.
+					</p>
+				</div>
+				
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div class="clearer"></div>
+	</div>
+	
+	<div class="clearer"></div>
+</div>	
+	
+<div id="content_right">
+	<h2 class="hdr_bar">Flowgram Details</h2>
+	<div class="module blue" id="fgShareDetails">
+		
+		
+		<h4 class="first">Title</h4>
+		{{ fg.link|safe }}
+
+		<h4>Author</h4>
+		{{ fg.owner }}
+
+		{% if fg.description %}
+			<h4>Description</h4>
+			{{ fg.description }}
+		{% endif %}
+		
+		<p><a href="{{ fg.url }}">&laquo; Back to Flowgram details page</a></p>
+		
+	</div>
+	
+	<p><a href="#social"><img src="/media/images/icons/share/shareoptions.gif" alt="Sharing Options" border="0" /></a></p>
+</div>
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" src="http://www.plaxo.com/css/m/js/util.js"></script>
+    <script type="text/javascript" src="http://www.plaxo.com/css/m/js/basic.js"></script>
+    <script type="text/javascript" src="http://www.plaxo.com/css/m/js/abc_launcher.js"></script>
+{% endblock %}
+
+{% block js_init %}
+	{% widget fg 320 282 "opaque" "" %}
+	
+	// for plaxo
+	function onABCommComplete() { }
+	
+	// init sharing controller
+	var sc = new SharingController('{{ fg.id }}', '{{ fg.title }}', '{{ fg.url }}', {% if request.user.is_authenticated %}true{% else %}false{% endif %});
+	
+	// init stat record controller
+	var asrc = new AjaxStatRecordController();
+	
+{% endblock %}

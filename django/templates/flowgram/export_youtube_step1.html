@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+{% block pageheader %}
+Share on YouTube
+{% endblock %}
+
+{% block content %}
+
+Your Flowgram "{{ flowgram.title }}" is ready to be shared on YouTube! <a href="{{ preview_url }}">(preview)</a><br>
+<br>
+If you're ready to share this video, <a href="{{ auth_sub_url }}">Login to your Google account</a>.<br>
+
+{% endblock %}

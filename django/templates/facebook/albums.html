@@ -1,0 +1,60 @@
+{% extends "base/base_simple.html" %}
+
+{% block title %}
+	| Make a Flowgram
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/create.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block bars %}
+	
+{% endblock %}
+
+{% block content %}
+	{% include "includes/photo_import/photo_import.js" %}
+
+	<div id="content_main">
+		<div id="add_urls_sidenav">
+			Add:
+			<ul>
+				<li id="sidenav_webpages"><a href="javascript:void(0);" onclick="window.parent.g_FlashConnection.addUrlsNavState = 'webpages'; window.location.href = '/create/addurls/';">Web pages</a></li>
+				<li id="sidenav_photos" class="on">Photos</li>
+				<li id="sidenav_rss"><a href="javascript:void(0);" onclick="window.parent.g_FlashConnection.addUrlsNavState = 'rss'; window.location.href = '/create/addurls/';">RSS/Atom</a></li>
+			</ul>
+		</div>
+		<div class="hero add_urls">
+			<div class="module">
+			    
+			    <h2 class="first">We found the following photo albums in your Facebook account.</h2>
+				<p><strong>Please select an album to get started.  We'll automatically generate a Flowgram with your photos.  All you have to do then is add your voice and share!</strong></p>
+			    {{html|safe}}
+				
+			</div>
+		</div>	
+	</div>
+
+	<div id="content_right">
+		<div class="promo simple" style="font-size: 12px;">
+			<h3 class="first">Advanced Users</h3>
+			<p>Don't want to copy and paste URLs?
+			<br/><br/>
+			Want to add password protected pages to your Flowgrams?
+			<br/><br/>
+			After you've made a few Flowgrams, you may want to use our super convenient bookmarklets.
+			<p><a href="/create/bookmarklets/" target="_top">Click here to get the bookmarklets.</a></p>
+		</div>
+		<div class="module">
+			<h2>Help</h2>
+			<ul>
+				<li><a href="/help/17/">I'm having trouble with my microphone.</a></li>
+				<li><a href="/help/6/">How do I share my Flowgram with other people?</a></li>
+				<li><a href="/help/11/">What is a Flowgram?</a></li>
+				<li><a href="/help/1/">How do I make a Flowgram?</a></li>
+				<li class="last"><a href="/help/">More help topics &raquo;</a></li>
+			</ul>
+		</div>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+	</div>
+{% endblock content %}

@@ -1,0 +1,222 @@
+/* Login Pane */
+div#wrapper_login {
+	position: absolute;
+	float: right;
+	z-index: 999;
+	width: 403px;
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	background: url(/media/images/bg_login.png) top repeat-x;
+	background-color: #ebebeb;
+	padding: 20px;
+	top: 35px;
+	right: 27px;
+}
+
+img#login_pane_btn_close_login {
+	position: absolute;
+	border: 0;
+	width: 20px;
+	height: 20px;
+	right: 30px;
+}
+
+div#wrapper_login img#title_sign_in {
+	margin: 0 0 5px 105px;
+	width: 112px;
+	height: 33px;
+	border: 0;
+}
+
+form#login {
+	margin: 0 0 15px 0;
+	padding: 0;
+}
+
+form#login p {
+	width: 371px;
+	height: 30px;
+	margin: 0px;
+	position: relative;
+	font-size: 12px;
+}
+
+form#login label {
+	width: 100px;
+	text-align: right;
+	font-weight: bold;
+	color: #1A7897;
+	margin: 5px 5px 0 0;
+	float: left;
+}
+
+form#login input#id_username, 
+form#login input#id_password
+{
+	width: 240px;
+	margin: 0px;
+	float: left;
+	background-color: #FFFFFF !important;
+	border: 1px solid #CCCCCC !important;
+}
+
+form#login input#id_remember_user {
+	border: 0;
+	margin-right: 200px;
+}
+
+form#login input#btn_sign_in {
+	width: 84px;
+	height: 31px;
+	margin: 7px 0 0 105px;
+	border: none !important;
+	padding: 0 !important;
+	float: left;
+}
+
+form#login div#forgot_password {
+	width: 80px;
+	margin: 8px 0 0 5px;
+	float: left;
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+div#register {
+	border-top: 1px solid #cccccc;
+	text-align: center;
+	color: #333333;
+}
+
+div#wrapper_login img#title_no_acct_yet {
+	margin: 15px 0 0 0;
+	width: 258px;
+	height: 33px;
+	border: 0;
+}
+
+div#wrapper_login img#btn_register {
+	width: 84px;
+	height: 31px;
+	margin: 10px 0 0 0;
+	border: 0;
+}
+
+div#wrapper_login ul.errorlist {
+	width: 266px;
+	height: 15px;
+	padding: 0 0 0 105px;
+	margin: 0;
+	float: left;
+}
+
+ul.errorlist li {
+	margin-bottom: 5px;
+}
+
+/* Login Inline */
+div#wrapper_login_inline form#login_inline,
+div#wrapper_login_inline form#register_inline
+{
+	float: left;
+}
+
+div#wrapper_login_inline form#login_inline {
+	width: 420px;
+	margin-left: 20px;
+}
+
+form#login_inline input#btn_sign_in {
+	width: 84px;
+	height: 31px;
+	margin: 7px 0 0 130px;
+	border: none !important;
+	padding: 0 !important;
+	float: left;
+}
+
+form#login_inline div#forgot_password {
+	width: 80px;
+	margin: 8px 0 0 5px;
+	float: left;
+	font-size: 11px;
+	white-space: nowrap;
+}
+
+form#register_inline {
+	width: 420px;
+}
+
+div#wrapper_login_inline img#btn_register {
+	width: 84px;
+	height: 31px;
+	margin: 10px 0 0 0;
+	border: 0;
+}
+
+div#wrapper_login_inline div.divider_vert {
+	margin: 0px 20px 0px 0px;
+	height: 240px;
+}
+
+div#wrapper_login_inline ul.errorlist {
+	width: 260px;
+	height: 15px;
+	padding: 0 0 0 130px;
+	margin: 0;
+	float: left;
+}
+
+/* Login Inline - Home */
+form#login_inline_home {
+	margin: 0px;
+}
+
+form#login_inline_home label {
+	margin-right: 5px;
+}
+
+form#login_inline_home input#id_username, 
+form#login_inline_home input#id_password
+{
+	width: 200px;
+	display: block;
+}
+
+form#login_inline_home div#other_actions_inline_home {
+	font-size: 11px !important;
+	font-weight: bold;
+}
+
+form#login_inline_home div#login_inline_home_submit {
+	_height: 1px; /* fuck IE 6 */
+}
+
+form#login_inline_home div#login_inline_home_submit input,
+form#login_inline_home div#login_inline_home_submit div
+{
+	float: left;
+	border: 0px;
+}
+
+form#login_inline_home div#login_inline_home_submit input#btn_sign_in_home_inline {
+	margin-right: 5px;
+}
+
+form#login_inline_home div#login_inline_home_submit div {
+	padding-top: 5px;
+}
+
+/* Login Inline - Standalone */
+
+div#wrapper_login_inline form#register_inline .errorlist {
+	margin-left: 130px !important;
+}
+
+div#wrapper_login_inline input#btn_sign_in {
+	width: 86px;
+	height: 24px;
+}
+
+
+

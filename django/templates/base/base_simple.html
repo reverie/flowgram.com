@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+{% load filters %}
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<noscript>
+        <meta http-equiv="refresh" content="0; URL=/nojs/">
+    </noscript>
+	<title>Flowgram | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/media/css/{% include "includes/style_css.incl" %}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/media/css/style_cms.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="/media/js/preloadImages.js"></script>
+    <script type="text/javascript" charset="utf-8">	
+        // preload key images
+        var init_images = ['/media/images/bg_smoke.png', '/media/images/btn_letsdoit_over.png'];
+        preloadImages(init_images);
+
+		{% block js_head_init %}
+			
+		{% endblock %}
+    </script>
+	<!-- SECTION/PAGE CSS -->
+    {% block styles %}
+    
+    {% endblock %}
+	{% include "includes/includesIE.incl" %}
+</head>
+
+<body><a name="top"></a>
+	<div id="wrapper_messages"></div>
+	<div id="wrapper_site">
+		<div id="wrapper_shadow">
+			<div id="wrapper_main">
+				
+				{% block bars %}
+					<div id="wrapper_header_main"></div>
+
+					<div id="wrapper_header_sub"></div>
+				{% endblock %}
+				
+				<div id="wrapper_content">
+					
+					<!-- CONTENT -->
+					{% block content %}
+						
+					{% endblock %}
+
+					
+					<div class="clearer"></div>
+					
+				</div>
+			
+			</div>
+			<div id="wrapper_footer">
+				{% include "includes/modules/site/footer_cms.incl" %}
+				<div class="clearer"></div>
+			</div>
+		</div>
+		<div id="wrapper_bottom"></div>
+	</div>	
+	<div id="csrf_token" style="display:none">{{csrf_token}}</div>
+	
+{% include "includes/js.incl" %}
+
+<!-- SECTION/PAGE JS -->
+{% block js %}
+
+{% endblock %}
+
+<script type="text/javascript" charset="utf-8">
+	
+	// init system messages controller
+	var smc = new SystemMessagesController();
+	
+	{% if visitor_messages %}
+		// set system messages
+		var messages_array = new Array();
+	    {% for message in visitor_messages %}
+	        messages_array[{{ forloop.counter0 }}] = '{{ message|safe }}';
+	    {% endfor %}
+		// init system messages controller
+		smc.initSystemMessages();
+	{% endif %}
+	
+    if (window.has_invite_module) {
+        var has_invites = {% ifnotequal request.user.get_profile.invitations 0 %}'true'{% else %}'false'{% endifnotequal %};
+        var invc = new InviteController();
+    }
+	
+	// init section/page specific js
+	{% block js_init %}
+
+	{% endblock %}
+</script>
+
+{% include "includes/analytics.incl" %}
+
+</body>
+</html>

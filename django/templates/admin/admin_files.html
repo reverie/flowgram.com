@@ -1,0 +1,62 @@
+{% extends "base/base.html" %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/third_party/lightbox.css" type="text/css" media="screen" charset="utf-8">
+	<style type="text/css" media="screen">
+		ul li input {
+			width: 400px;
+			margin-bottom: 3px;
+		}
+	</style>
+{% endblock %}
+
+{% block pageheader %}
+	Upload Images
+{% endblock %}
+
+{% block content %}
+<div id="content_main">
+	<h2>Upload files for internal use</h2>
+
+	<div class="generic_form">
+		<form enctype="multipart/form-data" method="post" action="/adminfiles/">
+			<input type="hidden" name="upload_form" value="upload_form">
+			{{form.as_p}}
+			<div class="clearer"></div>
+			<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+		</form>
+	</div>
+	
+	<h2>Internal files available</h2>
+	{% if dirlist %}
+		<ul>
+		{% for item in dirlist %}
+			<li><a href="/intmedia/{{ item }}" rel="lightbox" class="lightbox_pic">Preview</a> | <a href="javascript:void(0);" id="delete_{{ forloop.counter0 }}" onclick="return confirmDelete('delete_{{ forloop.counter0 }}');">[x] Delete</a> | Path: <input id="internal_image_{{ forloop.counter0 }}" type="text" value="{{ root_url }}{{ item }}" onclick="autoCopyToClipboard($('internal_image_{{ forloop.counter0 }}'), $('copy_status_{{ forloop.counter0 }}'));" readonly /> <span id="copy_status_{{ forloop.counter0 }}"></span></li>
+		{% endfor %}
+		</ul>
+	{% else %}
+		<strong>No files yet.</strong>
+	{% endif %}
+	
+</div>
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/js/third_party/lightbox.js"></script>
+{% endblock %}
+
+{% block js_init %}
+	function confirmDelete(delete_id) {
+		input_box=confirm("Sure you want to delete that?");
+		if (input_box==true) {
+			var delete_url = '/adminfiles/delete/';
+			delete_id = delete_id.replace(/delete_/, "");
+			delete_url = delete_url + delete_id + '/';
+			window.location.href = delete_url;
+		}
+
+		else {
+			return false;
+		}
+	}
+{% endblock %}

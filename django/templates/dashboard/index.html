@@ -1,0 +1,65 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+	| Dashboard 
+{% endblock %}
+
+
+{% block content %}
+<div id="content_main">
+    
+   {% for error in error_records %}
+     <div style="display: block;
+         margin: 1em;
+         border: 1px dotted ;
+         padding: 10px;
+         background: rgb(238,247,251);
+		 width:auto;
+         height:auto;">
+         <table>
+            <tr>
+			<td>
+              <table>
+               <tr>
+                <td> 
+                 <p style="color:red">Service: <b> {{error.service_type}} </b> -  Failure found at: {{error.latest_checkedtime}} </p>
+			    </td>
+		      </tr>
+			</table>
+			</td>
+			</tr>
+         </table>
+     </div>
+   {% endfor %}
+   
+    {% for pass in pass_records %}
+     <div style="display: block;
+         margin: 1em;
+         border: 1px dotted ;
+         padding: 10px;
+         background: rgb(238,247,251);
+		 width:auto;
+         height:auto;">
+         <table>
+            <tr>
+			<td>
+              <table>
+               <tr>
+                <td> 
+                 <p style="color:green">Service: {{pass.service_type}}</p>
+			    </td>
+			   </tr>
+			</table>
+			</td>
+			</tr>
+         </table>
+     </div>
+   {% endfor %}
+    
+</div>
+
+{% endblock %}
+

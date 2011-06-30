@@ -1,0 +1,56 @@
+{% extends "base/base.html" %}
+
+{% load filters %}
+{% load tags %}
+
+{% block title %}
+| {{ profile.user }}'s Subscription Manager
+{% endblock %}
+
+{% block pageheader %}
+Manage Subscriptions
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_you.incl" %}
+{% endblock %}
+
+{% block content %}
+	<div id="content_main">
+		{% if form %}
+		<h2 class="hdr_bar">
+			<div>Your Notification Options</div><div class="clearer"></div>
+		</h2>
+		<form id="notification-options" method="post" action="/updatenotifyoptions/">
+			<div class="notification-container">
+				<div class="notify-email">
+					<h3>Notify By Email?</h3>
+					<span>{{ form.notify_by_email.label_tag }}</span>
+					<span>{{ form.notify_by_email }}</span>
+				</div>				
+				<div class="notify-freq">
+					<h3>Notification Fequency</h3>
+					<span>{{ form.notification_freq.label_tag }}</span>
+					<span>{{ form.notification_freq }}</span>
+				</div>
+				<div class="notify-newsfeed">
+					<h3>Public Newsfeed?</h3>
+					<span>{{ form.has_public_news_feed.label_tag }}</span>
+					<span>{{ form.has_public_news_feed }}</span>
+				</div>				
+				<div class="clearer"></div>
+				<input type="image" src="/media/images/btn_submit.gif" class="submit" />
+			</div>
+		</form>
+		{% endif %}	
+		<div class="clearer"></div>
+		
+		{% include "includes/modules/newsfeed/subscriptions_display.incl" %}
+		
+	</div>
+	<div id="content_right">
+		<a href="/create"><img src="/media/images/btn_makeaFG.png" id="btn_make_FG_right_col" alt="Make a Flowgram" border="0" /></a>
+		{% include "includes/modules/other_content/invite_module.incl" %}
+        {% include "includes/modules/flowgram/sidebar_fgs.html" %}
+	</div>
+{% endblock content %}

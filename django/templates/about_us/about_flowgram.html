@@ -1,0 +1,65 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| About Flowgram
+{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/media/css/third_party/lightbox.css" type="text/css" media="screen" charset="utf-8">
+{% endblock %}
+
+{% block subnav %}
+	{% include "includes/nav/nav_sub_about_us.incl" %}
+{% endblock %}
+
+{% block pageheader %}
+	About Flowgram
+{% endblock %}
+
+{% block content %}
+
+<div id="content_main">
+	
+	<div class="hero">
+		<div class="module">
+			
+			<h2 class="first">About Flowgram</h2>
+
+			<p>We are building a new communications platform that lets anyone package and share anything on the internet in ways never before possible.</p>
+
+			<p>Flowgram combines the advantages of slide presentations and screencasts with an interactive user experience that fully exploits the fact that almost all the information we might ever need is already on the web.</p>
+
+			<p>Using the zero download Flowgram Maker, creators can assemble and annotate web pages, photographs, documents and more on any topic, and add a voice narrative that provides context, emotion and consistency. This uniquely personalized package can be shared as an embedable widget, email or as a link to either a private group or with the world. Flowgram recipients can interact with any of its pages by clicking on links, for example, or playing and pausing videos.</p>
+
+			<p>Thousands of compelling Flowgrams have already been created for education, training, sales, photo journalism, humor, website walkthroughs, and tutorials etc.</p>
+
+			<p>Our small team has backgrounds from Macromedia, Yahoo, Google and is committed to building the most compelling and hassle free user experience humanly possible. Our founder Abhay Parekh previously co-founded Fast Forward Networks which sold for over $1b and is also an Adjunct Professor of EECS at UC Berkeley. </p>
+
+			<p>Flowgram's mission has captured the imagination of a prestigious group of individuals with exceptional track records. Flowgram investors include Reid Hoffman (Paypal, Linkedin), First Round Capital, Kevin Lynch (CTO Adobe), the founders of Flickr and Half.com, the founding CEO of Macromedia, and members of the founding team of WebEx and Tibco Software.</p>
+		
+		</div>
+	</div>
+</div>
+
+<div id="content_right">
+	<a href="/media/images/team_large.jpg" rel="lightbox" class="lightbox_pic"><img src="/media/images/team_small.jpg" width="220" height="220" alt="Team Flowgram" /></a>
+	
+	<!--<p style="padding-left: 5px;"><strong>Team Flowgram is:</strong><br/>
+	Abhay Parekh<br/>
+	Brian Westphal<br/>
+	Chris Yap<br/>
+	David Gobaud<br/>
+	Ed Gutman<br/>
+	Greg Goldgof<br/>
+	Mike Londarenko<br/>
+	Mike Zawitkowski<br/>
+	Suli Xu<br/>
+	Tony Lopez
+	</p>-->
+</div>
+	
+{% endblock content %}
+
+{% block js %}
+	<script type="text/javascript" charset="utf-8" src="/media/js/third_party/lightbox.js"></script>
+{% endblock %}

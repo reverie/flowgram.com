@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <style type="text/css">
+            a {
+                color: #007B9A;
+                text-decoration: none;
+            }
+
+            .flowgram {
+                padding: 0 0 20px 0;
+				margin: 0;
+            }
+            
+            .flowgram-contents {
+            }
+            
+            .thumbnail {
+                margin: 4px;
+				border: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="body" align="left">
+			<div style="font-size: 18px;">
+				{{ senderName }} sent you a <span style="font-weight: bold;">Talking</span>
+				Email: <a href="{{ url }}" style="font-size: 20px; font-weight: bold;">{{ title }}</a>
+				<br />
+				<a href="{{ url }}">Click here to <span style="font-weight: bold;">listen</span> and view the email.</a>
+			</div>
+			<br />
+            {% ifnotequal thumbs_list_length 0 %}
+            	Preview of web pages mentioned in the email:
+            	<br />
+	            <div class="flowgram">
+	                <div class="flowgram-contents">
+	                    {% for thumbs in thumbs_list %}
+	                    	<a href="{{ url }}"><img class="thumbnail" src="{{ thumbs.thumb_url }}" /></a>
+	                    {% endfor %}
+	                </div>
+	            </div>
+            {% endifnotequal %}
+			<hr style="margin: 0px; padding: 0px;">
+			<span style="font-weight: bold;">More About Flowgram</span>
+			<br/>
+			Flowgram gives you a powerful new way of enjoying web pages. 
+			You won't need to install anything to watch a Flowgram, and of course it doesn't include any spyware.
+			Just sit back and enjoy!
+        </div>
+    </body>
+</html>

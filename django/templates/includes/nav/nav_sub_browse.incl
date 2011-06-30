@@ -1,0 +1,5 @@
+<li{% ifequal activesecondary 'mostviewed' %} class="on"{% endifequal %}><a class="nav_item" href="/browse/mostviewed/">Most Popular</a></li>
+<li{% ifequal activesecondary 'newest' %} class="on"{% endifequal %}><a class="nav_item" href="/browse/newest/">Newest</a></li>
+<li{% ifequal activesecondary 'featured' %} class="on"{% endifequal %}><a class="nav_item" href="/browse/featured/">Featured</a></li>
+<li{% ifequal activesecondary 'mostdiscussed' %} class="on"{% endifequal %}><a class="nav_item" href="/browse/mostdiscussed/">Most Discussed</a></li>
+<li{% ifequal activesecondary 'toprated' %} class="on"{% endifequal %}><a class="nav_item" href="/browse/toprated/">Top Rated</a></li>

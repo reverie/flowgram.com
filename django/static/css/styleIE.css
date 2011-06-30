@@ -1,0 +1,45 @@
+/* GLOBAL */
+
+div#content_main div.grid div.module div.tags {
+	bottom: 11px;
+}
+
+div.fg_rating {
+	margin-top: 0px;
+}
+
+div.list div.fg_heart {
+	margin-left: 0px;
+}
+
+div.fg_rating {
+	float: left;
+	margin-top: 2px;
+}
+
+.fg_StarRating {
+	left: 0px;
+	margin: 0;
+}
+
+.fg_HeartRating {
+	left: 0px;
+	margin: 0;
+}
+div.generic_form p {
+	margin: 0px 0px 10px 0px;
+}
+
+div.generic_form form p input,
+div.generic_form form p textarea,
+div.generic_form form p select
+{
+	margin-bottom: 0px;
+}
+
+/* PAGE SPECIFIC */
+
+/* Add URLs page */
+div.add_urls img#fgMakerArrow {
+	left: 520px;
+}

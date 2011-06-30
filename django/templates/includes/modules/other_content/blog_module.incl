@@ -1,0 +1,12 @@
+{% comment %}
+<h2 class="hdr_bar">From Our Blog</h2>
+<div class="module blue" id="blog_module">
+	{% for post in posts %}
+		<h3{% if forloop.first %} class="first"{% endif %}><a href="{{ post.url }}" target="_blank">{{ post.title|safe }}</a></h3>
+	{% endfor %}
+	<h3 class="last"><a href="http://blog.flowgram.com" target="_blank">Read more &raquo;</a></h3>
+</div>
+{% endcomment %}
+
+
+

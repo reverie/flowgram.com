@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	| Tutorials
+{% endblock %}
+
+{% block styles %}
+	
+{% endblock %}
+
+{% block pageheader %}
+	Tutorials
+{% endblock %}
+
+{% block content %}
+
+	<div id="content_main">
+		
+		<div class="hero help">
+			<div class="module" id="main_help_index">
+				
+				<h2 class="first">Available Tutorials</h2>
+				
+				{% if tutorials %}
+					<ul>
+						{% for tutorial in tutorials %}
+							<li><a href="/tutorials/{{ tutorial.id }}/">{{ tutorial.title }}</a></li>
+						{% endfor %}
+					</ul>
+				{% else %}
+					No tutorials available yet.  Coming soon!
+				{% endif %}
+				
+				
+				
+				
+				<h2>Don't see what you're looking for?</h2>
+				<p><a href="/about_us/contact_us/">Contact us</a> and let us know if there's something you'd like to see here.  We'll do our best.</p>
+
+
+			</div>
+		</div>
+		
+		
+	</div>
+
+	<div id="content_right">
+		
+		{% include "includes/promos/forum_promo_home.incl" %}
+		
+        <!--
+		<div class="module">
+			<h2>Flowgram Forum Topics</h2>
+			<ul>
+				<li>Get help from other Flowgram users and the Flowgram team in the forums.</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+		<div class="module">
+			<h2>Tutorials</h2>
+			<ul>
+				<li>Interactive tutorials designed to hel you take full advantage of Flowgram</li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+				<li class="last"><a href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</a></li>
+			</ul>
+		</div>
+		-->
+		
+	</div>
+	
+{% endblock content %}
