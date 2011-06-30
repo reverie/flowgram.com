@@ -1,0 +1,28 @@
+Background:
+-----------
+This is the source code to a startup that lived from 2007 to 2009. Flowgram.com 
+was my first full-time employer, and I'm happy to be able to keep alive some
+part of what we did.
+
+We had an innovative product. In short, "Flowgram is a way to share Web pages, 
+photos, and videos in a browser-based player that acts like an interactive 
+screencast."
+
+Watch this YouTube video for details: http://www.youtube.com/watch?v=z8vmNRnzDSg
+
+Ultimately, we weren't able to get enough traction. I got the source code from
+another employee, and permission to post it from the founder.
+
+I hope more "before their time" startups can find a way to release their code!
+
+
+Code:
+-----
+There are two top-level folders corresponding to two services that need to run. 
+Content added to a Flowgram is represented by a screenshot. These are created by
+the service in the "dom_renderer" folder, so named because webpages are the most
+common content to add. Everything else -- from the Flowgram website to the
+recorder and player -- is handled by the Django project in the "django" folder.
+
+Beyond that, I haven't run the code in almost three years, so you're on your
+own. If I get more information I'll add it here.
